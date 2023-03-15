@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//Admin
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
+        Route::get('login', [AdminLoginController::class, 'getLogin'])->name('getLogin');
+        Route::post('login', [AdminLoginController::class, 'postLogin'])->name('postLogin');
+        Route::get('logout', [AdminLoginController::class, 'getLogout'])->name('getLogout');
 });
