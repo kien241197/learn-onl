@@ -10,9 +10,12 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $title = "Trang chủ";
+        return view('admin.home', [
+            'title' => $title
+        ]);
     }
 
     /**

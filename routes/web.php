@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('login', [AdminLoginController::class, 'getLogin'])->name('getLogin');
         Route::post('login', [AdminLoginController::class, 'postLogin'])->name('postLogin');
         Route::get('logout', [AdminLoginController::class, 'getLogout'])->name('getLogout');
+});
+Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
 });

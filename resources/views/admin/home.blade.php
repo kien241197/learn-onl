@@ -41,7 +41,7 @@
                     <div class="icon">
                         <i class="fa fa-user-plus"></i>
                     </div>
-                    <a href="{{ route('admin.users.index') }}" class="small-box-footer">
+                    <a href="#" class="small-box-footer">
                         Xem thêm <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>

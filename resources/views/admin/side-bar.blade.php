@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{ asset('public/image/AdminLTELogo.png') }}" alt="Admin Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">WEB SIM</span>
+      <span class="brand-text font-weight-light">VIDEO LEARNING</span>
     </a>
 
     <!-- Sidebar -->
@@ -11,14 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          @if(Auth::user()->level == \App\Enums\UserRole::ADMIN)
           <img src="{{ asset('public/image/admin.jpg') }}" class="img-circle elevation-2" alt="Admin Image">
-          @else 
-          <img src="{{ asset('public/image/ctv.jpg') }}" class="img-circle elevation-2" alt="User Image">
-          @endif
         </div>
         <div class="info">
-          <a href="{{ route('admin.info') }}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -26,16 +22,16 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="{{ route('admin.sim-cards.index') }}" class="nav-link {{ (request()->is('admin/sim-cards*')) ? 'active' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/sim-cards*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-credit-card"></i>
               <p>
                 SIM SỐ ĐẸP
               </p>
             </a>
           </li>
-          @if(Auth::user()->level == \App\Enums\UserRole::ADMIN)
+
           <li class="nav-item">
-            <a href="{{ route('admin.users.index') }}" class="nav-link {{ (request()->is('admin/users*')) ? 'active' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/users*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-users"></i>
               <p>
                 Đại lý
@@ -43,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.group-packs.index') }}" class="nav-link {{ (request()->is('admin/group-packs*')) ? 'active' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/group-packs*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-sitemap"></i>
               <p>
                 Nhóm gói cước
@@ -60,19 +56,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.packs.index', App\Enums\NetworkService::VIETTEL) }}" class="nav-link {{ (request()->is('admin/packs/'.App\Enums\NetworkService::VIETTEL.'*')) ? 'active' : '' }}">
+                <a href="#" class="nav-link {{ (request()->is('admin/packs/*')) ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>VIETTEL</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.packs.index', App\Enums\NetworkService::VINA) }}" class="nav-link {{ (request()->is('admin/packs/'.App\Enums\NetworkService::VINA.'*')) ? 'active' : '' }}">
+                <a href="#" class="nav-link {{ (request()->is('admin/packs/*')) ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>VINA</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.packs.index', App\Enums\NetworkService::MOBI) }}" class="nav-link {{ (request()->is('admin/packs/'.App\Enums\NetworkService::MOBI.'*')) ? 'active' : '' }}">
+                <a href="#" class="nav-link {{ (request()->is('admin/packs/*')) ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>MOBI</p>
                 </a>
@@ -112,7 +108,7 @@
               </p>
             </a>
           </li>
-          @endif
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
