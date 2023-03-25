@@ -25,16 +25,16 @@
             <a href="#" class="nav-link {{ (request()->is('admin/sim-cards*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-credit-card"></i>
               <p>
-                SIM SỐ ĐẸP
+                KHÓA HỌC
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (request()->is('admin/users*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.users.index') }}" class="nav-link {{ (request()->is('admin/users*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-users"></i>
               <p>
-                Đại lý
+                KHÁCH HÀNG
               </p>
             </a>
           </li>
@@ -42,69 +42,24 @@
             <a href="#" class="nav-link {{ (request()->is('admin/group-packs*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-sitemap"></i>
               <p>
-                Nhóm gói cước
+                THỂ LOẠI
               </p>
             </a>
-          </li>
-          <li class="nav-item {{ (request()->is('admin/packs*')) ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ (request()->is('admin/packs*')) ? 'active' : '' }}">
-              <i class="nav-icon fa fa-database"></i>
-              <p>
-                Gói cước
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link {{ (request()->is('admin/packs/*')) ? 'active' : '' }}">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>VIETTEL</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link {{ (request()->is('admin/packs/*')) ? 'active' : '' }}">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>VINA</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link {{ (request()->is('admin/packs/*')) ? 'active' : '' }}">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>MOBI</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-copy"></i>
               <p>
-                Đơn hàng
-                <i class="right fa fa-angle-left"></i>
+                COMMENT
                 <span class="badge badge-info right">3</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Số đẹp</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Sim mạng</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-book"></i>
               <p>
-                WEB SITE - Thanh toán
-                <i class="fafa-angle-left right"></i>
+                THẺ TÌM KIẾM
               </p>
             </a>
           </li>

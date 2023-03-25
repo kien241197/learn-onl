@@ -18,7 +18,14 @@
                                 <input class="form-control" name="user_name" value="{{ $user->user_name }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label>Tên đại lý</label>
+                                <label>Email</label>
+                                <input name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif                               
+                            </div>
+                            <div class="form-group">
+                                <label>Tên thành viên</label>
                                 <input name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
                                 @if ($errors->has('name'))
 					                <span class="text-danger">{{ $errors->first('name') }}</span>

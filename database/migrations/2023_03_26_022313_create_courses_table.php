@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('user_name')->unique();
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('level');
+            $table->integer('category_id')->nullable();
+            $table->integer('level')->nullable();
+            $table->dateTime('publish_start')->nullable();
+            $table->dateTime('publish_end')->nullable();
+            $table->bigInteger('price')->nullable();
+            $table->boolean('is_hot')->default(0)->nullable();
             $table->text('note')->nullable();
-            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('courses');
     }
 };

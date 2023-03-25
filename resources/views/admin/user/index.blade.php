@@ -25,7 +25,8 @@
                                 <tr class="text-center">
                                     <th style="width: 10px">ID</th>
                                     <th style="min-width: 115px;">Tên đăng nhập</th>
-                                    <th style="min-width: 100px">Tên đại lý</th>
+                                    <th style="min-width: 100px">Email</th>
+                                    <th style="min-width: 100px">Tên thành viên</th>
                                     <th>Số điện thoại</th>
                                     <th style="min-width: 100px;">Ghi chú</th>
                                     <th style="min-width: 90px;"></th>
@@ -36,6 +37,7 @@
                                 <tr>
                                     <td class="align-middle">{{ $user->id }}</td>
 		                            <td class="align-middle">{{ $user->user_name }}</td>
+                                    <td class="align-middle">{{ $user->email }}</td>
 		                            <td class="align-middle">{{ $user->name }}</td>
 		                            <td class="align-middle">{{ $user->phone }}</td>
 		                            <td class="align-middle">{{ $user->note }}</td>

@@ -1,39 +1,90 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 import './bootstrap';
-import { createApp } from 'vue';
 
-/**
- * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
- * to use in your application's views. An example is included for you.
- */
+function updateURLParameter(url, param, paramVal)
+{
+    var TheAnchor = null;
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
 
-const app = createApp({});
+    if (additionalURL) 
+    {
+        var tmpAnchor = additionalURL.split("#");
+        var TheParams = tmpAnchor[0];
+            TheAnchor = tmpAnchor[1];
+        if(TheAnchor)
+            additionalURL = TheParams;
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+        tempArray = additionalURL.split("&");
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+        for (var i=0; i<tempArray.length; i++)
+        {
+            if(tempArray[i].split('=')[0] != param)
+            {
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }        
+    }
+    else
+    {
+        var tmpAnchor = baseURL.split("#");
+        var TheParams = tmpAnchor[0];
+            TheAnchor  = tmpAnchor[1];
 
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
+        if(TheParams)
+            baseURL = TheParams;
+    }
 
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
+    if(TheAnchor)
+        paramVal += "#" + TheAnchor;
 
-app.mount('#app');
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
+}
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$(".btn-delete-record").click(function() {
+    let url = $(this).data("url");
+    Swal.fire({
+        title: "Xác nhận xóa dữ liệu này?",
+        icon: "warning",
+        text: "Dữ liệu sẽ không thể hoàn tác",
+        confirmButtonText: "Xóa",
+        cancelButtonText: "Hủy",
+        showCancelButton: true
+    }).then(result => {
+        if (result.value) {
+            $('.loading-div').removeClass('hidden');
+            $.ajax({
+                    method: "DELETE",
+                    url: url,
+                })
+                .done(function(response) {
+                    $('.loading-div').addClass('hidden');
+                    Swal.fire({
+                            title: response,
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                        .then(function() {
+                            window.location.reload();
+                        });
+                })
+                .fail(function(error) {
+                    $('.loading-div').addClass('hidden');
+                    console.log(error);
+                });
+        }
+    });
+});
+$("#size-limit").change(function() {
+    var newURL = updateURLParameter(window.location.href, 'limit', $(this).val());
+    location.href = newURL;
+});

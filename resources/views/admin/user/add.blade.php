@@ -20,7 +20,14 @@
 				                @endif
                             </div>
                             <div class="form-group">
-                                <label>Tên đại lý</label>
+                                <label>Email</label>
+                                <input class="form-control" name="email" value="{{ old('email')}}" required>
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Tên thành viên</label>
                                 <input name="name" class="form-control" value="{{ old('name') }}" required>
                                 @if ($errors->has('name'))
 					                <span class="text-danger">{{ $errors->first('name') }}</span>
