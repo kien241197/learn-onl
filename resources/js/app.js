@@ -88,3 +88,14 @@ $("#size-limit").change(function() {
     var newURL = updateURLParameter(window.location.href, 'limit', $(this).val());
     location.href = newURL;
 });
+
+$(document).ready(function() {
+    // Select2 Multiple
+    $('.select2-multiple').select2({
+        placeholder: "Select",
+        allowClear: true
+    });
+
+});
+
+$('.datetimepicker-input').datetimepicker();

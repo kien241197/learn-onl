@@ -3,38 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Tag;
 use App\Enums\FlashType;
-use App\Enums\UserRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use DB;
 
-class AdminUserController extends Controller
+class AdminTagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $title = "Danh sách thành viên";
+        $title = "Danh sách Thẻ";
         $sizeLimit = $request->limit ? $request->limit : 20;
         $search = $request->search ? $request->search : null;
-        $users = User::where(
+        $tags = Tag::where(
          function($query) use ($search) {
             if($search) {
-             return $query->where('name', 'LIKE', "%".$search."%")
-             ->orWhere('user_name', 'LIKE', "%".$search."%")
-             ->orWhere('phone', 'LIKE', "%".$search."%");
+             return $query->where('tag_name', 'LIKE', "%".$search."%");
             }
           })
-        ->where('level', UserRole::USER)
         ->orderBy('created_at', 'DESC')
         ->paginate($sizeLimit);
-        return view('admin.user.index', [
+        return view('admin.tag.index', [
             'title' => $title,
-            'users' => $users
+            'tags' => $tags
         ]);
     }
 
@@ -43,8 +38,8 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        $title = "Thêm thành viên";
-        return view('admin.user.add', [
+        $title = "Thêm Thẻ";
+        return view('admin.tag.add', [
             'title' => $title
         ]);
     }
@@ -56,30 +51,19 @@ class AdminUserController extends Controller
     {
         $this->validate($request,
             [
-                'user_name' => ['required', Rule::unique('users')],
-                'email' => ['required', Rule::unique('users')],
-                'name' => ['required'],
-                'phone' => ['required'],
-                'password' => ['required'],
+                'tag_name' => ['required', Rule::unique('tags')],
             ],
             [
-                'user_name.unique' => 'Tên đăng nhập này đã được sử dụng',
-                'email.unique' => 'Email này đã được sử dụng',
+                'tag_name.unique' => 'Thẻ này đã được sử dụng',
             ]
         );
-        $user = new User();
+        $tag = new Tag();
         DB::begintransaction();
         try {
-            $user->user_name = $request->user_name;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->note = $request->note;
-            $user->password = Hash::make($request->password);
-            $user->level = UserRole::USER;
-            if ($user->save()) {
+            $tag->tag_name = $request->tag_name;
+            if ($tag->save()) {
                 DB::commit();
-                $this->setFlash(__('Đăng ký thành công!'), FlashType::Success, route('admin.users.index'));
+                $this->setFlash(__('Đăng ký thành công!'), FlashType::Success, route('admin.tags.index'));
             } else {
                 DB::rollBack();
                 $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
@@ -96,11 +80,11 @@ class AdminUserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::where('id', $id)->firstOrFail();
-        $title = "Thông tin CTV";
-        return view('admin.user.detail', [
+        $tag = Tag::where('id', $id)->firstOrFail();
+        $title = "Thông tin thẻ";
+        return view('admin.tag.detail', [
             'title' => $title,
-            'user' => $user
+            'tag' => $tag
         ]);
     }
 
@@ -109,11 +93,11 @@ class AdminUserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::where('id', $id)->firstOrFail();
-        $title = "Sửa thông tin thành viên";
-        return view('admin.user.edit', [
+        $tag = Tag::where('id', $id)->firstOrFail();
+        $title = "Sửa thông tin thẻ";
+        return view('admin.tag.edit', [
             'title' => $title,
-            'user' => $user
+            'tag' => $tag
         ]);
     }
 
@@ -124,24 +108,18 @@ class AdminUserController extends Controller
     {
         $this->validate($request,
             [
-                'name' => ['required'],
-                'phone' => ['required'],
+                'tag_name' => ['required'],
             ],
             [
                 
             ]
         );
-        $user = User::where('id', $id)->firstOrFail();
-        $title = "Sửa thông tin thành viên";
+        $tag = Tag::where('id', $id)->firstOrFail();
+        $title = "Sửa thông tin Thẻ";
         DB::begintransaction();
         try {
-            $user->name = $request->name;
-            $user->phone = $request->phone;
-            $user->note = $request->note;
-            if($request->password) {
-                $user->password = Hash::make($request->password);
-            }
-            if ($user->save()) {
+            $tag->tag_name = $request->tag_name;
+            if ($tag->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
             } else {
@@ -152,9 +130,9 @@ class AdminUserController extends Controller
             DB::rollBack();
             $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
         }
-        return view('admin.user.edit', [
+        return view('admin.tag.edit', [
             'title' => $title,
-            'user' => $user
+            'tag' => $tag
         ]);
     }
 
@@ -165,13 +143,13 @@ class AdminUserController extends Controller
     {
         DB::beginTransaction();
 
-        $user = User::where([
+        $tag = Tag::where([
             ['id', $id],
         ]);
 
-        if ($user->delete()) {
+        if ($tag->delete()) {
             DB::commit();
-            return response()->json('Xóa thành viên thành công!', FlashType::OK);
+            return response()->json('Xóa Thẻ thành công!', FlashType::OK);
         }
         DB::rollBack();
         return response()->json('Đã có lỗi xảy ra!', FlashType::NOT_FOUND);

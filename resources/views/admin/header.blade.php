@@ -6,7 +6,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('admin.index') }}" class="nav-link">Home</a>
+        <a href="{{ route('admin.index') }}" class="nav-link">Trang chủ</a>
       </li>
     </ul>
 
@@ -17,7 +17,7 @@
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="search">
+              <input class="form-control form-control-navbar" type="search" placeholder="Tìm kiếm" aria-label="Search" name="search">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fa fa-search"></i>

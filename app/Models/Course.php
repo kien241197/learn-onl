@@ -11,4 +11,9 @@ class Course extends Model
     use HasFactory, SoftDeletes;
 
     public $timestamps = true;
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 }

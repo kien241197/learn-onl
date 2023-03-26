@@ -3,38 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Category;
 use App\Enums\FlashType;
-use App\Enums\UserRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use DB;
 
-class AdminUserController extends Controller
+class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $title = "Danh sách thành viên";
+        $title = "Danh sách thể loại";
         $sizeLimit = $request->limit ? $request->limit : 20;
         $search = $request->search ? $request->search : null;
-        $users = User::where(
+        $categories = Category::where(
          function($query) use ($search) {
             if($search) {
-             return $query->where('name', 'LIKE', "%".$search."%")
-             ->orWhere('user_name', 'LIKE', "%".$search."%")
-             ->orWhere('phone', 'LIKE', "%".$search."%");
+             return $query->where('name', 'LIKE', "%".$search."%");
             }
           })
-        ->where('level', UserRole::USER)
         ->orderBy('created_at', 'DESC')
         ->paginate($sizeLimit);
-        return view('admin.user.index', [
+        return view('admin.category.index', [
             'title' => $title,
-            'users' => $users
+            'categories' => $categories
         ]);
     }
 
@@ -43,8 +38,8 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        $title = "Thêm thành viên";
-        return view('admin.user.add', [
+        $title = "Thêm thể loại";
+        return view('admin.category.add', [
             'title' => $title
         ]);
     }
@@ -56,30 +51,20 @@ class AdminUserController extends Controller
     {
         $this->validate($request,
             [
-                'user_name' => ['required', Rule::unique('users')],
-                'email' => ['required', Rule::unique('users')],
-                'name' => ['required'],
-                'phone' => ['required'],
-                'password' => ['required'],
+                'name' => ['required', Rule::unique('categories')->whereNull('deleted_at')],
             ],
             [
-                'user_name.unique' => 'Tên đăng nhập này đã được sử dụng',
-                'email.unique' => 'Email này đã được sử dụng',
+                'name.unique' => 'Thể loại này đã được sử dụng',
             ]
         );
-        $user = new User();
+        $category = new Category();
         DB::begintransaction();
         try {
-            $user->user_name = $request->user_name;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->note = $request->note;
-            $user->password = Hash::make($request->password);
-            $user->level = UserRole::USER;
-            if ($user->save()) {
+            $category->name = $request->name;
+            $category->note = $request->note;
+            if ($category->save()) {
                 DB::commit();
-                $this->setFlash(__('Đăng ký thành công!'), FlashType::Success, route('admin.users.index'));
+                $this->setFlash(__('Đăng ký thành công!'), FlashType::Success, route('admin.categories.index'));
             } else {
                 DB::rollBack();
                 $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
@@ -96,11 +81,11 @@ class AdminUserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::where('id', $id)->firstOrFail();
-        $title = "Thông tin CTV";
-        return view('admin.user.detail', [
+        $category = Category::where('id', $id)->firstOrFail();
+        $title = "Thông tin thể loại";
+        return view('admin.category.detail', [
             'title' => $title,
-            'user' => $user
+            'category' => $category
         ]);
     }
 
@@ -109,11 +94,11 @@ class AdminUserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::where('id', $id)->firstOrFail();
-        $title = "Sửa thông tin thành viên";
-        return view('admin.user.edit', [
+        $category = Category::where('id', $id)->firstOrFail();
+        $title = "Sửa thông tin thể loại";
+        return view('admin.category.edit', [
             'title' => $title,
-            'user' => $user
+            'category' => $category
         ]);
     }
 
@@ -125,23 +110,18 @@ class AdminUserController extends Controller
         $this->validate($request,
             [
                 'name' => ['required'],
-                'phone' => ['required'],
             ],
             [
                 
             ]
         );
-        $user = User::where('id', $id)->firstOrFail();
-        $title = "Sửa thông tin thành viên";
+        $category = Category::where('id', $id)->firstOrFail();
+        $title = "Sửa thông tin thể loại";
         DB::begintransaction();
         try {
-            $user->name = $request->name;
-            $user->phone = $request->phone;
-            $user->note = $request->note;
-            if($request->password) {
-                $user->password = Hash::make($request->password);
-            }
-            if ($user->save()) {
+            $category->name = $request->name;
+            $category->note = $request->note;
+            if ($category->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
             } else {
@@ -152,9 +132,9 @@ class AdminUserController extends Controller
             DB::rollBack();
             $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
         }
-        return view('admin.user.edit', [
+        return view('admin.category.edit', [
             'title' => $title,
-            'user' => $user
+            'category' => $category
         ]);
     }
 
@@ -165,13 +145,13 @@ class AdminUserController extends Controller
     {
         DB::beginTransaction();
 
-        $user = User::where([
+        $category = Category::where([
             ['id', $id],
         ]);
 
-        if ($user->delete()) {
+        if ($category->delete()) {
             DB::commit();
-            return response()->json('Xóa thành viên thành công!', FlashType::OK);
+            return response()->json('Xóa thể loại thành công!', FlashType::OK);
         }
         DB::rollBack();
         return response()->json('Đã có lỗi xảy ra!', FlashType::NOT_FOUND);

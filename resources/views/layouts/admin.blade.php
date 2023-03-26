@@ -11,7 +11,9 @@
 <!-- Ionicons -->
 <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery-datetimepicker/jquery.datetimepicker.min.css') }}"/ >
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
@@ -69,7 +71,9 @@
 <!-- jQuery -->
 <script src="{{ asset('public/js/jquery.min.js') }}"></script>
 <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('public/js/jquery.datetimepicker.full.min.js') }}"></script>
 <script src="{{ asset('public/js/app.js') }}"></script>
 @if(session()->has('Flash'))
 <script type="text/javascript">

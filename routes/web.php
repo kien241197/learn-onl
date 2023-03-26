@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminTagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +32,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::resource('users', AdminUserController::class);
+        Route::resource('courses', AdminCourseController::class);
+        Route::resource('categories', AdminCategoryController::class);
+        Route::resource('tags', AdminTagController::class);
 });

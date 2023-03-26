@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{ asset('public/image/AdminLTELogo.png') }}" alt="Admin Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">VIDEO LEARNING</span>
+      <span class="brand-text font-weight-light">VIDEO COURSES</span>
     </a>
 
     <!-- Sidebar -->
@@ -22,7 +22,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (request()->is('admin/sim-cards*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.courses.index') }}" class="nav-link {{ (request()->is('admin/courses*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-credit-card"></i>
               <p>
                 KHÓA HỌC
@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (request()->is('admin/group-packs*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.categories.index') }}" class="nav-link {{ (request()->is('admin/categories*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-sitemap"></i>
               <p>
                 THỂ LOẠI
@@ -47,7 +47,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ (request()->is('admin/comments*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-copy"></i>
               <p>
                 COMMENT
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.tags.index') }}" class="nav-link {{ (request()->is('admin/tags*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-book"></i>
               <p>
                 THẺ TÌM KIẾM
