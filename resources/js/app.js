@@ -1,5 +1,6 @@
 
 import './bootstrap';
+import './jquery.nestable.min';
 
 function updateURLParameter(url, param, paramVal)
 {
@@ -99,3 +100,5 @@ $(document).ready(function() {
 });
 
 $('.datetimepicker-input').datetimepicker();
+
+$('.dd').nestable({ scroll: true });

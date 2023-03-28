@@ -27,6 +27,7 @@
         "@fortawesome/fontawesome-free": "^6.3.0",
         "admin-lte": "3.0",
         "font-awesome": "^4.7.0",
-        "jquery-datetimepicker": "^2.5.21"
+        "jquery-datetimepicker": "^2.5.21",
+        "nestable2": "^1.6.0"
     }
 }

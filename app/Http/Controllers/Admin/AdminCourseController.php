@@ -95,8 +95,8 @@ class AdminCourseController extends Controller
      */
     public function show(string $id)
     {
+        $title = "Giáo Trình";
         $course = Course::where('id', $id)->firstOrFail();
-        $title = "Thông tin khóa học";
         return view('admin.course.detail', [
             'title' => $title,
             'course' => $course

@@ -41,7 +41,7 @@ Your browser does not support the video tag.
                             	@foreach($courses as $course)
                                 <tr>
                                     <td class="align-middle">{{ $course->id }}</td>
-		                            <td class="align-middle"><b><a href="/{{ $course->id }}">{{ $course->name }}</a></b></td>
+		                            <td class="align-middle"><b><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></b></td>
                                     <td class="align-middle">{{ $course->category->name }}</td>
 		                            <td class="align-middle">{{ App\Enums\CourseLevel::getDescription($course->level) }}</td>
 		                            <td class="align-middle">{{ number_format($course->price) }}$</td>

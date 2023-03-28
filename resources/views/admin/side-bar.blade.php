@@ -47,10 +47,18 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="#" class="nav-link {{ (request()->is('admin/orders*')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-shopping-cart"></i>
+              <p>
+                THỐNG KÊ GIAO DỊCH
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link {{ (request()->is('admin/comments*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-copy"></i>
               <p>
-                COMMENT
+                REPLY COMMENT
                 <span class="badge badge-info right">3</span>
               </p>
             </a>
