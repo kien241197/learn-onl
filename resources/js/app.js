@@ -99,6 +99,30 @@ $(document).ready(function() {
 
 });
 
-$('.datetimepicker-input').datetimepicker();
+$('.datetimepicker-input').datetimepicker({
+    format:'Y-m-d H:m:s',
+});
 
-$('.dd').nestable({ scroll: true });
+$('.dd').nestable({ 
+    scroll: true,
+    maxDepth: 2,
+    beforeDragStop: function(l,e, p){
+        var type = $(e).data('type');
+        var type2 = $(p).data('type');
+
+        if(type == 'chapter')
+        {
+            if(type2 != 'chapter')
+                return false;
+            else
+                return true;
+        }
+        else if(type == 'lesson')
+        {
+            if(type2 == 'lesson')
+                return true;
+            else
+                return false;
+        }
+    } 
+});

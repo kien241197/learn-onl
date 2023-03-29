@@ -12,10 +12,10 @@
 
                     <div class="card-body">
                         <div class="dd">
-                            <ol class="dd-list">
+                            <ol class="dd-list" data-type="chapter">
                                 <li class="dd-item" data-id="1">
                                     <div class="dd-handle"><h5><b>Phần I</b></h5></div>
-                                    <ol class="dd-list">
+                                    <ol class="dd-list" data-type="lesson">
                                         <li class="dd-item" data-id="4">
                                             <div class="dd-handle"><a href="google.com">Bài 1: Test 1</a></div>
                                         </li>
@@ -26,7 +26,7 @@
                                 </li>
                                 <li class="dd-item" data-id="2">
                                     <div class="dd-handle"><h5><b>Phần II</b></h5></div>
-                                    <ol class="dd-list">
+                                    <ol class="dd-list" data-type="lesson">
                                         <li class="dd-item" data-id="6">
                                             <div class="dd-handle">Bài 3: Test 3</div>
                                         </li>
@@ -41,7 +41,7 @@
                                 </li>
                                 <li class="dd-item" data-id="3">
                                     <div class="dd-handle"><h5><b>Phần III</b></h5></div>
-                                    <ol class="dd-list">
+                                    <ol class="dd-list" data-type="lesson">
                                         <li class="dd-item" data-id="4">
                                             <div class="dd-handle">Bài kết thúc</div>
                                         </li>

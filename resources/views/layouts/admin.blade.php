@@ -11,17 +11,17 @@
 <!-- Ionicons -->
 <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-<link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery-datetimepicker/jquery.datetimepicker.min.css') }}"/ >
-<link rel="stylesheet" type="text/css" href="{{ asset('public/css/jquery.nestable.min.css') }}"/ >
+<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-datetimepicker/jquery.datetimepicker.min.css') }}"/ >
+<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.nestable.min.css') }}"/ >
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('public/image/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ asset('image/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
   </div>
 
     <!-- Header -->
@@ -70,12 +70,12 @@
 </div>
 <!-- ./wrapper -->
 <!-- jQuery -->
-<script src="{{ asset('public/js/jquery.min.js') }}"></script>
-<script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ asset('public/js/jquery.datetimepicker.full.min.js') }}"></script>
-<script src="{{ asset('public/js/app.js') }}"></script>
+<script src="{{ asset('js/jquery.datetimepicker.full.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 @if(session()->has('Flash'))
 <script type="text/javascript">
   let urlRedirect = "{{ session()->get('Flash')[0]['urlRedirect'] }}";

@@ -9,7 +9,10 @@ use App\Models\Tag;
 use App\Enums\FlashType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use DB;
+use File;
+use Storage;
 
 class AdminCourseController extends Controller
 {
@@ -59,24 +62,33 @@ class AdminCourseController extends Controller
         $this->validate($request,
             [
                 'name' => ['required'],
+                'price' => ['alpha_num'],
+                'image' => ['mimes:jpeg,png,jpg,gif'],
+                'time_start' => ['date_format:Y-m-d H:m:s'],
+                'time_end' => ['date_format:Y-m-d H:m:s'],
             ],
             [
                 // 'name.required' => 'Tên đăng nhập này đã được sử dụng',
                 // 'email.unique' => 'Email này đã được sử dụng',
             ]
         );
-        $course = new course();
         DB::begintransaction();
         try {
+            $course = new course();
             $course->name = $request->name;
             $course->category_id = $request->category;
             $course->level = $request->level;
             $course->price = $request->price;
             $course->note = $request->note;
-            $course->is_hot = $request->hot;
-            $course->publish_start = $request->time_start;
-            $course->publish_end = $request->time_end;
+            $course->publish_start = Carbon::parse($request->time_start);
+            $course->publish_end = Carbon::parse($request->time_end);
+            if($request->image) {
+                $imageName = time() . '.' . $request->image->extension();
+                $course->image_url =  "storage/images/" . $imageName;
+                $request->file('image')->storeAs('images', $imageName, 'public');
+            } 
             if ($course->save()) {
+                $course->tags()->sync($request->tags);
                 DB::commit();
                 $this->setFlash(__('Đăng ký thành công!'), FlashType::Success, route('admin.courses.index'));
             } else {
@@ -96,10 +108,11 @@ class AdminCourseController extends Controller
     public function show(string $id)
     {
         $title = "Giáo Trình";
-        $course = Course::where('id', $id)->firstOrFail();
+        $course = Course::where('id', $id)->with(['chapters', 'chapters.lessons'])->firstOrFail();
         return view('admin.course.detail', [
             'title' => $title,
-            'course' => $course
+            'course' => $course,
+
         ]);
     }
 
@@ -108,11 +121,15 @@ class AdminCourseController extends Controller
      */
     public function edit(string $id)
     {
-        $course = Course::where('id', $id)->firstOrFail();
         $title = "Sửa thông tin khóa học";
+        $course = Course::where('id', $id)->with(['tags'])->firstOrFail();
+        $categories = Category::all();
+        $tags = Tag::all();
         return view('admin.course.edit', [
             'title' => $title,
-            'course' => $course
+            'course' => $course,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -122,6 +139,8 @@ class AdminCourseController extends Controller
     public function update(Request $request, string $id)
     {
         $title = "Sửa thông tin khóa học";
+        $categories = Category::all();
+        $tags = Tag::all();
         $this->validate($request,
             [
                 'name' => ['required'],
@@ -130,17 +149,25 @@ class AdminCourseController extends Controller
                 
             ]
         );
-        $course = Course::where('id', $id)->firstOrFail();
         DB::begintransaction();
         try {
+            $course = Course::where('id', $id)->with(['tags'])->firstOrFail();
             $course->name = $request->name;
             $course->category_id = $request->category;
             $course->level = $request->level;
             $course->price = $request->price;
             $course->note = $request->note;
-            $course->is_hot = $request->hot;
-            $course->publish_start = $request->time_start;
-            $course->publish_end = $request->time_end;
+            $course->publish_start = Carbon::parse($request->time_start);
+            $course->publish_end = Carbon::parse($request->time_end);
+            if ($request->image) {
+                if ($course->image_url != "" && File::exists(public_path($course->image_url))) {
+                    unlink(public_path($course->image_url));
+                }
+                $imageName = time() . '.' . $request->image->extension();
+                $course->image_url =  "storage/images/" . $imageName;
+                $request->file('image')->storeAs('images', $imageName, 'public');
+            }
+            $course->tags()->sync($request->tags);
             if ($course->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
@@ -154,7 +181,9 @@ class AdminCourseController extends Controller
         }
         return view('admin.course.edit', [
             'title' => $title,
-            'course' => $course
+            'course' => $course,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -167,8 +196,8 @@ class AdminCourseController extends Controller
 
         $course = Course::where([
             ['id', $id],
-        ]);
-
+        ])->with(['tags'])->firstOrFail();
+        $course->tags()->sync([]);
         if ($course->delete()) {
             DB::commit();
             return response()->json('Xóa khóa học thành công!', FlashType::OK);
