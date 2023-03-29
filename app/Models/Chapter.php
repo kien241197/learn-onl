@@ -11,4 +11,9 @@ class Chapter extends Model
     use HasFactory, SoftDeletes;
 
     public $timestamps = true;
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

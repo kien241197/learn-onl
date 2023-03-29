@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
+            $table->integer('course_id');
             $table->integer('sort_no')->nullable();
             $table->string('name')->nullable();
             $table->timestamps();

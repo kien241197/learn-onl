@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
 
     public $timestamps = true;
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
 }

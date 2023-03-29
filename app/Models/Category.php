@@ -11,4 +11,9 @@ class Category extends Model
     use HasFactory, SoftDeletes;
 
     public $timestamps = true;
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }

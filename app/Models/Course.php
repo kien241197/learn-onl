@@ -16,4 +16,12 @@ class Course extends Model
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
+    }
 }
