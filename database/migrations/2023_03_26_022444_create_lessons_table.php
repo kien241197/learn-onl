@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('document_name')->nullable();
             $table->text('document_path')->nullable();
+            $table->text('video_path')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();

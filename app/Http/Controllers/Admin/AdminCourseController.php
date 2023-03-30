@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Chapter;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Enums\FlashType;
@@ -74,7 +75,7 @@ class AdminCourseController extends Controller
         );
         DB::begintransaction();
         try {
-            $course = new course();
+            $course = new Course();
             $course->name = $request->name;
             $course->category_id = $request->category;
             $course->level = $request->level;
@@ -109,9 +110,13 @@ class AdminCourseController extends Controller
     {
         $title = "Giáo Trình";
         $course = Course::where('id', $id)->with(['chapters', 'chapters.lessons'])->firstOrFail();
+        $countLesson =  $course->chapters->sum(function($query){
+            return $query->lessons->count();
+        });
         return view('admin.course.detail', [
             'title' => $title,
             'course' => $course,
+            'countLesson' => $countLesson
 
         ]);
     }
@@ -201,6 +206,83 @@ class AdminCourseController extends Controller
         if ($course->delete()) {
             DB::commit();
             return response()->json('Xóa khóa học thành công!', FlashType::OK);
+        }
+        DB::rollBack();
+        return response()->json('Đã có lỗi xảy ra!', FlashType::NOT_FOUND);
+    }
+
+    public function addChapter(Request $request, $courseId)
+    {
+        $this->validate($request,
+            [
+                'name_chapter' => ['required'],
+            ],
+            [
+                // 'name.required' => 'Tên đăng nhập này đã được sử dụng',
+                // 'email.unique' => 'Email này đã được sử dụng',
+            ]
+        );
+        DB::begintransaction();
+        try {
+            $sortNo = Chapter::where('course_id', $courseId)->max('sort_no');
+            $chapter = new Chapter();
+            $chapter->name = $request->name_chapter;
+            $chapter->course_id = $courseId;
+            $chapter->sort_no = $sortNo != NULL ? $sortNo + 1 : 1;
+            if ($chapter->save()) {
+                DB::commit();
+                $this->setFlash(__('Đăng ký thành công!'), FlashType::Success);
+            } else {
+                DB::rollBack();
+                $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
+        }
+        return redirect()->back();
+    }
+
+    public function editChapter(Request $request, $courseId, $chapterId)
+    {
+        $this->validate($request,
+            [
+                'name_chapter' => ['required'],
+            ],
+            [
+                // 'name.required' => 'Tên đăng nhập này đã được sử dụng',
+                // 'email.unique' => 'Email này đã được sử dụng',
+            ]
+        );
+        DB::begintransaction();
+        try {
+            $chapter = Chapter::where('id', $chapterId)->firstOrFail();
+            $chapter->name = $request->name_chapter;
+            if ($chapter->save()) {
+                DB::commit();
+                $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
+            } else {
+                DB::rollBack();
+                $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
+        }
+        return redirect()->back();
+    }
+
+    public function deleteChapter($courseId, $chapterId)
+    {
+        DB::beginTransaction();
+
+        $chapter = Chapter::where([
+            ['id', $chapterId],
+            ['course_id', $courseId],
+        ])->firstOrFail();
+        if ($chapter->delete()) {
+            DB::commit();
+            return response()->json('Xóa chương thành công!', FlashType::OK);
         }
         DB::rollBack();
         return response()->json('Đã có lỗi xảy ra!', FlashType::NOT_FOUND);
