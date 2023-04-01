@@ -17,7 +17,7 @@
                         <div class="dd">
                             <ol class="dd-list">
                                 <!-- Chương -->
-                                @foreach($course->chapters as $chapter)
+                                @forelse($course->chapters as $chapter)
                                 <li class="dd-item" data-id="1">
                                     <div class="dd-handle d-flex justify-content-between">
                                         <h5><i class="fa fa-list"></i>&nbsp;<b>{{ $chapter->name }}</b></h5>
@@ -72,7 +72,9 @@
                                           </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                    @empty
+                                    <li class="text-center"><h4>No Data</h4></li>
+                                    @endforelse
                                 <!-- Hết Chương -->
                             </ol>
                         </div>

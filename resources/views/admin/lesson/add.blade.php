@@ -32,13 +32,14 @@
                                     <label>File tài liệu</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="document">
+                                            <input type="file" class="custom-file-input" name="document" id="document">
                                             <label class="custom-file-label" for="document">Chọn file</label>
                                         </div>
                                         @if ($errors->has('document'))
                                             <span class="text-danger">{{ $errors->first('document') }}</span>
                                         @endif
                                     </div>
+                                    <div id="file-upload-filename"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -46,13 +47,14 @@
                                     <label>File video</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="video" accept="video/*">
+                                            <input type="file" class="custom-file-input" id="video" name="video" accept="video/*">
                                             <label class="custom-file-label" for="video">Chọn file</label>
                                         </div>
                                         @if ($errors->has('video'))
                                             <span class="text-danger">{{ $errors->first('video') }}</span>
                                         @endif
                                     </div> 
+                                    <video id="video_show" style="max-width: 300px;"></video>
                                 </div>
                             </div>
                             <div class="form-group">

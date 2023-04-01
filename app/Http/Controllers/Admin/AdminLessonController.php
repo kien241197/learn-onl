@@ -45,9 +45,8 @@ class AdminLessonController extends Controller
             $lesson->document_name = $request->document_name;
             $lesson->note = $request->note;
             if($request->document) {
-                $docName = time() . '.' . $request->document->extension();
-                $lesson->document_path =  "storage/documents/" . $docName;
-                $request->file('document')->storeAs('documents', $docName, 'public');
+                $lesson->document_path =  "storage/documents/" .$request->document->getClientOriginalName();
+                $request->file('document')->storeAs('documents', $request->document->getClientOriginalName(), 'public');
             } 
             if($request->video) {
                 $videoName = time() . '.' . $request->video->extension();
@@ -94,24 +93,26 @@ class AdminLessonController extends Controller
         );
         DB::begintransaction();
         try {
-            $course = Course::where('id', $id)->with(['tags'])->firstOrFail();
-            $course->name = $request->name;
-            $course->category_id = $request->category;
-            $course->level = $request->level;
-            $course->price = $request->price;
-            $course->note = $request->note;
-            $course->publish_start = Carbon::parse($request->time_start);
-            $course->publish_end = Carbon::parse($request->time_end);
-            if ($request->image) {
-                if ($course->image_url != "" && File::exists(public_path($course->image_url))) {
-                    unlink(public_path($course->image_url));
+            $lesson = Lesson::where('id', $lessonId)->firstOrFail();
+            $lesson->name = $request->name;
+            $lesson->document_name = $request->document_name;
+            $lesson->note = $request->note;
+            if($request->document) {
+                if ($lesson->document_path != "" && File::exists(public_path($lesson->document_path))) {
+                    unlink(public_path($lesson->document_path));
                 }
-                $imageName = time() . '.' . $request->image->extension();
-                $course->image_url =  "storage/images/" . $imageName;
-                $request->file('image')->storeAs('images', $imageName, 'public');
-            }
-            $course->tags()->sync($request->tags);
-            if ($course->save()) {
+                $lesson->document_path =  "storage/documents/" .$request->document->getClientOriginalName();
+                $request->file('document')->storeAs('documents', $request->document->getClientOriginalName(), 'public');
+            } 
+            if($request->video) {
+                if ($lesson->video_path != "" && File::exists(public_path($lesson->video_path))) {
+                    unlink(public_path($lesson->video_path));
+                }
+                $videoName = time() . '.' . $request->video->extension();
+                $lesson->video_path =  "storage/videos/" . $videoName;
+                $request->file('video')->storeAs('videos', $videoName, 'public');
+            } 
+            if ($lesson->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
             } else {
@@ -138,7 +139,15 @@ class AdminLessonController extends Controller
             ['id', $lessonId],
             ['chapter_id', $chapterId],
         ])->firstOrFail();
+        $documentPath = $lesson->document_path;
+        $videoPath = $lesson->video_path;
         if ($chapter->delete()) {
+            if ($documentPath != "" && File::exists(public_path($documentPath))) {
+                unlink(public_path($documentPath));
+            }
+            if ($videoPath != "" && File::exists(public_path($videoPath))) {
+                unlink(public_path($videoPath));
+            }
             DB::commit();
             return response()->json('Xóa bài học thành công!', FlashType::OK);
         }

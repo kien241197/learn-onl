@@ -33,13 +33,14 @@
                                     <label>File tài liệu</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="document">
+                                            <input type="file" class="custom-file-input" name="document" id="document">
                                             <label class="custom-file-label" for="document">Chọn file</label>
                                         </div>
                                         @if ($errors->has('document'))
                                             <span class="text-danger">{{ $errors->first('document') }}</span>
                                         @endif
                                     </div>
+                                    <div id="file-upload-filename"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -54,11 +55,12 @@
                                             <span class="text-danger">{{ $errors->first('video') }}</span>
                                         @endif
                                     </div> 
+                                    <video id="video_show" style="max-width: 300px;" src="{{ asset($lesson->video_path) }}"></video>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Ghi chú</label>
-                                <textarea name="note" class="form-control">{{ old('note') }}</textarea>
+                                <textarea name="note" class="form-control">{{ old('note', $lesson->note) }}</textarea>
                                 @if ($errors->has('note'))
                                     <span class="text-danger">{{ $errors->first('note') }}</span>
                                 @endif

@@ -102,3 +102,42 @@ $('.datetimepicker-input').datetimepicker({
     format:'Y-m-d H:m:s',
 });
 
+const inputFile = document.getElementById("video");
+const video = document.getElementById("video_show");
+if(inputFile){
+    inputFile.addEventListener("change", function(){
+        const file = inputFile.files[0];
+        var videourl = '';
+        if(file){
+            videourl = URL.createObjectURL(file);        
+        }
+        video.setAttribute("src", videourl);
+        video.play();
+    });    
+}
+
+var input = document.getElementById( 'document' );
+var infoArea = document.getElementById( 'file-upload-filename' );
+
+if(input){
+    input.addEventListener( 'change', showFileName );
+
+    function showFileName( event ) {
+      // the change event gives us the input it occurred in 
+      var input = event.srcElement;
+      console.log(input.files);
+      
+      // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+      var fileName = '';
+      if(input.files[0]){
+          fileName = input.files[0].name;
+      }
+      console.log(fileName);
+      // use fileName however fits your app best, i.e. add it into a div
+      if(fileName) {
+          infoArea.innerHTML  = '<i class="fa fa-file"></i> ' + fileName;   
+      } else {
+          infoArea.innerHTML  = '';
+      }
+    }    
+}

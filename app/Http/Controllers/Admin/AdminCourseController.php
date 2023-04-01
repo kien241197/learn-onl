@@ -203,7 +203,11 @@ class AdminCourseController extends Controller
             ['id', $id],
         ])->with(['tags'])->firstOrFail();
         $course->tags()->sync([]);
+        $imageCourse = $course->image_url;
         if ($course->delete()) {
+            if ($imageCourse != "" && File::exists(public_path($imageCourse))) {
+                unlink(public_path($imageCourse));
+            }
             DB::commit();
             return response()->json('Xóa khóa học thành công!', FlashType::OK);
         }
