@@ -1,5 +1,6 @@
 
 import './bootstrap';
+import './adminlte.min';
 
 function updateURLParameter(url, param, paramVal)
 {

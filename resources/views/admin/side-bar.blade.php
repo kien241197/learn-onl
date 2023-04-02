@@ -1,3 +1,11 @@
+  @php
+  use App\Models\Comment;
+
+  $count = Comment::whereHas('lesson')->where([
+    ['type', 2],
+    ['seen', 0],
+  ])->count();
+  @endphp
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -59,7 +67,9 @@
               <i class="nav-icon fa fa-copy"></i>
               <p>
                 REPLY COMMENT
-                <span class="badge badge-info right">3</span>
+                @if($count > 0)
+                <span class="badge badge-info right">{{ $count }}</span>
+                @endif
               </p>
             </a>
           </li>

@@ -55,3 +55,38 @@ var interval_obj = setInterval(function(){
     }, 5000);
   }, 180000);
 }, 5000);
+
+//Send comment video
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$("#send-comment").click(function() {
+  let content = $('#comment').val();
+  if(!content) return;
+  $("#send-comment").prop('disabled', true);
+  let url = $(this).data("url");
+  $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+          comment: content
+        }
+    })
+    .done(function(response) {
+        $("#send-comment").prop('disabled', false);
+        $("#box-comment").append(`<div class="direct-chat-msg right">
+            <img class="direct-chat-img" src="/home/images/icon-user.png" alt="message user image">
+            <div class="direct-chat-text">
+            ${content}
+            </div>
+          </div>`);
+        $('#comment').val('');
+    })
+    .fail(function(error) {
+        $("#send-comment").prop('disabled', false);
+        console.log(error);
+    });
+
+});    

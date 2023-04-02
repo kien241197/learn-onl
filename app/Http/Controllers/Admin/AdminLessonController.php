@@ -123,11 +123,12 @@ class AdminLessonController extends Controller
             DB::rollBack();
             $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
         }
-        return view('admin.course.edit', [
+        return view('admin.lesson.edit', [
             'title' => $title,
             'lesson' => $lesson,
             'courseId' => $courseId,
-            'lessonId' => $lessonId
+            'lessonId' => $lessonId,
+            'chapterId' => $chapterId
         ]);
     }
 

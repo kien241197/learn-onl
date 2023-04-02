@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Admin',
-            'user_name' => 'admin',
             'phone' => '0987654321',
             'email' => 'admin@admin.com',
             'level' => '999',

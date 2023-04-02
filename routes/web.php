@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminLessonController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -34,6 +35,10 @@ Route::post('register', [LoginController::class, 'postRegister'])->name('postReg
 Route::get('huong-dan', [HomeController::class, 'huongDan'])->name('huong-dan');
 Route::get('khoa-hoc', [HomeController::class, 'courseList'])->name('khoa-hoc');
 Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
+Route::group(['middleware' => 'auth.user'], function() {
+        Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
+        Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
+});
 
 //Admin
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
@@ -58,4 +63,6 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.
         Route::resource('tags', AdminTagController::class);
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('comments', [AdminCommentController::class, 'index'])->name('comments.index');
+        Route::get('comments/{id}', [AdminCommentController::class, 'show'])->name('comments.show');
+        Route::post('comments/{id}/reply', [AdminCommentController::class, 'reply'])->name('comments.reply');
 });

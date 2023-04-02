@@ -24,4 +24,13 @@ class Course extends Model
     {
         return $this->hasMany(Chapter::class);
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function scopeWithWhereHas($query, $relation, $constraint){
+     return $query->whereHas($relation, $constraint)
+     ->with([$relation => $constraint]);
+    }
 }

@@ -33,7 +33,7 @@
                             	@foreach($orders as $order)
                                 <tr>
                                     <td class="align-middle">{{ $order->id }}</td>
-		                            <td class="align-middle">{{ $order->user->user_name }}</td>
+		                            <td class="align-middle">{{ $order->user->name }}</td>
 		                            <td class="align-middle">{{ $order->course->name }}</td>
 		                            <td class="align-middle">{{ App\Enums\StatusActive::getDescription($order->is_active) }}</td>
 		                            <td class="align-middle">{{ $order->date_active }}</td>

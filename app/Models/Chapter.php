@@ -16,4 +16,14 @@ class Chapter extends Model
     {
         return $this->hasMany(Lesson::class);
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function scopeWithWhereHas($query, $relation, $constraint){
+     return $query->whereHas($relation, $constraint)
+     ->with([$relation => $constraint]);
+    }
 }

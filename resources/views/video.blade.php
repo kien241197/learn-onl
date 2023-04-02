@@ -7,8 +7,8 @@
                 <div class="col-md-8">
                     <div class="video">
                         <video controls controlsList="">
-                            <source src="{{ asset('home/images/video.mp4') }}" type="video/mp4">
-                            <source src="{{ asset('home/images/video.ogg') }}" type="video/ogg">
+                            <source src="{{ asset($lesson->video_path) }}" type="video/mp4">
+                            <source src="{{ asset($lesson->video_path) }}" type="video/ogg">
                         </video>
                         <div class="phone-opacity">
                             Phùng Thanh Sơn - 0123456789
@@ -20,11 +20,13 @@
                             <a class="autoplay" href="#">Autoplay <i class="fa-solid fa-circle-play"></i></a>
                             <a class="next-time" href="#"><span>10</span> <i class="fa-solid fa-arrow-rotate-left"></i></a>
                             <a class="next-time" href="#"><span>10</span> <i class="fa-solid fa-arrow-rotate-right"></i></a>
-                            <a class="next" href="#">Bài sau <i class="fa-solid fa-chevron-right"></i></a>
+                            @if($nextLesson)
+                            <a class="next" href="{{ route('lesson', $nextLesson->id) }}">Bài sau <i class="fa-solid fa-chevron-right"></i></a>
+							@endif
                         </div>
                     </div>
                     <div class="form">
-                        <h2>Bài 1: My Story</h2>
+                        <h2>{{ $lesson->name }}</h2>
                         <ul class="nav">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tab1">Thảo luận</a>
@@ -35,16 +37,38 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="tab1">
+                            	<div class="card-comments">
+	                            	<div class="direct-chat-messages" id="box-comment">
+	                            		@foreach($lesson->comments as $comment)
+		                            		@if($comment->type == 2)
+												<div class="direct-chat-msg right">
+													<img class="direct-chat-img" src="{{ asset('home/images/icon-user.png') }}" alt="message user image">
+													<div class="direct-chat-text">
+													{{ $comment->content }}
+													</div>
+												</div>
+												@foreach($comment->replies as $reply)
+												<div class="direct-chat-msg">
+													<img class="direct-chat-img" src="{{ asset('home/images/user.png') }}" alt="message user image">
+													<div class="direct-chat-text">
+													{{ $reply->content }}
+													</div>
+												</div>
+												@endforeach 
+											@endif
+										@endforeach                           		
+	                            	</div>                           		
+                            	</div>
                                 <form action="">
                                    <div class="form-group">
-                                        <textarea rows="3" class="form-control" placeholder="Nhập nội dung câu hỏi"></textarea>
+                                        <textarea rows="3" id="comment" class="form-control" placeholder="Nhập nội dung câu hỏi"></textarea>
                                    </div>
-                                    <button class="btn-custom" type="submit">Gửi câu hỏi</button>
+                                    <button class="btn-custom" type="button" id="send-comment" data-url="{{ route('postComment', $lesson->id) }}">Gửi câu hỏi</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="tab2">
                                 <p><strong>Tài liệu học tập được cung cập độc quyền từ hệ thống học của TNB</strong></p>
-                                <a class="btn-custom" href="{{ asset('home/images/video.mp4') }}" download="Tài liệu học tập">Download Tài liệu học tập</a>
+                                <a class="btn-custom" href="{{ asset($lesson->document_path) }}" download="{{ $lesson->document_name }}">Download Tài liệu học tập</a>
                             </div>
                         </div>
                     </div>
@@ -52,46 +76,109 @@
                 <div class="col-md-4">
                     <div class="content-video">
                         <div class="htbh">
-                            <p>Hoàn thành <span>6/19</span> bài học</p>
+                            <p>Hoàn thành <span>0/{{ $totalLesson }}</span> bài học</p>
                             <div class="line">
                                 <span style="width:30%"></span>
                             </div>
                         </div>
                         <div class="list-bh" id="style-3">
+                        	@foreach($lesson->chapter->course->chapters as $chapter)
                             <div class="items">
-                                <h3><span>Phần 1: Thương hiệu & Thương hiệu cá nhân</span></h3>
+                                <h3><span>{{ $chapter->name }}</span></h3>
                                 <ul>
-                                    <li><a href="#">Bài 1: My Story</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 2: Thế nào là thương hiệu cá nhân</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 3: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 4: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 5: Các loại hình thương hiệu</a> <span>07:01</span></li>
+                                	@foreach($chapter->lessons as $itemLesson)
+                                    <li><a href="{{ route('lesson', $itemLesson->id) }}" class="{{ $itemLesson->id == $lesson->id ? 'active' : '' }}">{{ $itemLesson->name }}</a> <span>07:01</span></li>
+                                    @endforeach
                                 </ul>
                             </div>
-                            <div class="items">
-                                <h3><span>Phần 2: Quy trình xây dựng</span></h3>
-                                <ul>
-                                    <li><a class="active" href="#">Bài 6: My Story</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 7: Thế nào là thương hiệu cá nhân</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 8: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 9: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 10: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                </ul>
-                            </div>
-                            <div class="items">
-                                <h3><span>Phần 2: Quy trình truyền thông</span></h3>
-                                <ul>
-                                    <li><a href="#">Bài 11: My Story</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 12: Thế nào là thương hiệu cá nhân</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 13: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 14: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                    <li><a href="#">Bài 15: Các loại hình thương hiệu</a> <span>07:01</span></li>
-                                </ul>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <style type="text/css">
+    .card-comments {
+	    overflow-x: hidden;
+	    padding: 0;
+	    position: relative;
+        flex: 1 1 auto;
+	    min-height: 1px;
+        word-wrap: break-word;
+    }	
+    .direct-chat-messages {
+	    transition: -webkit-transform .5s ease-in-out;
+	    transition: transform .5s ease-in-out;
+	    transition: transform .5s ease-in-out,-webkit-transform .5s ease-in-out;
+	    transform: translate(0,0);
+	    max-height: 250px;
+	    overflow: auto;
+	    padding: 10px;
+    }
+    .direct-chat-msg {
+    	margin-bottom: 10px;
+    }
+    .direct-chat-text {
+	    border-radius: 0.3rem;
+	    background-color: #d2d6de;
+	    border: 1px solid #d2d6de;
+	    color: #444;
+	    margin: 5px 0 0 50px;
+	    padding: 5px 10px;
+	    position: relative;
+	}
+	.direct-chat-msg::after {
+	    display: block;
+	    clear: both;
+	    content: "";
+	}
+	.direct-chat-text::after, .direct-chat-text::before {
+	    border: solid transparent;
+	    border-right-color: #d2d6de;
+	    content: " ";
+	    height: 0;
+	    pointer-events: none;
+	    position: absolute;
+	    right: 100%;
+	    top: 15px;
+	    width: 0;
+	}
+	.direct-chat-text::before {
+	    border-width: 6px;
+	    margin-top: -6px;
+	}
+	.direct-chat-primary .right>.direct-chat-text {
+	    background-color: #007bff;
+	    border-color: #007bff;
+	    color: #fff;
+	}
+	.right .direct-chat-text {
+	    margin-left: 0;
+	    margin-right: 50px;
+	    background-color: #00b18a;
+	}
+	.right .direct-chat-text::after, .right .direct-chat-text::before {
+	    border-left-color: #00b18a;
+	    border-right-color: transparent;
+	    left: 100%;
+	    right: auto;
+	}
+	.right>.direct-chat-text::after, .direct-chat-primary .right>.direct-chat-text::before {
+	    border-left-color: #00b18a;
+	}
+	.direct-chat-img {
+	    border-radius: 50%;
+	    float: left;
+	    height: 40px;
+	    width: 40px;
+	}
+	img {
+	    vertical-align: middle;
+	    border-style: none;
+	}
+	.right .direct-chat-img {
+	    float: right;
+	}
+    </style>
 @endsection
