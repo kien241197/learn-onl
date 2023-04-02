@@ -31,7 +31,7 @@ class AdminCommentController extends Controller
             }
         ])
         ->withCount(['comments' => function($query) {
-            $query->where('seen', 0);
+            $query->where('seen', 0)->whereHas('user');
         }])
         ->orderBy('comments_count', 'DESC')
         ->paginate($sizeLimit);
@@ -56,7 +56,7 @@ class AdminCommentController extends Controller
         ])->firstOrFail();
         $ids = $lesson->comments->where('seen', 0)->pluck('id')->toArray();
         // dd($ids);
-        // Comment::whereIn('id', $ids)->update(['seen'=> 1]);
+        Comment::whereIn('id', $ids)->update(['seen'=> 1]);
         return view('admin.comment.detail', [
             'title' => $title,
             'lesson' => $lesson

@@ -1,7 +1,7 @@
   @php
   use App\Models\Comment;
 
-  $count = Comment::whereHas('lesson')->where([
+  $count = Comment::whereHas('lesson')->whereHas('user')->where([
     ['type', 2],
     ['seen', 0],
   ])->count();

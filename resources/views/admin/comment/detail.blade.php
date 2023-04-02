@@ -14,7 +14,7 @@
 						    <div class="display-comment p-2 border rounded">
 						        <div class="d-flex justify-content-between">
 						        	<strong>{{ $comment->user->name }}</strong>
-						        	<small>{{ $comment->created_at }}</small>
+						        	<small>@if($comment->seen == 0)<small class="badge badge-danger">MỚI</small>@endif{{ $comment->created_at }}</small>
 						        </div>
 						        <div class="p-2 border border-light rounded bg-success text-white">{{ $comment->content }}</div>
 						        <a data-toggle="collapse" href="#rep-comment-{{ $comment->id }}" aria-expanded="false" class="ml-4">Phản hồi</a>

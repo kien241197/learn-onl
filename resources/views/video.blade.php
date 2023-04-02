@@ -43,7 +43,7 @@
 		                            		@if($comment->type == 2)
 												<div class="direct-chat-msg right">
 													<img class="direct-chat-img" src="{{ asset('home/images/icon-user.png') }}" alt="message user image">
-													<div class="direct-chat-text">
+													<div class="direct-chat-text text-white">
 													{{ $comment->content }}
 													</div>
 												</div>
