@@ -54,7 +54,7 @@
                                             <span class="text-danger">{{ $errors->first('video') }}</span>
                                         @endif
                                     </div> 
-                                    <video id="video_show" style="max-width: 300px;"></video>
+                                    <iframe id="video_show" width="350" height="250" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="form-group">

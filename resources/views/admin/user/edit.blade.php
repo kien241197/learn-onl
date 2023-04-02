@@ -14,15 +14,8 @@
                     	@method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Tài khoản đăng nhập</label>
-                                <input class="form-control" name="user_name" value="{{ $user->user_name }}" readonly>
-                            </div>
-                            <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
-                                @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                                @endif                               
+                                <input class="form-control" value="{{ old('email', $user->email) }}" readonly>                             
                             </div>
                             <div class="form-group">
                                 <label>Tên thành viên</label>

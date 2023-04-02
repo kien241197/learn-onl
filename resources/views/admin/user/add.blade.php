@@ -13,13 +13,6 @@
                     	@csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Tài khoản đăng nhập</label>
-                                <input class="form-control" name="user_name" value="{{ old('user_name')}}" required>
-                                @if ($errors->has('user_name'))
-					                <span class="text-danger">{{ $errors->first('user_name') }}</span>
-				                @endif
-                            </div>
-                            <div class="form-group">
                                 <label>Email</label>
                                 <input class="form-control" name="email" value="{{ old('email')}}" required>
                                 @if ($errors->has('email'))

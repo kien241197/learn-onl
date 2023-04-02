@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    public $timestamps = true;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

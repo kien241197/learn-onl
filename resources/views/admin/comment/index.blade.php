@@ -1,0 +1,1 @@
+resources/views/admin/comment/index.blade.php

@@ -32,6 +32,7 @@ Your browser does not support the video tag.
                                     <th style="min-width: 100px">Thể loại</th>
                                     <th style="min-width: 100px">Cấp độ</th>
                                     <th>Giá</th>
+                                    <th>Giá KM</th>
                                     <th style="min-width: 100px;">Ngày bắt đầu</th>
                                     <th style="min-width: 100px;">Ngày hết hạn</th>
                                     <th style="min-width: 90px;"></th>
@@ -44,7 +45,8 @@ Your browser does not support the video tag.
 		                            <td class="align-middle"><b><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></b></td>
                                     <td class="align-middle">{{ $course->category->name }}</td>
 		                            <td class="align-middle">{{ App\Enums\CourseLevel::getDescription($course->level) }}</td>
-		                            <td class="align-middle">{{ number_format($course->price) }}$</td>
+		                            <td class="align-middle">{{ number_format($course->price) }} VNĐ</td>
+                                    <td class="align-middle">{{ number_format($course->price_sale) }} VNĐ</td>
 		                            <td class="align-middle">{{ $course->publish_start }}</td>
                                     <td class="align-middle">{{ $course->publish_end }}</td>
                                     <td style="width: 35px;">

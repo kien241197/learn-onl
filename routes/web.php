@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminLessonController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +24,16 @@ use App\Http\Controllers\Admin\AdminLessonController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//User
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('login', [LoginController::class, 'getLogin'])->name('getLogin');
+Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::get('logout', [LoginController::class, 'getLogout'])->name('getLogout');
+Route::get('register', [LoginController::class, 'getRegister'])->name('getRegister');
+Route::post('register', [LoginController::class, 'postRegister'])->name('postRegister');
+Route::get('huong-dan', [HomeController::class, 'huongDan'])->name('huong-dan');
+Route::get('khoa-hoc', [HomeController::class, 'courseList'])->name('khoa-hoc');
+Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
 
 //Admin
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
@@ -30,6 +41,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::post('login', [AdminLoginController::class, 'postLogin'])->name('postLogin');
         Route::get('logout', [AdminLoginController::class, 'getLogout'])->name('getLogout');
 });
+
 Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::resource('users', AdminUserController::class);
@@ -44,4 +56,6 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.
         Route::delete('courses/{courseId}/chapters/{chapterId}/lessons/{lessonId}', [AdminLessonController::class, 'destroy'])->name('lessons.destroy');
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('tags', AdminTagController::class);
+        Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
+        Route::get('comments', [AdminCommentController::class, 'index'])->name('comments.index');
 });

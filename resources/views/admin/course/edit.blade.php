@@ -46,11 +46,23 @@
                                     <label>Giá</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">$</span>
+                                            <span class="input-group-text">VNĐ</span>
                                         </div>
                                         <input type="text" class="form-control" name="price" value="{{ old('price', $course->price) }}">
                                         @if ($errors->has('price'))
                                             <span class="text-danger">{{ $errors->first('price') }}</span>
+                                        @endif
+                                    </div> 
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Giá khuyến mãi</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">VNĐ</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="price_sale" value="{{ old('price_sale', $course->price_sale) }}">
+                                        @if ($errors->has('price_sale'))
+                                            <span class="text-danger">{{ $errors->first('price_sale') }}</span>
                                         @endif
                                     </div> 
                                 </div>
@@ -68,6 +80,19 @@
                                     @if ($errors->has('image'))
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
                                     @endif
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Video giới thiệu</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="video" accept="video/*" id="video">
+                                            <label class="custom-file-label" for="video">Chọn file</label>
+                                        </div>
+                                        @if ($errors->has('video'))
+                                            <span class="text-danger">{{ $errors->first('video') }}</span>
+                                        @endif
+                                    </div> 
+                                    <iframe id="video_show" width="350" height="250" src="{{ asset($course->video_demo_path) }}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="form-group mb-3">

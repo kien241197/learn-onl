@@ -64,7 +64,9 @@ class AdminCourseController extends Controller
             [
                 'name' => ['required'],
                 'price' => ['alpha_num'],
+                'price_sale' => ['alpha_num'],
                 'image' => ['mimes:jpeg,png,jpg,gif'],
+                'video' => ['mimes:avi,mpeg,mp4,mov'],
                 'time_start' => ['date_format:Y-m-d H:m:s'],
                 'time_end' => ['date_format:Y-m-d H:m:s'],
             ],
@@ -80,6 +82,7 @@ class AdminCourseController extends Controller
             $course->category_id = $request->category;
             $course->level = $request->level;
             $course->price = $request->price;
+            $course->price_sale = $request->price_sale;
             $course->note = $request->note;
             $course->publish_start = Carbon::parse($request->time_start);
             $course->publish_end = Carbon::parse($request->time_end);
@@ -87,7 +90,12 @@ class AdminCourseController extends Controller
                 $imageName = time() . '.' . $request->image->extension();
                 $course->image_url =  "storage/images/" . $imageName;
                 $request->file('image')->storeAs('images', $imageName, 'public');
-            } 
+            }
+            if($request->video) {
+                $videoName = time() . '.' . $request->video->extension();
+                $course->video_demo_path =  "storage/videos/" . $videoName;
+                $request->file('video')->storeAs('videos', $videoName, 'public');
+            }  
             if ($course->save()) {
                 $course->tags()->sync($request->tags);
                 DB::commit();
@@ -161,6 +169,7 @@ class AdminCourseController extends Controller
             $course->category_id = $request->category;
             $course->level = $request->level;
             $course->price = $request->price;
+            $course->price_sale = $request->price_sale;
             $course->note = $request->note;
             $course->publish_start = Carbon::parse($request->time_start);
             $course->publish_end = Carbon::parse($request->time_end);
@@ -171,6 +180,14 @@ class AdminCourseController extends Controller
                 $imageName = time() . '.' . $request->image->extension();
                 $course->image_url =  "storage/images/" . $imageName;
                 $request->file('image')->storeAs('images', $imageName, 'public');
+            }
+            if ($request->video) {
+                if ($course->video_demo_path != "" && File::exists(public_path($course->video_demo_path))) {
+                    unlink(public_path($course->video_demo_path));
+                }
+                $videoName = time() . '.' . $request->video->extension();
+                $course->video_demo_path =  "storage/videos/" . $videoName;
+                $request->file('video')->storeAs('videos', $videoName, 'public');
             }
             $course->tags()->sync($request->tags);
             if ($course->save()) {

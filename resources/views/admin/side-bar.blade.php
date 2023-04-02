@@ -47,7 +47,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (request()->is('admin/orders*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.orders.index') }}" class="nav-link {{ (request()->is('admin/orders*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-shopping-cart"></i>
               <p>
                 THỐNG KÊ GIAO DỊCH
@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (request()->is('admin/comments*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.comments.index') }}" class="nav-link {{ (request()->is('admin/comments*')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-copy"></i>
               <p>
                 REPLY COMMENT

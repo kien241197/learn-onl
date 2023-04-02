@@ -56,10 +56,8 @@ class AdminUserController extends Controller
     {
         $this->validate($request,
             [
-                'user_name' => ['required', Rule::unique('users')],
                 'email' => ['required', Rule::unique('users')],
                 'name' => ['required'],
-                'phone' => ['required'],
                 'password' => ['required'],
             ],
             [
@@ -70,7 +68,6 @@ class AdminUserController extends Controller
         $user = new User();
         DB::begintransaction();
         try {
-            $user->user_name = $request->user_name;
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $request->phone;

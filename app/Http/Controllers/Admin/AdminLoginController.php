@@ -27,15 +27,11 @@ class AdminLoginController extends Controller
      */
     public function postLogin(AdminLoginRequest $request)
     {
-        $login = [
-            'user_name' => $request->txtUsername,
-            'password' => $request->txtPassword,
-        ];
         $loginEmail = [
             'email' => $request->txtUsername,
             'password' => $request->txtPassword,
         ];
-        if (Auth::attempt($login) || Auth::attempt($loginEmail)) {
+        if (Auth::attempt($loginEmail)) {
             return redirect('admin');
         } else {
             return redirect()->back()->with('status', 'Thông tin đăng nhập không chính xác');

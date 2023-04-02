@@ -48,14 +48,14 @@
                                     <label>File video</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="video" accept="video/*">
+                                            <input type="file" class="custom-file-input" name="video" accept="video/*" id="video">
                                             <label class="custom-file-label" for="video">Chọn file</label>
                                         </div>
                                         @if ($errors->has('video'))
                                             <span class="text-danger">{{ $errors->first('video') }}</span>
                                         @endif
                                     </div> 
-                                    <video id="video_show" style="max-width: 300px;" src="{{ asset($lesson->video_path) }}"></video>
+                                    <iframe id="video_show" width="350" height="250" src="{{ asset($lesson->video_path) }}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="form-group">
