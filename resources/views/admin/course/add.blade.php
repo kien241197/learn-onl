@@ -68,6 +68,20 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
+                                    <label>Thời gian khóa học</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                                        </div>
+                                        <input type="number" class="form-control" name="time" value="{{ old('time') }}">
+                                        @if ($errors->has('time'))
+                                            <span class="text-danger">{{ $errors->first('time') }}</span>
+                                        @endif
+                                    </div> 
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
                                     <label>Ảnh hiển thị</label>
                                     <div class="input-group">
                                         <div class="custom-file">

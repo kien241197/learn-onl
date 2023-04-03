@@ -6,23 +6,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <div>
-                        	<label>Show:</label>
-                        	<select id="size-limit" name="limit">
-	                        	<option value="20" {{ request()->limit == 20 ? 'selected' : '' }}>20</option>
-	                        	<option value="50" {{ request()->limit == 50 ? 'selected' : '' }}>50</option>
-	                        	<option value="100" {{ request()->limit == 100 ? 'selected' : '' }}>100</option>
-	                        </select>
-	                    </div>
-                    </div>
                     <div class="card-body table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="table-order">
                             <thead>
                                 <tr class="text-center">
                                     <th style="width: 10px">ID</th>
                                     <th style="min-width: 115px;">Tài khoản</th>
                                     <th style="min-width: 100px;">Khóa học</th>
+                                    <th style="min-width: 100px;">Đơn giá</th>
                                     <th style="min-width: 100px;">Trạng thái kích hoạt</th>
                                     <th style="min-width: 100px;">Thời gian kích hoạt</th>
                                     <th style="min-width: 100px;">Trạng thái thanh toán</th>
@@ -35,6 +26,7 @@
                                     <td class="align-middle">{{ $order->id }}</td>
 		                            <td class="align-middle">{{ $order->user->name }}</td>
 		                            <td class="align-middle">{{ $order->course->name }}</td>
+                                    <td class="align-middle">{{ number_format($order->course->price_sale) }} VNĐ</td>
 		                            <td class="align-middle">{{ App\Enums\StatusActive::getDescription($order->is_active) }}</td>
 		                            <td class="align-middle">{{ $order->date_active }}</td>
 		                            <td class="align-middle">{{ App\Enums\StatusPayment::getDescription($order->payment) }}</td>
@@ -43,9 +35,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer clearfix">
-                        {!! $orders->appends($_GET)->links('pagination.paginate') !!}
                     </div>
                 </div>
             </div>

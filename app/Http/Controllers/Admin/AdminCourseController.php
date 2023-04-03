@@ -65,6 +65,7 @@ class AdminCourseController extends Controller
                 'name' => ['required'],
                 'price' => ['alpha_num'],
                 'price_sale' => ['alpha_num'],
+                'time' => ['alpha_num'],
                 'image' => ['mimes:jpeg,png,jpg,gif'],
                 'video' => ['mimes:avi,mpeg,mp4,mov'],
                 'time_start' => ['date_format:Y-m-d H:m:s'],
@@ -83,6 +84,7 @@ class AdminCourseController extends Controller
             $course->level = $request->level;
             $course->price = $request->price;
             $course->price_sale = $request->price_sale;
+            $course->time = $request->time;
             $course->note = $request->note;
             $course->publish_start = Carbon::parse($request->time_start);
             $course->publish_end = Carbon::parse($request->time_end);
@@ -170,6 +172,7 @@ class AdminCourseController extends Controller
             $course->level = $request->level;
             $course->price = $request->price;
             $course->price_sale = $request->price_sale;
+            $course->time = $request->time;
             $course->note = $request->note;
             $course->publish_start = Carbon::parse($request->time_start);
             $course->publish_end = Carbon::parse($request->time_end);

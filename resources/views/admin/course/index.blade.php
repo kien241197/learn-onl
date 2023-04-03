@@ -26,6 +26,7 @@
                                     <th style="width: 10px">ID</th>
                                     <th style="min-width: 115px;">Khóa học</th>
                                     <th style="min-width: 100px">Thể loại</th>
+                                    <th style="min-width: 100px">Thời gian</th>
                                     <th style="min-width: 100px">Cấp độ</th>
                                     <th>Giá</th>
                                     <th>Giá KM</th>
@@ -40,6 +41,7 @@
                                     <td class="align-middle">{{ $course->id }}</td>
 		                            <td class="align-middle"><b><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></b></td>
                                     <td class="align-middle">{{ $course->category->name }}</td>
+                                    <td class="align-middle">{{ $course->time }} Giờ</td>
 		                            <td class="align-middle">{{ App\Enums\CourseLevel::getDescription($course->level) }}</td>
 		                            <td class="align-middle">{{ number_format($course->price) }} VNĐ</td>
                                     <td class="align-middle">{{ number_format($course->price_sale) }} VNĐ</td>

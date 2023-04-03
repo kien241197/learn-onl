@@ -142,3 +142,12 @@ if(input){
       }
     }    
 }
+
+$(document).ready(function() {
+    $('#table-order').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5',
+        ]
+    } );
+} );

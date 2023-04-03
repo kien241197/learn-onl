@@ -26,7 +26,7 @@
                             </div>
                             <div class="time text col-custom">
                                 <i class="fa-solid fa-clock"></i>
-                                <p>Thời gian update <strong>11/2023</strong></p>
+                                <p>Thời gian update <strong>{{ \Carbon\Carbon::parse($course->created_at)->format('m/Y') }}</strong></p>
                             </div>
                         </div>
                         <div class="athour">
@@ -54,7 +54,7 @@
                                         <i class="fa-solid fa-clock"></i>
                                         Thời gian
                                     </span>
-                                    <p>20 Giờ</p>
+                                    <p>{{ $course->time }} Giờ</p>
                                 </li>
                                 <li>
                                     <span>
