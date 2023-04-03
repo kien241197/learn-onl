@@ -190,4 +190,5 @@
             </div>
         </div>
     </section>
+    @include('component.site-res')
 @endsection

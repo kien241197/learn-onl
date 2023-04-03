@@ -47,13 +47,24 @@ class LessonController extends Controller
             'chapter.course.chapters.lessons',
         ])
         ->firstOrFail();
-        $nextLesson = lesson::where('id', '>', $id)
-            ->whereHas('chapter', function($query1) use ($lesson) {
+        $lessons = lesson::whereHas('chapter', function($query1) use ($lesson) {
                 $query1->whereHas('course', function($query2) use ($lesson) {
                     $query2->where('id', $lesson->chapter->course->id);
                 });
             })
-            ->first();
+            ->with(['chapter'])
+            ->get()->sortBy('chapter.sort_no');
+        $nextLesson = null;
+        $valKey = null;
+        foreach($lessons as $key => $item) { 
+            if(!empty($valKey)) {
+                $nextLesson = $item;
+                break;
+            }
+            if ($item->id == $id) {
+                $valKey = $item->id;
+            }
+        }
         $countLesson =  $lesson->chapter->course->chapters->sum(function($query){
             return $query->lessons->count();
         });

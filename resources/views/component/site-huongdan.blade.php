@@ -12,9 +12,11 @@
     </div>
     <div class="about-hd">
     	<div class="container">
+    		@if(!request()->is('/'))
     		<div class="about-gv">
     			<img class="w-100 d-block" src="{{ asset('home/images/ab.jpg') }}" alt="">
     		</div>
+    		@endif
     		<a class="btn-custom" href="#">VIDEO HƯỚNG DẪN</a>
     		<div class="video">
     			<div class="row">

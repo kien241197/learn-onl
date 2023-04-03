@@ -1797,5 +1797,10 @@ video::-webkit-media-controls-enclosure {
 .site-mxh .slick-dots .slick-active {
   background: var(--color-blue);
 }
-
+.content-products p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 /*# sourceMappingURL=style.css.map */
