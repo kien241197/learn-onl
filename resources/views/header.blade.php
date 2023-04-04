@@ -27,8 +27,8 @@
                         <a class="btn-custom" href="{{ route('getLogin') }}">Đăng nhập</a>
                         @endguest
                         @auth
-                        <span>Xin chào, {{ Auth::user()->name }}</span>
-                        <a class="btn-custom" href="{{ route('getLogout') }}">Đăng xuất</a>
+                        <a href="{{ route('info') }}">Xin chào, {{ Auth::user()->name }}</a>
+                        <a class="btn-custom" href="{{ route('getLogout') }}"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                         @endauth
                     </div>
                 </div>

@@ -38,6 +38,7 @@ Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
 Route::group(['middleware' => 'auth.user'], function() {
         Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
+        Route::get('my-info', [HomeController::class, 'info'])->name('info');
 });
 
 //Admin

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Category;
+use App\Models\User;
+use App\Enums\StatusPayment;
 use Carbon\Carbon;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -99,6 +102,28 @@ class HomeController extends Controller
             'course' => $course,
             'courses' => $courses,
             'countLesson' => $countLesson
+        ]);
+    }
+
+    public function info(Request $request)
+    {
+        $title = "Thông tin cá nhân";
+
+        $date = Carbon::now()->format('Y-m-d H:i:s');
+        $user = User::with([
+            'orders' => function($query) use ($date) {
+                $query->where('payment', StatusPayment::PAID)->orderBy('created_at', 'DESC');
+            },
+             'orders.course.chapters.lessons'
+        ])
+        ->where([
+            ['id', '=', Auth::user()->id]
+        ])
+        ->firstOrFail();
+        // dd($user->orders->first()->course->out_date);
+        return view('user', [
+            'title' => $title,
+            'user' => $user,
         ]);
     }
 }
