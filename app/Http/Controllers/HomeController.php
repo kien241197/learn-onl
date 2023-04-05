@@ -120,10 +120,27 @@ class HomeController extends Controller
             ['id', '=', Auth::user()->id]
         ])
         ->firstOrFail();
-        // dd($user->orders->first()->course->out_date);
         return view('user', [
             'title' => $title,
             'user' => $user,
+        ]);
+    }
+
+    public function cart(Request $request)
+    {
+        $title = "Giỏ hàng";
+
+        return view('cart', [
+            'title' => $title,
+        ]);
+    }
+
+    public function checkout(Request $request)
+    {
+        $title = "Giỏ hàng";
+
+        return view('checkout', [
+            'title' => $title,
         ]);
     }
 }

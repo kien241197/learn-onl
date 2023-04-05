@@ -11,7 +11,7 @@
                     <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <!-- <div class="col-lg-8">
                         <h4 class="title mb-4">Thông tin khách hàng</h4>
 
                         <div class="row">
@@ -48,7 +48,7 @@
                                 <input type="text" class="form-control" name="kh_cmnd" id="kh_cmnd" value="CA HÀ NỘI" readonly="">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-lg-4 mb-4">
                         <h4 class="d-flex mb-top justify-content-between align-items-center mb-4">
                             <span class="title">Giỏ hàng</span>
@@ -87,28 +87,28 @@
                             <ul class="nav">
                                 <li class="nav-items">
                                     <a class="nav-link active" data-toggle="tab" href="#tab1">
-                                        <img src="assets/images/logo-1.jpg" alt="">
+                                        <img src="{{ asset('home/images/logo-1.jpg') }}" alt="">
                                     </a>
                                 </li>
                                 <li class="nav-items">
                                     <a class="nav-link" data-toggle="tab" href="#tab2">
-                                        <img src="assets/images/logo-2.png" alt="">
+                                        <img src="{{ asset('home/images/logo-2.png') }}" alt="">
                                     </a>
                                 </li>
                                 <li class="nav-items">
                                     <a class="nav-link" data-toggle="tab" href="#tab3">
-                                        <img src="assets/images/logo-3.png" alt="">
+                                        <img src="{{ asset('home/images/logo-3.png') }}" alt="">
                                     </a>
                                 </li>
                             </ul> 
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-lg-8">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab1">
                                 <div class="qrcode">
                                     <div class="id-qr">
-                                        <img src="assets/images/qr.png" alt="">
+                                        <img src="{{ asset('home/images/qr.png') }}" alt="">
                                     </div>
                                     <div class="information">
                                         <ul>
@@ -135,7 +135,7 @@
                             <div class="tab-pane fade" id="tab2">
                                 <div class="qrcode">
                                     <div class="id-qr">
-                                        <img src="assets/images/qrnomo.png" alt="">
+                                        <img src="{{ asset('home/images/qrnomo.png') }}" alt="">
                                     </div>
                                     <div class="information">
                                         <ul>
@@ -158,7 +158,7 @@
                             <div class="tab-pane fade" id="tab3">
                                 <div class="qrcode">
                                     <div class="id-qr">
-                                        <img src="assets/images/qrpay.png" alt="">
+                                        <img src="{{ asset('home/images/qrpay.png') }}" alt="">
                                     </div>
                                     <div class="information">
                                         <ul>

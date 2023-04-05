@@ -30,7 +30,7 @@
                             <tr>
                                 <td>1</td>
                                 <td>
-                                    <img class="w-100 d-block" style="max-width:200px;" src="assets/images/a1.png" class="hinhdaidien">
+                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset('home/images/a1.png') }}" class="hinhdaidien">
                                 </td>
                                 <td><a href="#">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</a></td>
                                 <td class="text-right">2</td>
@@ -46,7 +46,7 @@
                             <tr>
                                 <td>2</td>
                                 <td>
-                                    <img class="w-100 d-block" style="max-width:200px;" src="assets/images/a1.png" class="hinhdaidien">
+                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset('home/images/a1.png') }}" class="hinhdaidien">
                                 </td>
                                 <td><a href="#">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</a></td>
                                 <td class="text-right">4</td>
@@ -61,7 +61,7 @@
                             <tr>
                                 <td>3</td>
                                 <td>
-                                    <img class="w-100 d-block" style="max-width:200px;" src="assets/images/a1.png" class="hinhdaidien">
+                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset('home/images/a1.png') }}" class="hinhdaidien">
                                 </td>
                                 <td><a href="#">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</a></td>
                                 <td class="text-right">8</td>
@@ -78,9 +78,9 @@
                     </table>
                     <div class="price-total"><span>Tổng tiền thanh toán:</span> 20.000.000đ</div>
                     <div class="custom-button">
-                        <a href="index.php" class="btn btn-back btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Quay
+                        <a href="{{ route('home') }}" class="btn btn-back btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Quay
                         về trang chủ</a>
-                        <a href="checkout.php" class="btn btn-blue"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Thanh toán</a>
+                        <a href="{{ route('checkout') }}" class="btn btn-blue"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Thanh toán</a>
                     </div>
                 </div>
             </div>

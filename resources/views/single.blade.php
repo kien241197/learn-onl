@@ -109,8 +109,8 @@
                             <div class="price-t">{{ number_format($course->price) }}đ</div>
                         </div>
                         <div class="addtocart">
-                            <button class="btn-custom" type="submit">Thêm vào giỏ hàng</button>
-                            <button class="btn-custom" type="submit">Mua Ngay</button>
+                            <a href="{{ route('cart') }}" class="btn-custom" type="submit">Thêm vào giỏ hàng</a>
+                            <a href="{{ route('checkout') }}" class="btn-custom" type="submit">Mua Ngay</a>
                         </div>
                     </div>
                     <div class="video-about pd-main">
