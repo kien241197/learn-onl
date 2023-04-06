@@ -22,6 +22,11 @@ class Lesson extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function histories()
+    {
+        return $this->hasMany(HistoryView::class);
+    }
+
     public function scopeWithWhereHas($query, $relation, $constraint){
      return $query->whereHas($relation, $constraint)
      ->with([$relation => $constraint]);

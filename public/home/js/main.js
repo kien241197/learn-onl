@@ -89,4 +89,16 @@ $("#send-comment").click(function() {
         console.log(error);
     });
 
-});    
+});  
+$("#video-lesson").bind("ended", function() {
+  let url = $(this).data("url");
+  $.ajax({
+        method: "POST",
+        url: url,
+    })
+    .done(function(response) {
+    })
+    .fail(function(error) {
+        console.log(error);
+    });
+});

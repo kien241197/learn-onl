@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Chapter;
 use App\Models\Comment;
+use App\Models\HistoryView;
 use App\Enums\StatusActive;
 use App\Enums\StatusPayment;
 use App\Enums\FlashType;
@@ -18,7 +19,7 @@ class LessonController extends Controller
 {
     public function lesson(Request $request, $id)
     {
-        $title = "Trang chủ";
+        $title = "Bài học";
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $lesson = Lesson::where([
             ['id', '=', $id],
@@ -44,7 +45,7 @@ class LessonController extends Controller
                 $query->where('user_id', Auth::user()->id);
             },
             'comments.replies',
-            'chapter.course.chapters.lessons',
+            'chapter.course.chapters.lessons.histories',
         ])
         ->firstOrFail();
         $lessons = lesson::whereHas('chapter', function($query1) use ($lesson) {
@@ -68,12 +69,21 @@ class LessonController extends Controller
         $countLesson =  $lesson->chapter->course->chapters->sum(function($query){
             return $query->lessons->count();
         });
+        $countHistory = $lesson->chapter->course->chapters->sum(function($query){
+            return $query->lessons->filter(
+                fn ($item) => $item
+                    ->histories
+                    ->filter(fn ($history) => $history->user_id == Auth::user()->id)
+                    ->count()
+                )->count();
+            });
 
         return view('video', [
             'title' => $title,
             'lesson' => $lesson,
             'nextLesson' => $nextLesson,
-            'totalLesson' => $countLesson
+            'totalLesson' => $countLesson,
+            'history' => $countHistory
         ]);
     }
 
@@ -110,6 +120,33 @@ class LessonController extends Controller
             $comment->content = $request->comment;
 
             if ($comment->save()) {
+                DB::commit();
+                return response()->json('OK', FlashType::OK);
+            }
+            
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json('Error', FlashType::NOT_FOUND);
+            
+        }
+    }
+
+    public function postHistory(Request $request, $lessonId)
+    {
+        DB::beginTransaction();
+        try {
+            $check = HistoryView::where([
+                ['user_id', Auth::user()->id],
+                ['lesson_id', $lessonId]
+            ])->first();
+            if($check) {
+                return response()->json('OK', FlashType::OK);
+            }
+            $history = new HistoryView();
+            $history->user_id = Auth::user()->id;
+            $history->lesson_id = $lessonId;
+
+            if ($history->save()) {
                 DB::commit();
                 return response()->json('OK', FlashType::OK);
             }

@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="video">
-                        <video controls controlsList="" id="video-lesson">
+                        <video controls controlsList="nodownload" id="video-lesson" data-url="{{ route('postHistory', $lesson->id) }}">
                             <source src="{{ asset($lesson->video_path) }}" type="video/mp4">
                             <source src="{{ asset($lesson->video_path) }}" type="video/ogg">
                         </video>
@@ -92,9 +92,9 @@
                 <div class="col-md-4">
                     <div class="content-video">
                         <div class="htbh">
-                            <p>Hoàn thành <span>0/{{ $totalLesson }}</span> bài học</p>
+                            <p>Hoàn thành <span>{{ $history }}/{{ $totalLesson }}</span> bài học</p>
                             <div class="line">
-                                <span style="width:30%"></span>
+                                <span style="width:{{ $history*100/$totalLesson }}%"></span>
                             </div>
                         </div>
                         <div class="list-bh" id="style-3">
