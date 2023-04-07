@@ -109,8 +109,8 @@
                             <div class="price-t">{{ number_format($course->price) }}đ</div>
                         </div>
                         <div class="addtocart">
-                            <a href="{{ route('cart') }}" class="btn-custom" type="submit">Thêm vào giỏ hàng</a>
-                            <a href="{{ route('checkout') }}" class="btn-custom" type="submit">Mua Ngay</a>
+                            <a href="javascript:void(0);" onclick="addToCart(`{{ route('addCart', $course->id) }}`);" class="btn-custom" type="submit">Thêm vào giỏ hàng</a>
+                            <a href="javascript:void(0);" onclick="buyNow(`{{ route('buyCourse', $course->id) }}`);" class="btn-custom" type="submit">Mua Ngay</a>
                         </div>
                     </div>
                     <div class="video-about pd-main">
@@ -130,7 +130,7 @@
                                     </ul>
                                     <p>Chuyên gia đào tạo hàng đầu về Quản trị sản xuất <br>
                                     may công nghiệp tại Việt Nam</p>
-                                    <a class="btn-custom" href="#">Đăng ký tư vấn</a>
+                                    <a class="btn-custom" href="#form-res">Đăng ký tư vấn</a>
                                 </div>
                             </div>
                         </div>

@@ -40,9 +40,12 @@ Route::group(['middleware' => 'auth.user'], function() {
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
         Route::get('my-info', [HomeController::class, 'info'])->name('info');
         Route::get('cart', [HomeController::class, 'cart'])->name('cart');
+        Route::post('add-cart/{id}', [HomeController::class, 'addCart'])->name('addCart');
+        Route::post('del-cart/{id}', [HomeController::class, 'delCart'])->name('delCart');
         Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
         Route::get('my-info', [HomeController::class, 'info'])->name('info');
         Route::post('lesson/{id}/history', [LessonController::class, 'postHistory'])->name('postHistory');
+        Route::post('buy-course/{id}', [HomeController::class, 'buyCourse'])->name('buyCourse');
 });
 
 //Admin

@@ -18,7 +18,7 @@ class Comment extends Model
 
     public function lesson()
     {
-        return $this->belongsTo(lesson::class);
+        return $this->belongsTo(Lesson::class);
     }
 
     public function replies()

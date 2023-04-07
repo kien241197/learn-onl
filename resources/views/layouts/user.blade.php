@@ -7,6 +7,7 @@
     <title>ĐÀO TẠO QUẢN TRỊ MAY MẶC</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	@include('library.header-css')
+    @include('library.footer-js')
 
 </head>
 <!-- oncontextmenu="return false;" -->
@@ -16,6 +17,6 @@
 	@yield('content')
 </main>
 @include('footer')
-@include('library.footer-js')
+<script type="text/javascript" src="{{ asset('home/js/custom.js') }}"></script>
 </body>
 </html>

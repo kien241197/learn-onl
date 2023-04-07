@@ -52,34 +52,21 @@
                     <div class="col-lg-4 mb-4">
                         <h4 class="d-flex mb-top justify-content-between align-items-center mb-4">
                             <span class="title">Giỏ hàng</span>
-                            <span class="badge badge-secondary badge-pill">2</span>
+                            <span class="badge badge-secondary badge-pill">{{ \Cart::count() }}</span>
                         </h4>
                         <ul class="list-group mb-3">
-                            <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
-                            <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
-                            <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
-
+                            @foreach($products as $key => $product)
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</h6>
-                                    <small class="text-muted">11.800.000 x 2</small>
+                                    <h6 class="">{{ $product->name }}</h6>
+                                    <small class="text-muted">{{ number_format($product->price) }} x {{ $product->qty }}</small>
                                 </div>
-                                <span class="text-muted">23.600.000</span>
+                                <span class="text-muted">{{ number_format($product->price * $product->qty) }}</span>
                             </li>
-                            <input type="hidden" name="sanphamgiohang[2][sp_ma]" value="4">
-                            <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
-                            <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
-
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</h6>
-                                    <small class="text-muted">14.990.000 x 8</small>
-                                </div>
-                                <span class="text-muted">11.992.000</span>
-                            </li>
+                            @endforeach
                             <li class="list-group-item total d-flex justify-content-between">
                                 <span>Tổng thành tiền</span>
-                                <strong>14.352.000</strong>
+                                <strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong>
                             </li>
                         </ul>
                         <div class="tt">
@@ -126,7 +113,7 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>14.352.000 Vnđ</strong></span>
+                                                <span><strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -149,7 +136,7 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>14.352.000 Vnđ</strong></span>
+                                                <span><strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -172,7 +159,7 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>14.352.000 Vnđ</strong></span>
+                                                <span><strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -182,7 +169,7 @@
                     </div>
                 </div>
                 <div class="line">
-                    <button class="btn-custom" type="submit" name="btnDatHang">Đặt hàng</button>
+                    <button class="btn-custom" type="submit" name="btnDatHang">Đã thanh toán</button>
                 </div>
             </form>
         </div>

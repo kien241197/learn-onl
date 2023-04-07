@@ -14,6 +14,9 @@
             </div>
             <div class="row">
                 <div class="col col-md-12">
+                    @empty(count($products->toArray()))
+                    <h1 class="h3 text-center p-5 text-danger">Giỏ hàng đang trống</h1>
+                    @else
                     <table class="">
                         <thead>
                             <tr>
@@ -27,60 +30,40 @@
                             </tr>
                         </thead>
                         <tbody id="datarow">
+                            @php
+                                $index = 0;
+                            @endphp
+                            @foreach($products as $key => $product)
+                            @php
+                                $index += 1;
+                            @endphp
                             <tr>
-                                <td>1</td>
+                                <td>{{ $index }}</td>
                                 <td>
-                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset('home/images/a1.png') }}" class="hinhdaidien">
+                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset($product->options['image']) }}" class="hinhdaidien">
                                 </td>
-                                <td><a href="#">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</a></td>
-                                <td class="text-right">2</td>
-                                <td class="text-right price">11,800,000.00</td>
-                                <td class="text-right price">23,600,000</td>
+                                <td><a href="{{ route('single', $product->id) }}">{{ $product->name }}</a></td>
+                                <td class="text-right">{{ $product->qty }}</td>
+                                <td class="text-right price">{{ number_format($product->price) }}</td>
+                                <td class="text-right price">{{ number_format($product->price * $product->qty) }}</td>
                                 <td>
                                     
-                                    <a id="delete_1" data-sp-ma="2" class="btn btn-danger btn-delete-sanpham">
+                                    <a id="delete_1" data-sp-ma="2" class="btn btn-danger btn-delete-sanpham" onclick="removeToCart(`{{ route('delCart', $key) }}`)">
                                         <i class="fa fa-trash" aria-hidden="true"></i> Xóa
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset('home/images/a1.png') }}" class="hinhdaidien">
-                                </td>
-                                <td><a href="#">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</a></td>
-                                <td class="text-right">4</td>
-                                <td class="text-right price">2,699,000.00</td>
-                                <td class="text-right price">1,0796,000</td>
-                                <td>
-                                    <a id="delete_2" data-sp-ma="6" class="btn btn-danger btn-delete-sanpham">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    <img class="w-100 d-block" style="max-width:200px;" src="{{ asset('home/images/a1.png') }}" class="hinhdaidien">
-                                </td>
-                                <td><a href="#">BÍ QUYẾT THIẾT LẬP KẾ HOẠCH VÀ KPI</a></td>
-                                <td class="text-right">8</td>
-                                <td class="text-right price">1,4990,000.00</td>
-                                <td class="text-right price">119,920,000</td>
-                                <td>
-                                    
-                                    <a id="delete_3" data-sp-ma="4" class="btn btn-danger btn-delete-sanpham">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> Xóa
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                    <div class="price-total"><span>Tổng tiền thanh toán:</span> 20.000.000đ</div>
+                    <div class="price-total"><span>Tổng tiền thanh toán:</span> {{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</div>
+                    @endempty
                     <div class="custom-button">
                         <a href="{{ route('home') }}" class="btn btn-back btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Quay
                         về trang chủ</a>
+                        @if(count($products->toArray()))
                         <a href="{{ route('checkout') }}" class="btn btn-blue"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Thanh toán</a>
+                        @endif
                     </div>
                 </div>
             </div>

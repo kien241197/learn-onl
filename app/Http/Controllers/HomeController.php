@@ -7,8 +7,10 @@ use App\Models\Course;
 use App\Models\Category;
 use App\Models\User;
 use App\Enums\StatusPayment;
+use App\Enums\FlashType;
 use Carbon\Carbon;
 use Auth;
+use Cart;
 
 class HomeController extends Controller
 {
@@ -129,18 +131,55 @@ class HomeController extends Controller
     public function cart(Request $request)
     {
         $title = "Giỏ hàng";
+        $products = Cart::content();
 
         return view('cart', [
             'title' => $title,
+            'products' => $products
         ]);
+    }
+
+    public function addCart(Request $request, $id)
+    {
+        try {
+            $course = Course::where('id', $id)->firstOrFail();
+            Cart::add($course->id, $course->name, 1, $course->price_sale, ['image' => $course->image_url]);
+            return response()->json('OK', FlashType::OK);
+        } catch (Exception $e) {
+            return response()->json('Error', FlashType::NOT_FOUND);
+        }
+    }
+
+    public function delCart(Request $request, $id)
+    {
+        try {
+            Cart::remove($id);
+            return response()->json('OK', FlashType::OK);
+        } catch (Exception $e) {
+            return response()->json('Error', FlashType::NOT_FOUND);
+        }
+    }
+
+    public function buyCourse(Request $request, $id)
+    {
+        try {
+            $course = Course::where('id', $id)->firstOrFail();
+            Cart::destroy();
+            Cart::add($course->id, $course->name, 1, $course->price_sale, ['image' => $course->image_url]);
+            return response()->json('OK', FlashType::OK);
+        } catch (Exception $e) {
+            return response()->json('Error', FlashType::NOT_FOUND);
+        }
     }
 
     public function checkout(Request $request)
     {
         $title = "Giỏ hàng";
+        $products = Cart::content();
 
         return view('checkout', [
             'title' => $title,
+            'products' => $products
         ]);
     }
 }

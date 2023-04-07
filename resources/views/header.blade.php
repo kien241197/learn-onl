@@ -20,7 +20,7 @@
                         <li><a href="#">Thư viện</a></li>
                         <li><a href="#">Liên hệ</a></li>
                     </ul>
-                    <div class="icon-search"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="icon-search"><a href="{{ route('cart') }}"><i class="fa-solid fa-shopping-cart"></i></a></div>
                     <div class="login">
                     	@guest
                         <a class="btn-custom" href="{{ route('getRegister') }}">Đăng ký</a>

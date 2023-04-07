@@ -1,4 +1,4 @@
-<section class="site-res">
+<section class="site-res" id="form-res">
 	<div class="container">
 		<div class="title-main">
 			<h2 class="heading">ĐĂNG KÝ NHẬN TƯ VẤN KHÓA HỌC CỦA TNB</h2>
