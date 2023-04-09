@@ -112,7 +112,7 @@
                                             	<span class="badge badge-secondary p-2">Chưa kích hoạt</span>
                                             	@elseif($order->course->publish_end < \Carbon\Carbon::now()->format('Y-m-d H:i:s'))
                                             	<span class="badge badge-secondary p-2">Hết hạn</span>
-                                            	@else
+                                            	@elseif(count($order->course->chapters) && count($order->course->chapters->first()->lessons))
                                             	<a class="btn-custom" href="{{ route('lesson', $order->course->chapters->first()->lessons->first()->id) }}" target="_blank">Học ngay</a>
                                             	@endif
                                             </td>

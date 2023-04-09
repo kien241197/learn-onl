@@ -1,6 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
+
     <section class="site-cart pd-main">
         <div class="container">
             <div id="thongbao" class="alert alert-danger d-none face" role="alert">
@@ -56,13 +57,13 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="price-total"><span>Tổng tiền thanh toán:</span> {{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</div>
+                    <div class="price-total"><span>Tổng tiền thanh toán:</span> {{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</div>
                     @endempty
                     <div class="custom-button">
                         <a href="{{ route('home') }}" class="btn btn-back btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Quay
                         về trang chủ</a>
                         @if(count($products->toArray()))
-                        <a href="{{ route('checkout') }}" class="btn btn-blue"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Thanh toán</a>
+                        <a href="{{ route('checkout') }}" class="btn btn-blue"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Xác nhận</a>
                         @endif
                     </div>
                 </div>

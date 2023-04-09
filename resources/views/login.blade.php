@@ -19,8 +19,8 @@
         <div class="logo">
             <ul>
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="khoa-hoc.php">Khóa học</a></li>
-                <li><a href="#">Hướng dẫn sử dụng</a></li>
+                <li><a href="{{ route('khoa-hoc') }}">Khóa học</a></li>
+                <li><a href="{{ route('huong-dan') }}">Hướng dẫn sử dụng</a></li>
                 <li><a href="#">Thư viện</a></li>
                 <li><a href="#">Liên hệ</a></li>
             </ul>
@@ -46,6 +46,7 @@
 					     @endif
                         <form action="{{ route('postLogin') }}" method="POST">
                         	@csrf
+                            <input type="hidden" name="limit_token" id="limit-token">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" class="form-control" name="email" required>
@@ -77,7 +78,7 @@
     <script type="text/javascript" src="{{ asset('home/slick/slick.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('home/js/main.js') }}"></script>
     <script>
-        
+        $('#limit-token').val(localStorage.getItem("myToken"));
     </script>
 </body>
 

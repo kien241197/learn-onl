@@ -19,8 +19,8 @@
         <div class="logo">
             <ul>
                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="khoa-hoc.php">Khóa học</a></li>
-                <li><a href="#">Hướng dẫn sử dụng</a></li>
+                <li><a href="{{ route('khoa-hoc') }}">Khóa học</a></li>
+                <li><a href="{{ route('huong-dan') }}">Hướng dẫn sử dụng</a></li>
                 <li><a href="#">Thư viện</a></li>
                 <li><a href="#">Liên hệ</a></li>
             </ul>

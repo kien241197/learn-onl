@@ -18,5 +18,10 @@
 </main>
 @include('footer')
 <script type="text/javascript" src="{{ asset('home/js/custom.js') }}"></script>
+ @if (session('tokenLimit') && session('tokenLimit') != '')
+    <script type="text/javascript">
+        localStorage.setItem('myToken', "{{ session('tokenLimit') }}");
+    </script>
+ @endif
 </body>
 </html>

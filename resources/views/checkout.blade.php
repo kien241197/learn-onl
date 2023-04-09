@@ -3,7 +3,8 @@
 @section('content')
     <section class="site-checkout pd-main">
         <div class="container">
-            <form class="needs-validation" name="frmthanhtoan" method="post" action="#">
+            <form class="needs-validation" name="frmthanhtoan" method="post" action="{{ route('payment') }}">
+                @csrf
                 <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
                 <div class="py-5 title-main text-center">
                     <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
@@ -66,7 +67,7 @@
                             @endforeach
                             <li class="list-group-item total d-flex justify-content-between">
                                 <span>Tổng thành tiền</span>
-                                <strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong>
+                                <strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong>
                             </li>
                         </ul>
                         <div class="tt">
@@ -113,7 +114,7 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong></span>
+                                                <span><strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -136,7 +137,7 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong></span>
+                                                <span><strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -159,7 +160,7 @@
                                             </li>
                                             <li>
                                                 <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>{{ number_format((int)\Cart::subtotal(0,0,0)/10) }} VND</strong></span>
+                                                <span><strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -169,7 +170,7 @@
                     </div>
                 </div>
                 <div class="line">
-                    <button class="btn-custom" type="submit" name="btnDatHang">Đã thanh toán</button>
+                    <button class="btn-custom" type="submit" name="btnDatHang">Thanh toán</button>
                 </div>
             </form>
         </div>

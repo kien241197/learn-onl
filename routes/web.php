@@ -35,6 +35,7 @@ Route::post('register', [LoginController::class, 'postRegister'])->name('postReg
 Route::get('huong-dan', [HomeController::class, 'huongDan'])->name('huong-dan');
 Route::get('khoa-hoc', [HomeController::class, 'courseList'])->name('khoa-hoc');
 Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
+Route::get('active/{code}', [HomeController::class, 'activeCourse'])->name('activeCourse');
 Route::group(['middleware' => 'auth.user'], function() {
         Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
@@ -46,6 +47,8 @@ Route::group(['middleware' => 'auth.user'], function() {
         Route::get('my-info', [HomeController::class, 'info'])->name('info');
         Route::post('lesson/{id}/history', [LessonController::class, 'postHistory'])->name('postHistory');
         Route::post('buy-course/{id}', [HomeController::class, 'buyCourse'])->name('buyCourse');
+        Route::post('payment', [HomeController::class, 'payment'])->name('payment');
+        Route::get('callback-vnpay', [HomeController::class, 'cbVnpay'])->name('cbvnpay');
 });
 
 //Admin
