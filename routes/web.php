@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth.user'], function() {
         Route::post('buy-course/{id}', [HomeController::class, 'buyCourse'])->name('buyCourse');
         Route::post('payment', [HomeController::class, 'payment'])->name('payment');
         Route::get('callback-vnpay', [HomeController::class, 'cbVnpay'])->name('cbvnpay');
+        Route::post('change-info', [HomeController::class, 'changeInfo'])->name('changeInfo');
 });
 
 //Admin

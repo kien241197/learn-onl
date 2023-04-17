@@ -18,10 +18,30 @@
 </main>
 @include('footer')
 <script type="text/javascript" src="{{ asset('home/js/custom.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  @if (session('tokenLimit') && session('tokenLimit') != '')
     <script type="text/javascript">
         localStorage.setItem('myToken', "{{ session('tokenLimit') }}");
     </script>
  @endif
+ @if(session()->has('Flash'))
+<script type="text/javascript">
+  let urlRedirect = "{{ session()->get('Flash')[0]['urlRedirect'] }}";
+  Swal.fire({
+    title: "{{ session()->get('Flash')[0]['message'] }}",
+    text: '',
+    confirmButtonText: 'OK',
+    icon: "{{ session()->get('Flash')[0]['mode'] }}",
+  }).then(function() {
+    if (urlRedirect != ""){
+      window.location = urlRedirect;
+    }
+  });
+</script>
+@endif
+@php
+    session()->forget('Flash');
+@endphp
 </body>
 </html>

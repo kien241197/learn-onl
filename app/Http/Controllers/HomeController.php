@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\User;
@@ -14,6 +15,7 @@ use Carbon\Carbon;
 use Auth;
 use Cart;
 use Mail;
+use DB;
 use App\Mail\ActiveMail;
 
 class HomeController extends Controller
@@ -284,12 +286,14 @@ class HomeController extends Controller
                 Mail::to(Auth::user()->email)->send(new ActiveMail($mailData));
             }
             Cart::destroy();
+            $this->setFlash(__('Thanh toán thành công!'), FlashType::Success);
             return redirect($url)->with('success' ,$request->vnp_TransactionStatus);
         }
         Bill::where('id', $request->vnp_TxnRef)
            ->delete();
         Order::where('bill_id', $request->vnp_TxnRef)
            ->delete();
+        $this->setFlash(__($request->vnp_TransactionStatus), FlashType::Error);
         return redirect($url)->with('error' ,$request->vnp_TransactionStatus);        
     }
 
@@ -302,5 +306,41 @@ class HomeController extends Controller
         $find->date_active = Carbon::now();
         $find->save();
         return view('active-success');
+    }
+
+    public function changeInfo(Request $request)
+    {
+        $this->validate($request,
+            [
+                'name' => ['required'],
+                'password' => ['required','regex:/[A-Za-z]/', 'regex:/[0-9]/', 'min:6'],
+                'old_password' => ['required', 'current_password'],
+            ],
+            [
+                'password.required' => 'Nhập mật khẩu mới',
+                'old_password.required' => 'Nhập mật khẩu hiện tại',
+                'old_password.current_password' => 'Mật khẩu hiện tại không khớp',
+                'password.regex' => 'Mật khẩu bao gồm chữ và số',
+                'password.min' => 'Mật khẩu tối thiểu 6 ký tự',
+                'name.required' => 'Nhập tên',
+            ]
+        );
+        DB::begintransaction();
+        try {
+            $user = User::where('id', Auth::user()->id)->first();
+            $user->name = $request->name;
+            $user->password = Hash::make($request->password);
+            if ($user->save()) {
+                DB::commit();
+                $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
+            } else {
+                DB::rollBack();
+                $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
+        }
+        return redirect()->back();
     }
 }

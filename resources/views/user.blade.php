@@ -24,13 +24,16 @@
                     <div class="content-user">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab1">
-                                <form action="" method="POST">
+                                <form action="{{ route('changeInfo') }}" method="POST">
                                 	@csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Họ và tên</label>
-                                                <input class="form-control" value="{{ $user->name }}" type="text">
+                                                <input class="form-control" value="{{ old('name', $user->name) }}" type="text" name="name">
+                                                @if ($errors->has('name'))
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-6">
@@ -78,13 +81,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Mật khẩu</label>
-                                                <input class="form-control"  type="password" value="">
+                                                <input class="form-control"  type="password" value="" name="old_password">
+                                                @if ($errors->has('old_password'))
+                                                    <span class="text-danger">{{ $errors->first('old_password') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Mật khẩu mới</label>
-                                                <input class="form-control"  type="password" value="">
+                                                <input class="form-control"  type="password" value="" name="password">
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-md-12">
