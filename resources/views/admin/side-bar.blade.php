@@ -81,6 +81,22 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.contacts.index') }}" class="nav-link {{ (request()->is('admin/contacts*')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-phone"></i>
+              <p>
+                ĐĂNG KÝ TƯ VẤN
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.info.show') }}" class="nav-link {{ (request()->is('admin/info-page*')) ? 'active' : '' }}">
+              <i class="nav-icon fa fa-edit"></i>
+              <p>
+                GIAO DIỆN TÙY CHỈNH
+              </p>
+            </a>
+          </li>
 
         </ul>
       </nav>

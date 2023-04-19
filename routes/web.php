@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminLessonController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\HomeController;
@@ -36,6 +37,7 @@ Route::get('huong-dan', [HomeController::class, 'huongDan'])->name('huong-dan');
 Route::get('khoa-hoc', [HomeController::class, 'courseList'])->name('khoa-hoc');
 Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
 Route::get('active/{code}', [HomeController::class, 'activeCourse'])->name('activeCourse');
+Route::post('sign-up-consul', [HomeController::class, 'singnUpConsultation'])->name('singnUpConsultation');
 Route::group(['middleware' => 'auth.user'], function() {
         Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
@@ -61,6 +63,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
 Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/info-page', [AdminController::class, 'infoPage'])->name('info.show');
+        Route::post('/info-page', [AdminController::class, 'infoPageUpdate'])->name('info.update');
         Route::resource('users', AdminUserController::class);
         Route::resource('courses', AdminCourseController::class);
         Route::post('courses/{courseId}/chapters', [AdminCourseController::class, 'addChapter'])->name('chapters.store');
@@ -73,6 +77,7 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.
         Route::delete('courses/{courseId}/chapters/{chapterId}/lessons/{lessonId}', [AdminLessonController::class, 'destroy'])->name('lessons.destroy');
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('tags', AdminTagController::class);
+        Route::resource('contacts', AdminContactController::class);
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('comments', [AdminCommentController::class, 'index'])->name('comments.index');
         Route::get('comments/{id}', [AdminCommentController::class, 'show'])->name('comments.show');

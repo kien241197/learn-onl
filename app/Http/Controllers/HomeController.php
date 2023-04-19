@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Bill;
 use App\Models\Order;
+use App\Models\Contact;
 use App\Enums\StatusPayment;
 use App\Enums\FlashType;
 use Carbon\Carbon;
@@ -338,6 +339,40 @@ class HomeController extends Controller
             if ($user->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
+            } else {
+                DB::rollBack();
+                $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
+        }
+        return redirect()->back();
+    }
+
+    public function singnUpConsultation(Request $request)
+    {
+        $this->validate($request,
+            [
+                'email' => ['required', 'email'],
+            ]
+        );
+        DB::begintransaction();
+        try {
+            $contact = new Contact();
+            $contact->email = $request->email;
+            if (isset($contact->name)) {
+                $contact->name = $request->name;
+            }
+            if (isset($contact->phone)) {
+                $contact->phone = $request->phone;
+            }
+            if (isset($contact->address)) {
+                $contact->address = $request->address;
+            }
+            if ($contact->save()) {
+                DB::commit();
+                $this->setFlash(__('Đăng ký thành công!'), FlashType::Success);
             } else {
                 DB::rollBack();
                 $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);

@@ -21,7 +21,12 @@
                         <li><a href="#">Liên hệ</a></li>
                     </ul>
                     @auth
-                    <div class="icon-search"><a href="{{ route('cart') }}"><i class="fa-solid fa-shopping-cart"></i></a><span id="count-cart">0</span></div>
+                    <div class="icon-search" id="div-cart">
+                        <a href="{{ route('cart') }}"><i class="fa-solid fa-shopping-cart"></i></a>
+                        @if(\Cart::count() > 0)
+                        <span id="count-cart">{{ \Cart::count() }}</span>
+                        @endif
+                    </div>
                     @endauth
                     <div class="login">
                     	@guest

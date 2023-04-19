@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contact;
+use App\Models\Order;
+use App\Models\Course;
+use App\Models\User;
+use App\Models\CmsLayout;
 
 class AdminController extends Controller
 {
@@ -13,23 +18,30 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $title = "Trang chủ";
+        $countOrder = Order::all()->count();
+        $countCourse = Course::all()->count();
+        $countUser = User::where('level', 1)->count();
+        $countContact = Contact::all()->count();
         return view('admin.home', [
-            'title' => $title
+            'title' => $title,
+            'countOrder' => $countOrder,
+            'countCourse' => $countCourse,
+            'countUser' => $countUser,
+            'countContact' => $countContact,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function infoPage()
     {
-        //
+        $title = "Tùy chỉnh giao diện";
+        $layout = CmsLayout::first();
+        return view('admin.custom-info', [
+            'title' => $title,
+            'layout' => $layout
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function infoPageUpdate(Request $request)
     {
         //
     }

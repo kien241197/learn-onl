@@ -50,6 +50,13 @@ function addToCart(url) {
         url: url,
     })
     .done(function(response) {
+      if ($("#count-cart").length > 0){
+        let count = Number($("#count-cart").text());
+        $("#count-cart").text(count + 1);
+      } else {
+        let html = '<span id="count-cart">1</span>';
+        $("#div-cart").append(html);
+      }
       alert('Đã thêm vào giỏ hàng.');
     })
     .fail(function(error) {

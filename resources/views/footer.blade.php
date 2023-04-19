@@ -42,8 +42,9 @@
                         <div class="footer_form">
                             <h4 class="title-ft">ĐĂNG KÍ NHẬN THÔNG TIN</h4>
                             <p>Để có thể cập nhật kịp thời những tin tức của TNB Garment, vui lòng nhập địa chỉ email của Quý Anh Chị vào ô dưới đây.</p>
-                            <form action="">
-                                <input type="text" placeholder="Địa chỉ email (*)">
+                            <form action="{{ route('singnUpConsultation') }}" method="POST">
+                                @csrf
+                                <input type="text" placeholder="Địa chỉ email (*)" name="email" required>
                                 <button class="btn-res" type="submit">Đăng ký</button>
                             </form>
                             <ul>
