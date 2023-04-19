@@ -212,11 +212,13 @@ class HomeController extends Controller
         $vnp_Url = env("VNP_URL");
         $vnp_Returnurl = url('/callback-vnpay');
         $vnp_TxnRef = $bill->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = "Mua khaa hoc TNB";
+        $vnp_OrderInfo = "Mua khoa hoc TNB";
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = ((int)str_replace(',', '', \Cart::subtotal(0))) * 100;
         $vnp_Locale = 'vn';
-        $vnp_IpAddr = request()->ip();
+        $vnp_IpAddr = $request->ip();
+        $startTime = date("YmdHis");
+        $expire = date('YmdHis',strtotime('+15 minutes',strtotime($startTime)));
 
         $inputData = array(
             "vnp_Version" => "2.1.0",
@@ -228,9 +230,11 @@ class HomeController extends Controller
             "vnp_IpAddr" => $vnp_IpAddr,
             "vnp_Locale" => $vnp_Locale,
             "vnp_OrderInfo" => $vnp_OrderInfo,
-            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_OrderType" => "other",
+            // "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
+            "vnp_ExpireDate"=>$expire
         );
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -242,9 +246,9 @@ class HomeController extends Controller
         $hashdata = "";
         foreach ($inputData as $key => $value) {
             if ($i == 1) {
-                $hashdata .= '&' . $key . "=" . $value;
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
             } else {
-                $hashdata .= $key . "=" . $value;
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
                 $i = 1;
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
@@ -253,8 +257,9 @@ class HomeController extends Controller
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
            // $vnpSecureHash = md5($vnp_HashSecret . $hashdata);
-            $vnpSecureHash = hash('sha256', $vnp_HashSecret . $hashdata);
-            $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
+            // $vnpSecureHash = hash('sha256', $vnp_HashSecret . $hashdata);
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         return redirect($vnp_Url);
     }
@@ -269,7 +274,7 @@ class HomeController extends Controller
                ->update([
                    'payment' => 1
                 ]);
-            $orders = Order::where('bill_id', $request->vnp_TxnRef)->get();
+            $orders = Order::where('bill_id', $request->vnp_TxnRef)->with(['course'])->get();
             foreach($orders as $order) {
                 $order->payment = 1;
                 $order->code_active = hash('sha256', $order->id . date('YmdHis') . $order->user_id);

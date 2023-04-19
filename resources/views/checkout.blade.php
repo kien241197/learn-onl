@@ -72,17 +72,7 @@
                         </ul>
                         <div class="tt">
                             <h4 class="title">Phương thức thanh toán</h4>
-                            <ul class="nav">
-                                <li class="nav-items">
-                                    <a class="nav-link active" data-toggle="tab" href="#tab1">
-                                        <img src="{{ asset('home/images/logo-1.jpg') }}" alt="">
-                                    </a>
-                                </li>
-                                <li class="nav-items">
-                                    <a class="nav-link" data-toggle="tab" href="#tab2">
-                                        <img src="{{ asset('home/images/logo-2.png') }}" alt="">
-                                    </a>
-                                </li>
+                            <ul class="nav d-flex justify-content-center">
                                 <li class="nav-items">
                                     <a class="nav-link" data-toggle="tab" href="#tab3">
                                         <img src="{{ asset('home/images/logo-3.png') }}" alt="">
@@ -93,57 +83,7 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab1">
-                                <div class="qrcode">
-                                    <div class="id-qr">
-                                        <img src="{{ asset('home/images/qr.png') }}" alt="">
-                                    </div>
-                                    <div class="information">
-                                        <ul>
-                                            <li>
-                                                <span>Chủ tài khoản:</span>
-                                                <span><strong>Mai Văn Huy</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Ngân hàng:</span>
-                                                <span><strong>Vietcombank</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Chi nhánh:</span>
-                                                <span><strong>Thành công Số 2 Duy Tân</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab2">
-                                <div class="qrcode">
-                                    <div class="id-qr">
-                                        <img src="{{ asset('home/images/qrnomo.png') }}" alt="">
-                                    </div>
-                                    <div class="information">
-                                        <ul>
-                                            <li>
-                                                <span>Chủ tài khoản:</span>
-                                                <span><strong>Mai Văn Huy</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Ví điện tử:</span>
-                                                <span><strong>Momo</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab3">
+                            <div class="tab-pane active show" id="tab3">
                                 <div class="qrcode">
                                     <div class="id-qr">
                                         <img src="{{ asset('home/images/qrpay.png') }}" alt="">
