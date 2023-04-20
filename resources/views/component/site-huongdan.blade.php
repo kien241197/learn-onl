@@ -2,12 +2,12 @@
 	<div class="container">
 		<div class="title-main">
 			<h2 class="heading">HƯỚNG DẪN SỬ DỤNG NỀN TẢNG</h2>
-			<p>Dễ dàng sử dụng, học mọi lúc, mọi nơi !</p>
+			<p>{!! $layout->content_hd !!}</p>
 		</div>
 	</div>
 	<div class="banner-hd">
         <div class="items">
-            <img class="w-100 d-block" src="{{ asset('home/images/banner1.png') }}" alt="">
+            <img class="w-100 d-block" src="{{ asset($layout->banner_hd) }}" alt="">
         </div>
     </div>
     <div class="about-hd">
@@ -17,17 +17,17 @@
     			<img class="w-100 d-block" src="{{ asset('home/images/ab.jpg') }}" alt="">
     		</div>
     		@endif
-    		<a class="btn-custom" href="#">VIDEO HƯỚNG DẪN</a>
+    		<a class="btn-custom" href="{{ $layout->link_hd }}">VIDEO HƯỚNG DẪN</a>
     		<div class="video">
     			<div class="row">
     				<div class="col-md-6">
     					<div class="video-details">
-    						<iframe class="w-100 d-block" src="https://www.youtube.com/embed/q1nWBIPfvME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    						{!! $layout->video_hd_1 !!}
     					</div>
     				</div>
     				<div class="col-md-6">
     					<div class="video-details">
-    						<iframe class="w-100 d-block" src="https://www.youtube.com/embed/GzayNrw0LCk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    						{!! $layout->video_hd_2 !!}
     					</div>
     				</div>
     			</div>

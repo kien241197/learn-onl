@@ -25,7 +25,7 @@
                 <li><a href="#">Liên hệ</a></li>
             </ul>
             <a href="{{ route('home') }}">
-                <img src="{{ asset('home/images/logo.png') }}" alt="">
+                <img src="{{ asset($layout->logo) }}" alt="">
             </a>
         </div>
         <div class="row m-0">

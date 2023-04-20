@@ -4,7 +4,7 @@
             <div class="col-md-2">
                 <div class="logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('home/images/logo.png') }}" alt="">
+                        <img src="{{ asset($layout->logo) }}" alt="">
                     </a>
                     <div class="js-menu-mobile">
                         <i class="fa-solid fa-bars"></i>

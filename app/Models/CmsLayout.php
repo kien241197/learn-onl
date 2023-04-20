@@ -10,4 +10,5 @@ class CmsLayout extends Model
     use HasFactory;
 
     protected $table = 'cms_layout';
+    public $timestamps = false;
 }

@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="title-main">
 			<h2 class="heading">CÁC KHÓA HỌC TẠI TNB GARMENT</h2>
-			<p>Quản trị sản xuất may công nghiệp tại Việt Nam</p>
+			<p>{!! $layout->content_kh !!}</p>
 		</div>
 		<ul class="nav">
 			<li class="nav-items">

@@ -4,16 +4,16 @@
             <div class="col-lg-4">
                 <div class="footer_content">
                     <div class="logo">
-                        <a href="https://tnbgarment.edu.vn">
-                        <img width="150" height="62" src="{{ asset('home/images/logo.png') }}" alt="">
+                        <a href="{{ route('home') }}">
+                        <img width="150" height="62" src="{{ asset($layout->logo) }}" alt="">
                         </a>
                         <h3>CHUYÊN ĐÀO TẠO QUẢN TRỊ SẢN XUẤT MAY CÔNG NGHIỆP</h3>
                     </div>
                     <ul>
-                        <li><strong>Địa chỉ:</strong> Đường 2.3 KĐT Gamuda Garden, P. Trần Phú, Q. Hoàng Mai, Tp. Hà Nội</li>
-                        <li><strong>Email:</strong> contact.tnbgarment@gmail.vn</li>
-                        <li><strong>Điện thoại:</strong> 0911.475.883</li>
-                        <li>MSDN: 0110131809</li>
+                        <li><strong>Địa chỉ:</strong> {{ $layout->address }}</li>
+                        <li><strong>Email:</strong> {{ $layout->email }}</li>
+                        <li><strong>Điện thoại:</strong> {{ $layout->phone }}</li>
+                        <li><strong>MSDN:</strong> {{ $layout->code }}</li>
                     </ul>
                 </div>
             </div>

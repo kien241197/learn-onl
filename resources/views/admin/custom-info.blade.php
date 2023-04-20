@@ -3,6 +3,36 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
+        <!-- Logo -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Logo Website</h3>
+                    </div>
+                    <form action="{{ route('admin.info.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label>Logo</label>
+                                    <div class="input-group mb-1">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="logo" id="logo" accept="image/*" onchange="document.getElementById('prv-img-tag-logo').src = window.URL.createObjectURL(this.files[0])">
+                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                        </div>
+                                    </div>
+                                    <img src="{{ asset($layout->logo) }}" id="prv-img-tag-logo" style="width: 100%;" />
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Thay đổi</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     	<!-- Banner -->
         <div class="row">
             <div class="col-md-12">
@@ -196,7 +226,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Hướng dẫn</h3>
                     </div>
-                    <form action="{{ route('admin.info.update') }}" method="POST">
+                    <form action="{{ route('admin.info.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -248,7 +278,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Cảm nhận của học viên</h3>
                     </div>
-                    <form action="{{ route('admin.info.update') }}" method="POST">
+                    <form action="{{ route('admin.info.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="row">
