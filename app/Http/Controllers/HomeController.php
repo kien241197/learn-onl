@@ -208,9 +208,9 @@ class HomeController extends Controller
         }
         Order::insert($arrInsert);
         session(['url_prev' => url()->previous()]);
-        $vnp_TmnCode = env("VNP_CODE"); //Mã website tại VNPAY 
-        $vnp_HashSecret = env("VNP_SECRET"); //Chuỗi bí mật
-        $vnp_Url = env("VNP_URL");
+        $vnp_TmnCode = env('VNP_CODE', 'TNBOLWEB'); //Mã website tại VNPAY 
+        $vnp_HashSecret = env('VNP_SECRET', 'RWGUOTXADAUONOZOFPPHCWWNOVCDXNQN'); //Chuỗi bí mật
+        $vnp_Url = env('VNP_URL', 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html');
         $vnp_Returnurl = url('/callback-vnpay');
         $vnp_TxnRef = $bill->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = "Mua khoa hoc TNB";
@@ -361,13 +361,13 @@ class HomeController extends Controller
         try {
             $contact = new Contact();
             $contact->email = $request->email;
-            if (isset($contact->name)) {
+            if (isset($request->name)) {
                 $contact->name = $request->name;
             }
-            if (isset($contact->phone)) {
+            if (isset($request->phone)) {
                 $contact->phone = $request->phone;
             }
-            if (isset($contact->address)) {
+            if (isset($request->address)) {
                 $contact->address = $request->address;
             }
             if ($contact->save()) {

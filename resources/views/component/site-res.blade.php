@@ -23,7 +23,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<select class="form-control" name="" id="" name="address">
+						<select class="form-control" name="address">
 							<option value="">Tỉnh thành</option>
 							<option value="An Giang">An Giang
 							<option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu

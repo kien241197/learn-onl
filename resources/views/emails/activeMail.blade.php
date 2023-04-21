@@ -6,7 +6,7 @@
 <body>
     <h1>{{ $mailData['title'] }}</h1>
     <p><b>Tên khóa học: </b>{{ $mailData['course']['name'] }}</p>
-    <p><b>Giá khóa học: </b>{{ number_format($mailData['course']['name']) }} VND</p>
+    <p><b>Giá khóa học: </b>{{ number_format($mailData['course']['price_sale']) }} VND</p>
     <p><b>Nội dung khóa học: </b>{{ $mailData['course']['note'] }}</p>
   
     <p>Vui lòng click <a href="{{ route('activeCourse', $mailData['code']) }}" target="_blank">VÀO ĐÂY</a> để kích hoạt khóa học.</p>

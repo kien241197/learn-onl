@@ -32,8 +32,11 @@ $("#send-comment").click(function() {
     });
 
 });  
-$("#video-lesson").bind("ended", function() {
-  let url = $(this).data("url");
+$( document ).ready(function() {
+var video = document.getElementById('video-lesson');
+video.addEventListener('ended', function(e) {
+
+  let url = this.getAttribute('data-url');
   $.ajax({
         method: "POST",
         url: url,
@@ -42,6 +45,8 @@ $("#video-lesson").bind("ended", function() {
     })
     .fail(function(error) {
         console.log(error);
+    });
+
     });
 });
 function addToCart(url) {
