@@ -91,6 +91,9 @@ class LoginController extends Controller
         try {
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->company = $request->company;
+            $user->address = $request->address;
             $user->password = Hash::make($request->password);
             $user->level = UserRole::USER;
             if ($user->save()) {

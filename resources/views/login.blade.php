@@ -31,7 +31,7 @@
         <div class="row m-0">
             <div class="col-lg-6 col-custom p-0">
                 <div class="images">
-                    <img class="w-100 d-block" src="{{ asset('home/images/hi.png') }}" alt="">
+                    <img class="w-100 d-block" src="{{ asset($layout->image_login) }}" alt="">
                 </div>
             </div>
             <div class="col-lg-6 col-custom p-0">

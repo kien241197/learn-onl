@@ -1,7 +1,7 @@
-jQuery( document ).ready(function() {
-  jQuery("video").each(function(){
-    jQuery(this).attr('controlsList','nodownload');
-    jQuery(this).load();
+$( document ).ready(function() {
+  $("video").each(function(){
+    $(this).attr('controlsList','nodownload');
+    // $(this).load();
   });
 });
 

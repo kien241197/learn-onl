@@ -94,6 +94,11 @@
 					</div>
 				</div>
 				<div class="col-md-12">
+					<div class="form-group">
+						<textarea class="form-control" placeholder="Lời nhắn" type="text" name="content"></textarea>
+					</div>
+				</div>
+				<div class="col-md-12">
 					<button class="btn-custom" type="submit">Đăng ký ngay</button>
 				</div>
 			</div>

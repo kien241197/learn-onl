@@ -4,7 +4,9 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-$("#send-comment").click(function() {
+
+$( document ).ready(function() {
+  $("#send-comment").click(function() {
   let content = $('#comment').val();
   if(!content) return;
   $("#send-comment").prop('disabled', true);
@@ -20,7 +22,7 @@ $("#send-comment").click(function() {
         $("#send-comment").prop('disabled', false);
         $("#box-comment").append(`<div class="direct-chat-msg right">
             <img class="direct-chat-img" src="/home/images/icon-user.png" alt="message user image">
-            <div class="direct-chat-text">
+            <div class="direct-chat-text text-white">
             ${content}
             </div>
           </div>`);
@@ -31,8 +33,7 @@ $("#send-comment").click(function() {
         console.log(error);
     });
 
-});  
-$( document ).ready(function() {
+}); 
 var video = document.getElementById('video-lesson');
 video.addEventListener('ended', function(e) {
 

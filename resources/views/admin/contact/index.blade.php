@@ -25,6 +25,7 @@
                                     <th style="min-width: 100px">Tên</th>
                                     <th style="min-width: 100px">SĐT</th>
                                     <th style="min-width: 100px">Địa chỉ</th>
+                                    <th style="min-width: 100px">Lời nhắn</th>
                                     <th style="min-width: 100px;">Ngày đăng ký</th>
                                 </tr>
                             </thead>
@@ -36,6 +37,7 @@
                                     <td class="align-middle">{{ $contact->name }}</td>
                                     <td class="align-middle">{{ $contact->phone }}</td>
                                     <td class="align-middle">{{ $contact->address }}</td>
+                                    <td class="align-middle">{{ $contact->content }}</td>
                                     <td class="align-middle">{{ $contact->created_at }}</td>
                                 </tr>
                                 @endforeach

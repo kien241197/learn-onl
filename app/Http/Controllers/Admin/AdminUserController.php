@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Enums\FlashType;
 use App\Enums\UserRole;
+use App\Enums\StatusPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -30,6 +31,12 @@ class AdminUserController extends Controller
             }
           })
         ->where('level', UserRole::USER)
+        ->with([
+            'orders' => function($query) {
+                $query->where('payment', StatusPayment::PAID);
+            },
+            'orders.course'
+        ])
         ->orderBy('created_at', 'DESC')
         ->paginate($sizeLimit);
         return view('admin.user.index', [

@@ -32,7 +32,7 @@
         <div class="row m-0">
             <div class="col-lg-6 col-custom p-0">
                 <div class="images">
-                    <img class="w-100 d-block" src="{{ asset('home/images/hi.png') }}" alt="">
+                    <img class="w-100 d-block" src="{{ asset($layout->image_login) }}" alt="">
                 </div>
             </div>
             <div class="col-lg-6 col-custom p-0">
@@ -64,6 +64,33 @@
 	                                    @if ($errors->has('name'))
 	                                        <span class="text-danger">{{ $errors->first('name') }}</span>
 	                                    @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
+                                        @if ($errors->has('phone'))
+                                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Đơn vị công tác</label>
+                                        <input type="text" class="form-control" name="company" value="{{ old('company') }}" required>
+                                        @if ($errors->has('company'))
+                                            <span class="text-danger">{{ $errors->first('company') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                                        @if ($errors->has('address'))
+                                            <span class="text-danger">{{ $errors->first('address') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">

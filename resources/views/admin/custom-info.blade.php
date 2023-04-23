@@ -509,7 +509,36 @@
                 </div>
             </div>
         </div>
-
+        <!-- Hình ảnh page Đăng ký, Đăng nhập -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Đăng ký/Đăng nhập</h3>
+                    </div>
+                    <form action="{{ route('admin.info.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Hình ảnh hiển thị</label>
+                                    <div class="input-group mb-1">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="image_login" id="image_login" accept="image/*" onchange="document.getElementById('prv-img-tag-login').src = window.URL.createObjectURL(this.files[0])">
+                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                        </div>
+                                    </div>
+                                    <img src="{{ asset($layout->image_login) }}" id="prv-img-tag-login" style="width: 100%;" />
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Thay đổi</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 @endsection

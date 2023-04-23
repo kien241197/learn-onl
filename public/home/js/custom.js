@@ -43,15 +43,12 @@ $('.slick-feedback').slick({
 
 
 
-var interval_obj = setInterval(function(){
+var interval_obj = setTimeout(function(){
   $('.phone-opacity').css('display','none');
   setInterval(function(){
     $('.phone-opacity').css('display','block');
-   setInterval(function(){
+    setTimeout(function(){
       $('.phone-opacity').css('display','none');
-      setInterval(function(){
-        $('.phone-opacity').css('display','block');
-      }, 180000);
-    }, 5000);
-  }, 180000);
-}, 5000);
+    }, 1000);
+  }, 59000);
+}, 1000);

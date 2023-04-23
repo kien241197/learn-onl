@@ -27,7 +27,10 @@
                                     <th style="min-width: 100px">Email</th>
                                     <th style="min-width: 100px">Tên thành viên</th>
                                     <th>Số điện thoại</th>
-                                    <th style="min-width: 100px;">Ghi chú</th>
+                                    <th>Đơn vị công tác</th>
+                                    <th>Địa chỉ</th>
+                                    <!-- <th style="min-width: 100px;">Ghi chú</th> -->
+                                    <th style="min-width: 100px;">Sản phẩm đã mua</th>
                                     <th style="min-width: 90px;"></th>
                                 </tr>
                             </thead>
@@ -38,7 +41,16 @@
                                     <td class="align-middle">{{ $user->email }}</td>
 		                            <td class="align-middle">{{ $user->name }}</td>
 		                            <td class="align-middle">{{ $user->phone }}</td>
-		                            <td class="align-middle">{{ $user->note }}</td>
+                                    <td class="align-middle">{{ $user->company }}</td>
+                                    <td class="align-middle">{{ $user->address }}</td>
+		                            <!-- <td class="align-middle">{{ $user->note }}</td> -->
+                                    <td class="align-middle">
+                                        @foreach($user->orders as $order)
+                                        @if($order->course)
+                                        + {{ $order->course->name }}<br>
+                                        @endif
+                                        @endforeach
+                                    </td>
                                     <td style="width: 35px;">
                                     	<a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i>&nbsp;Sửa</a>
                                     	<button class="btn btn-block btn-danger btn-xs btn-delete-record" data-url="{{ route('admin.users.destroy', $user->id) }}"><i class="fa fa-trash"></i>&nbsp;Xóa</button>

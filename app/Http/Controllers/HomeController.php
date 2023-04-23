@@ -335,6 +335,9 @@ class HomeController extends Controller
         try {
             $user = User::where('id', Auth::user()->id)->first();
             $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->company = $request->company;
+            $user->address = $request->address;
             $user->password = Hash::make($request->password);
             if ($user->save()) {
                 DB::commit();
@@ -369,6 +372,9 @@ class HomeController extends Controller
             }
             if (isset($request->address)) {
                 $contact->address = $request->address;
+            }
+            if (isset($request->content)) {
+                $contact->content = $request->content;
             }
             if ($contact->save()) {
                 DB::commit();

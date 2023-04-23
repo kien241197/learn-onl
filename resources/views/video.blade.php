@@ -14,7 +14,8 @@
 		};
 		function autoPlay() {
 			var video = document.getElementById("video-lesson");
-			video.autoplay = true;
+			video.setAttribute('autoplay', 'autoplay');
+			video.play();
 		};
     </script>
     <section class="site-video-k pd-main">
@@ -27,7 +28,7 @@
                             <source src="{{ asset($lesson->video_path) }}" type="video/ogg">
                         </video>
                         <div class="phone-opacity">
-                            Phùng Thanh Sơn - 0123456789
+                            {{ Auth::user()->name . ' – ' . Auth::user()->phone }}
                         </div>
                     </div>
                     <div class="flex-custom">

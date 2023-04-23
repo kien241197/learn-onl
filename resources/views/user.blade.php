@@ -36,28 +36,37 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <!-- <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="">Giới tính</label>
-                                                <input class="form-control" value="Nam" type="text">
-                                            </div>
-                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Địa chỉ</label>
-                                                <input class="form-control" value="130 Xô Viết Nghệ Tỉnh" type="text">
+                                                <label for="">Email</label>
+                                                <input class="form-control" value="{{ $user->email }}" type="text" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">Số điện thoại</label>
-                                                <input class="form-control" value="0915659223" type="text">
+                                                <input class="form-control" name="phone" value="{{ old('phone', $user->phone) }}" type="text" required>
+                                                @if ($errors->has('phone'))
+                                                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                                @endif
                                             </div>
-                                        </div> -->
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Email</label>
-                                                <input class="form-control" value="{{ $user->email }}" type="text" readonly>
+                                                <label for="">Đơn vị công tác</label>
+                                                <input class="form-control" name="company" value="{{ old('company', $user->company) }}" type="text" required>
+                                                @if ($errors->has('company'))
+                                                    <span class="text-danger">{{ $errors->first('company') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Địa chỉ</label>
+                                                <input class="form-control" name="address" value="{{ old('address', $user->address) }}" type="text" required>
+                                                @if ($errors->has('address'))
+                                                    <span class="text-danger">{{ $errors->first('address') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-6">

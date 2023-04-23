@@ -254,6 +254,14 @@ class AdminController extends Controller
         if (isset($request->code)) {
             $layout->code = $request->code;
         }
+        if ($request->image_login) {
+            if ($layout->image_login != "" && File::exists(public_path($layout->image_login))) {
+                unlink(public_path($layout->image_login));
+            }
+            $imageLogin = time() . '.' . $request->image_login->extension();
+            $layout->image_login =  "storage/images/" . $imageLogin;
+            $request->file('image_login')->storeAs('images', $imageLogin, 'public');
+        }
 
         if ($layout->save()) {
             $this->setFlash(__('Thay đổi thành công!'), FlashType::Success);
