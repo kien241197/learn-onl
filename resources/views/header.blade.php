@@ -17,8 +17,8 @@
                         <li><a href="{{ route('home') }}">Trang chủ</a></li>
                         <li><a href="{{ route('khoa-hoc') }}">Khóa học</a></li>
                         <li><a href="{{ route('huong-dan') }}">Hướng dẫn sử dụng</a></li>
-                        <li><a href="#">Thư viện</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="https://tnbgarment.edu.vn/category/thu-vien-kien-thuc/" target="b_lank">Thư viện</a></li>
+                        <li><a href="https://tnbgarment.edu.vn/lien-he/">Liên hệ</a></li>
                     </ul>
                     @auth
                     <div class="icon-search" id="div-cart">

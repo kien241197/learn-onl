@@ -325,6 +325,9 @@ button, img, input, select {
   padding: 0px 30px;
   cursor: pointer;
 }
+.header .menu .icon-search a{
+  color: var(--color-blue);
+}
 .header .menu .login {
   border-left: 1px solid #6a726e;
   padding-left: 30px;
@@ -335,6 +338,12 @@ button, img, input, select {
       -ms-flex-align: center;
           align-items: center;
 }
+.header .menu .login a{
+  color: var(--color-blue);
+}
+.header .menu .login .btn-custom:first-child{
+  color: #fff;
+}
 .header .menu .login .btn-custom:last-child {
   margin-left: 10px;
   background: #fff;
@@ -342,7 +351,7 @@ button, img, input, select {
 }
 
 .site-banner img {
-  max-height: 650px;
+  max-height: 750px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -924,6 +933,7 @@ button, img, input, select {
   background-repeat: no-repeat;
   background-repeat: repeat-x;
   padding: 50px 0px;
+  background: #fbfbfb;
 }
 
 .footer .logo {

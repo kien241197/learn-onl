@@ -22,19 +22,19 @@
                     <div class="col-lg-4 col-md-3">
                         <div class="items-footer">
                             <ul>
-                                <li><a href="#">VỀ CHÚNG TÔI</a></li>
-                                <li><a href="#">SẢN PHẨM</a></li>
-                                <li><a href="#">LỊCH HUẤN LUYỆN</a></li>
-                                <li><a href="#">TRUYỀN THÔNG</a></li>
+                                <li><a href="https://tnbgarment.edu.vn/" target="b_lank">VỀ CHÚNG TÔI</a></li>
+                                <li><a href="https://tnbonline.vn/khoa-hoc" target="b_lank">SẢN PHẨM</a></li>
+                                <li><a href="https://tnbgarment.edu.vn/" target="b_lank">LỊCH HUẤN LUYỆN</a></li>
+                                <li><a href="https://tnbgarment.edu.vn/" target="b_lank">TRUYỀN THÔNG</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-3">
                         <div class="items-footer">
                             <ul>
-                                <li><a href="#">CỘNG ĐỒNG</a></li>
-                                <li><a href="#">TUYỂN DỤNG</a></li>
-                                <li><a href="#">LIÊN HỆ</a></li>
+                                <li><a href="https://tnbgarment.edu.vn/" target="b_lank">CỘNG ĐỒNG</a></li>
+                                <li><a href="https://tnbgarment.edu.vn/" target="b_lank">TUYỂN DỤNG</a></li>
+                                <li><a href="https://tnbgarment.edu.vn/" target="b_lank">LIÊN HỆ</a></li>
                             </ul>
                         </div>
                     </div>

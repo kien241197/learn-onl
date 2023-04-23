@@ -97,13 +97,16 @@
                                 <span style="width:{{ $history*100/$totalLesson }}%"></span>
                             </div>
                         </div>
+                        @php 
+                        $TimeVideo = ['9:09','9:56','6:29','6:09','5:35','4:37','00'];
+                        @endphp
                         <div class="list-bh" id="style-3">
                         	@foreach($lesson->chapter->course->chapters as $chapter)
                             <div class="items">
                                 <h3><span>{{ $chapter->name }}</span></h3>
                                 <ul>
-                                	@foreach($chapter->lessons as $itemLesson)
-                                    <li><a href="{{ route('lesson', $itemLesson->id) }}" class="{{ $itemLesson->id == $lesson->id ? 'active' : '' }}">{{ $itemLesson->name }}</a> <span>07:01</span></li>
+                                	@foreach($chapter->lessons as $key => $itemLesson)
+                                    <li><a href="{{ route('lesson', $itemLesson->id) }}" class="{{ $itemLesson->id == $lesson->id ? 'active' : '' }}">{{ $itemLesson->name }}</a> <span>{{ $TimeVideo[$key] }}</span></li>
                                     @endforeach
                                 </ul>
                             </div>
