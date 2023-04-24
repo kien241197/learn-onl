@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Bill;
 use App\Models\Order;
 use App\Models\Contact;
+use App\Models\Lesson;
 use App\Enums\StatusPayment;
 use App\Enums\FlashType;
 use Carbon\Carbon;
@@ -18,6 +19,7 @@ use Cart;
 use Mail;
 use DB;
 use App\Mail\ActiveMail;
+use App\Mail\ReportMail;
 
 class HomeController extends Controller
 {
@@ -388,5 +390,24 @@ class HomeController extends Controller
             $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
         }
         return redirect()->back();
+    }
+
+    public function reportVideo($id)
+    {
+        try {
+            $lesson = Lesson::where('id', $id)->with(['chapter.course'])->firstOrFail();
+            // dd($lesson);
+            //send mail
+            $mailData = [
+                'title' => 'BÁO LỖI BÀI HỌC',
+                'lesson' => $lesson
+            ];
+             
+            Mail::to('kien241197@gmail.com')->send(new ReportMail($mailData));
+            return response()->json('OK', FlashType::OK);
+        } catch (Exception $e) {
+            return response()->json('Error', FlashType::NOT_FOUND);
+        }
+        return response()->json('Error', FlashType::NOT_FOUND);
     }
 }

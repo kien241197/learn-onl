@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth.user'], function() {
         Route::get('my-info', [HomeController::class, 'info'])->name('info');
         Route::post('lesson/{id}/history', [LessonController::class, 'postHistory'])->name('postHistory');
         Route::post('buy-course/{id}', [HomeController::class, 'buyCourse'])->name('buyCourse');
+        Route::post('report-video/{id}', [HomeController::class, 'reportVideo'])->name('reportVideo');
         Route::post('payment', [HomeController::class, 'payment'])->name('payment');
         Route::get('callback-vnpay', [HomeController::class, 'cbVnpay'])->name('cbvnpay');
         Route::post('change-info', [HomeController::class, 'changeInfo'])->name('changeInfo');

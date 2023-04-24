@@ -7,46 +7,67 @@ $.ajaxSetup({
 
 $( document ).ready(function() {
   $("#send-comment").click(function() {
-  let content = $('#comment').val();
-  if(!content) return;
-  $("#send-comment").prop('disabled', true);
-  let url = $(this).data("url");
-  $.ajax({
-        method: "POST",
-        url: url,
-        data: {
-          comment: content
+    let content = $('#comment').val();
+    if(!content) return;
+    $("#send-comment").prop('disabled', true);
+    let url = $(this).data("url");
+    $.ajax({
+          method: "POST",
+          url: url,
+          data: {
+            comment: content
+          }
+      })
+      .done(function(response) {
+          $("#send-comment").prop('disabled', false);
+          $("#box-comment").append(`<div class="direct-chat-msg right">
+              <img class="direct-chat-img" src="/home/images/icon-user.png" alt="message user image">
+              <div class="direct-chat-text text-white">
+              ${content}
+              </div>
+            </div>`);
+          $('#comment').val('');
+      })
+      .fail(function(error) {
+          $("#send-comment").prop('disabled', false);
+          console.log(error);
+      });
+
+  });
+  $("#report-video").click(function() {
+    $("#report-video").prop('disabled', true);
+    let url = $(this).data("url");
+    $.ajax({
+          method: "POST",
+          url: url
+      })
+      .done(function(response) {
+          alert('Đã gửi thông báo tới hệ thống.');
+          $("#report-video").prop('disabled', false);
+      })
+      .fail(function(error) {
+          alert('Tạm thời xảy ra lỗi. Thử lại!');
+          $("#report-video").prop('disabled', false);
+          console.log(error);
+      });
+
+  }); 
+  var video = document.getElementById('video-lesson');
+  video.addEventListener('ended', function(e) {
+    let autoPlay = this.getAttribute('autoplay');
+    let url = this.getAttribute('data-url');
+    $.ajax({
+          method: "POST",
+          url: url,
+      })
+      .done(function(response) {
+        if (autoPlay == 'autoplay' && document.getElementById('next-lesson')) {
+          document.getElementById('next-lesson').click();
         }
-    })
-    .done(function(response) {
-        $("#send-comment").prop('disabled', false);
-        $("#box-comment").append(`<div class="direct-chat-msg right">
-            <img class="direct-chat-img" src="/home/images/icon-user.png" alt="message user image">
-            <div class="direct-chat-text text-white">
-            ${content}
-            </div>
-          </div>`);
-        $('#comment').val('');
-    })
-    .fail(function(error) {
-        $("#send-comment").prop('disabled', false);
-        console.log(error);
-    });
-
-}); 
-var video = document.getElementById('video-lesson');
-video.addEventListener('ended', function(e) {
-
-  let url = this.getAttribute('data-url');
-  $.ajax({
-        method: "POST",
-        url: url,
-    })
-    .done(function(response) {
-    })
-    .fail(function(error) {
-        console.log(error);
-    });
+      })
+      .fail(function(error) {
+          console.log(error);
+      });
 
     });
 });

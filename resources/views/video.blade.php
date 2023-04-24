@@ -33,12 +33,12 @@
                     </div>
                     <div class="flex-custom">
                         <div class="function">
-                            <a class="error" href="#">Báo lỗi <span>!</span></a>
+                            <a class="error" id="report-video" href="javascript:void(0);" data-url="{{ route('reportVideo', $lesson->id) }}">Báo lỗi <span>!</span></a>
                             <a class="autoplay" href="javascript:void(0);" onclick="autoPlay();">Autoplay <i class="fa-solid fa-circle-play"></i></a>
                             <a class="next-time" href="javascript:void(0);" onclick="prev(10);"><span>10</span> <i class="fa-solid fa-arrow-rotate-left"></i></a>
                             <a class="next-time" href="javascript:void(0);" onclick="next(10);"><span>10</span> <i class="fa-solid fa-arrow-rotate-right"></i></a>
                             @if($nextLesson)
-                            <a class="next" href="{{ route('lesson', $nextLesson->id) }}">Bài sau <i class="fa-solid fa-chevron-right"></i></a>
+                            <a class="next" id="next-lesson" href="{{ route('lesson', $nextLesson->id) }}">Bài sau <i class="fa-solid fa-chevron-right"></i></a>
 							@endif
                         </div>
                     </div>
