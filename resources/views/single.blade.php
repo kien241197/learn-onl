@@ -109,7 +109,7 @@
                             <div class="price-t">{{ number_format($course->price) }}đ</div>
                         </div>
                         <div class="addtocart">
-                            <a href="javascript:void(0);" onclick="addToCart(`{{ route('addCart', $course->id) }}`);" class="btn-custom" type="submit">Thêm vào giỏ hàng</a>
+                            <a href="javascript:void(0);" @auth onclick="addToCart(`{{ route('addCart', $course->id) }}`);" @endauth @guest onclick="alert('Đăng nhập để mua khóa học!')" @endguest class="btn-custom" type="submit">Thêm vào giỏ hàng</a>
                             <a href="javascript:void(0);" onclick="buyNow(`{{ route('buyCourse', $course->id) }}`);" class="btn-custom" type="submit">Mua Ngay</a>
                         </div>
                     </div>
