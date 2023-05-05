@@ -149,6 +149,13 @@
                                     <span class="text-danger">{{ $errors->first('note') }}</span>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label>Giới thiệu</label>
+                                <textarea name="detail_course" class="form-control">{{ old('detail_course') }}</textarea>
+                                @if ($errors->has('detail_course'))
+                                    <span class="text-danger">{{ $errors->first('detail_course') }}</span>
+                                @endif
+                            </div>
                             <div class="card-footer text-center">
                                 <button type="submit" class="btn btn-primary">Đăng ký</button>
                             </div>

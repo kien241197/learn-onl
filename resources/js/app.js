@@ -150,4 +150,13 @@ $(document).ready(function() {
             'excelHtml5',
         ]
     } );
+    CKEDITOR.replace('detail_course', {
+                //allowedContent : true
+                enterMode : CKEDITOR.ENTER_BR,
+                toolbar : [
+                ['Font', 'FontSize'], ['TextColor', 'BGColor'], ['Bold', 'Italic', 'Underline', 'Strike'], ['Subscript', 'Superscript'],
+                ['JustifyLeft', 'JustifyRight', 'JustifyCenter', 'JustifyBlock'], ['NumberedList', 'BulletedList'], ['Outdent', 'Indent', 'Blockquote'], ['Table', 'HorizontalRule', 'SpecialChar'], ['Link', 'Unlink', 'Image'],
+                ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], ['Source']
+                ]
+            });
 } );

@@ -31,6 +31,7 @@ class AdminLessonController extends Controller
             [
                 'name' => ['required'],
                 // 'image' => ['mimes:jpeg,png,jpg,gif'],
+                'video' => ['mimes:avi,mpeg,mp4,mov'],
             ],
             [
                 // 'name.required' => 'Tên đăng nhập này đã được sử dụng',
@@ -91,6 +92,16 @@ class AdminLessonController extends Controller
                 
             ]
         );
+        if ($request->video) {
+            $this->validate($request,
+                [
+                    'video' => ['mimes:avi,mpeg,mp4,mov'],
+                ],
+                [
+                    
+                ]
+            );
+        }
         DB::begintransaction();
         try {
             $lesson = Lesson::where('id', $lessonId)->firstOrFail();

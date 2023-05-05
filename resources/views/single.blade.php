@@ -153,14 +153,7 @@
     <section class="the_content">
         <div class="container">
             <div class="content">
-                <p>Chủ đề về quản lý nhân sự trong ngành may mặc là một vấn đề rất quan trọng để đảm bảo hiệu quả sản xuất và phát triển bền vững của ngành. Với sự cạnh tranh khốc liệt của thị trường, việc tìm kiếm, thu hút và giữ chân nhân sự tốt là một yếu tố quan trọng để đảm bảo sự phát triển của doanh nghiệp</p>
-                <p>Trong bài viết này, chúng ta sẽ tìm hiểu về những hoạt động quản lý nhân sự trong ngành may mặc, bao gồm cả đào tạo và phát triển nhân sự, tạo môi trường làm việc tích cực, cải tiến quy trình sản xuất và nhiều hơn nữa. Nội dung này cung cấp cho bạn những kiến thức cần thiết để hiểu và áp dụng các chiến lược quản lý nhân sự hiệu quả trong ngành may mặc.</p>
-                <p>Hãy cùng tìm hiểu và khám phá những thông tin hữu ích về quản lý nhân sự trong ngành may mặc nhé!</p>
-                <p class="text-center">
-                    <img src="{{ asset('home/images/single.jpg') }}" alt="">
-                </p>
-                <h3><strong>Tầm quan trọng của quản lý hiệu quả nhân sự trong ngành may mặc</strong></h3>
-                <p>Quản lý nhân sự là yếu tố quan trọng giúp cho các doanh nghiệp trong ngành may mặc có thể đáp ứng nhu cầu sản xuất, cạnh tranh và phát triển. Việc quản lý hiệu quả nhân sự sẽ giúp cho doanh nghiệp có được sự linh hoạt trong quản lý nguồn lực và chi phí, tăng cường hiệu quả sản xuất và nâng cao chất lượng sản phẩm.</p>
+                <p>{!! $course->detail_content !!}</p>
             </div>
         </div>
     </section>

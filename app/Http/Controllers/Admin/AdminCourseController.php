@@ -86,6 +86,7 @@ class AdminCourseController extends Controller
             $course->price_sale = $request->price_sale;
             $course->time = $request->time;
             $course->note = $request->note;
+            $course->detail_content = $request->detail_course;
             $course->publish_start = Carbon::parse($request->time_start);
             $course->publish_end = Carbon::parse($request->time_end);
             if($request->image) {
@@ -164,6 +165,26 @@ class AdminCourseController extends Controller
                 
             ]
         );
+        if ($request->image) {
+            $this->validate($request,
+                [
+                    'image' => ['mimes:jpeg,png,jpg,gif'],
+                ],
+                [
+                    
+                ]
+            );
+        }
+        if ($request->video) {
+            $this->validate($request,
+                [
+                    'video' => ['mimes:avi,mpeg,mp4,mov'],
+                ],
+                [
+                    
+                ]
+            );
+        }
         DB::begintransaction();
         try {
             $course = Course::where('id', $id)->with(['tags'])->firstOrFail();
@@ -174,6 +195,7 @@ class AdminCourseController extends Controller
             $course->price_sale = $request->price_sale;
             $course->time = $request->time;
             $course->note = $request->note;
+            $course->detail_content = $request->detail_course;
             $course->publish_start = Carbon::parse($request->time_start);
             $course->publish_end = Carbon::parse($request->time_end);
             if ($request->image) {
