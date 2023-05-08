@@ -53,23 +53,25 @@ $( document ).ready(function() {
 
   }); 
   var video = document.getElementById('video-lesson');
-  video.addEventListener('ended', function(e) {
-    let autoPlay = this.getAttribute('autoplay');
-    let url = this.getAttribute('data-url');
-    $.ajax({
-          method: "POST",
-          url: url,
-      })
-      .done(function(response) {
-        if (autoPlay == 'autoplay' && document.getElementById('next-lesson')) {
-          document.getElementById('next-lesson').click();
-        }
-      })
-      .fail(function(error) {
-          console.log(error);
-      });
+  if (video !== null) {
+    video.addEventListener('ended', function(e) {
+      let autoPlay = this.getAttribute('autoplay');
+      let url = this.getAttribute('data-url');
+      $.ajax({
+            method: "POST",
+            url: url,
+        })
+        .done(function(response) {
+          if (autoPlay == 'autoplay' && document.getElementById('next-lesson')) {
+            document.getElementById('next-lesson').click();
+          }
+        })
+        .fail(function(error) {
+            console.log(error);
+        });
 
-    });
+      }); 
+  }
 });
 function addToCart(url) {
   $.ajax({
