@@ -442,6 +442,7 @@
                                             <label class="custom-file-label" for="image">Chọn file</label>
                                         </div>
                                     </div>
+                                    <input type="text" class="form-control" name="link_banner_4" id="link_banner_4" placeholder="Link" value="{{ $layout->link_banner_4 }}">
                                     <img src="{{ asset($layout->banner_4) }}" id="prv-img-tag4" style="width: 100%;" />
                                 </div>
                                 <div class="form-group col-md-6">
@@ -452,6 +453,7 @@
                                             <label class="custom-file-label" for="image">Chọn file</label>
                                         </div>
                                     </div>
+                                    <input type="text" class="form-control" name="link_banner_5" id="link_banner_5" placeholder="Link" value="{{ $layout->link_banner_5 }}">
                                     <img src="{{ asset($layout->banner_5) }}" id="prv-img-tag5" style="width: 100%;" />
                                 </div>
                             </div>

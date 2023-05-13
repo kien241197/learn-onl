@@ -7,8 +7,8 @@
                 <div class="col-lg-6">
                     <div class="content">
                         <div class="title">
-                            <h1>{{ $course->category->name }}</h1>
-                            <p>{{ $course->category->note }}</p>
+                            <h1>{{ $course->name }}</h1>
+                            <p>{{ $course->note }}</p>
                         </div>
                         <div class="thong-ke">
                             <div class="raiting col-custom">
@@ -87,14 +87,13 @@
                             </ul>
                         </div>
                         <div class="flow mobile-none">
-                            <h4>Flow us</h4>
+                            <h4>Theo dõi thầy Trần Ngọc Bình</h4>
                             <ul>
-                                <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-square-google-plus"></i></a></li>
+                                <li><a href="{{ $layout->link_fb }}"><i class="fa-brands fa-square-facebook"></i></a></li>
+                                <li><a href="{{ $layout->link_zl }}"><i class="fa-brands fa-square-zalo"></i></a></li>
+                                <li><a href="{{ $layout->link_tiktok }}"><i class="fa-brands fa-square-tiktok"></i></a></li>
+                                <li><a href="{{ $layout->link_lkin }}"><i class="fa-brands fa-linkedin"></i></a></li>
+                                <li><a href="{{ $layout->link_ytb }}"><i class="fa-brands fa-square-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -136,14 +135,13 @@
                         </div>
                     </div>
                     <div class="flow destop-none">
-                        <h4>Flow us</h4>
+                        <h4>Theo dõi thầy Trần Ngọc Bình</h4>
                         <ul>
-                            <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-square-google-plus"></i></a></li>
+                            <li><a href="{{ $layout->link_fb }}"><i class="fa-brands fa-square-facebook"></i></a></li>
+                            <li><a href="{{ $layout->link_zl }}"><i class="fa-brands fa-square-zalo"></i></a></li>
+                            <li><a href="{{ $layout->link_tiktok }}"><i class="fa-brands fa-square-tiktok"></i></a></li>
+                            <li><a href="{{ $layout->link_lkin }}"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="{{ $layout->link_ytb }}"><i class="fa-brands fa-square-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -167,14 +165,14 @@
 				@foreach($courses as $course)
 					<div class="col-xl-4 col-md-6 mb-30">
 						<div class="content-products">
-							<a class="images" href="{{ route('single', $course->id) }}" title="" tabindex="0">
+							<a class="images" href="{{ route('single', [Illuminate\Support\Str::slug($course->name), $course->id]) }}" title="" tabindex="0">
 								<img src="{{ asset($course->image_url) }}" alt="">
 								<span>HOT</span>
 							</a>
-							<h3><a href="{{ route('single', $course->id) }}" tabindex="0">{{ $course->name }}</a></h3>
+							<h3><a href="{{ route('single', [Illuminate\Support\Str::slug($course->name), $course->id]) }}" tabindex="0">{{ $course->name }}</a></h3>
 							<p>{{ $course->note }}</p>
 							<div class="price-details">
-								<a class="btn-custom" href="{{ route('single', $course->id) }}" tabindex="0">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+								<a class="btn-custom" href="{{ route('single', [Illuminate\Support\Str::slug($course->name), $course->id]) }}" tabindex="0">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
 								<span class="price">{{ number_format($course->price_sale) }} VND</span>
 							</div>
 						</div>

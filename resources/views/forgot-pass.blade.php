@@ -37,29 +37,30 @@
             <div class="col-lg-6 col-custom p-0">
                 <div class="content">
                     <div class="form">
-                        <h3>Đăng nhập</h3>
-                        <p>Bạn chưa có tài khoản? <a href="{{ route('getRegister') }}">Đăng ký miễn phí ngay</a></p>
-                         @if (session('status'))
-					         <ul>
-					             <li class="text-danger text-center"> {{ session('status') }}</li>
-					         </ul>
-					     @endif
-                        <form action="{{ route('postLogin') }}" method="POST">
+                        <h3>Quên mật khẩu</h3>
+                        <form action="{{ route('postForgot') }}" method="POST">
                         	@csrf
-                            <input type="hidden" name="limit_token" id="limit-token">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" class="form-control" name="email" required>
+                                <div class="mt-2 text-right">
+	                                <label><a href="#">Nhận mã xác thực</a></label>
+	                            </div>
                             </div>
                             <div class="form-group">
-                                <label>Mật khẩu</label>
+                                <label>Mã xác thực</label>
+                                <input type="text" class="form-control" name="code" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mật khẩu mới</label>
                                 <input type="password" class="form-control" name="password" required>
                             </div>
                             <div class="form-group">
-                                <button class="btn-custom " type="submit">Đăng nhập</button>
+                                <label>Xác nhận khẩu mới</label>
+                                <input type="password" class="form-control" name="re_password" required>
                             </div>
-                            <div class="form-group text-center">
-                                <label><a href="{{ route('forgotPass') }}">Quên mật khẩu?</a></label>
+                            <div class="form-group">
+                                <button class="btn-custom " type="submit">Đổi mật khẩu</button>
                             </div>
                         </form>
                     </div>

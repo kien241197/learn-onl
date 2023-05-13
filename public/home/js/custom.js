@@ -49,6 +49,6 @@ var interval_obj = setTimeout(function(){
     $('.phone-opacity').css('display','block');
     setTimeout(function(){
       $('.phone-opacity').css('display','none');
-    }, 1000);
+    }, 5000);
   }, 59000);
-}, 1000);
+}, 5000);

@@ -233,6 +233,9 @@ class AdminController extends Controller
             $layout->banner_4 =  "storage/images/" . $banner4;
             $request->file('banner_4')->storeAs('images', $banner4, 'public');
         }
+        if (isset($request->link_banner_4)) {
+            $layout->link_banner_4 = $request->link_banner_4;
+        }
         if ($request->banner_5) {
             if ($layout->banner_5 != "" && File::exists(public_path($layout->banner_5))) {
                 unlink(public_path($layout->banner_5));
@@ -240,6 +243,9 @@ class AdminController extends Controller
             $banner5 = time() . '.' . $request->banner_5->extension();
             $layout->banner_5 =  "storage/images/" . $banner5;
             $request->file('banner_5')->storeAs('images', $banner5, 'public');
+        }
+        if (isset($request->link_banner_5)) {
+            $layout->link_banner_5 = $request->link_banner_5;
         }
         //Thông tin liên lạc
         if (isset($request->address)) {

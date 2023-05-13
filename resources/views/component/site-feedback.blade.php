@@ -114,12 +114,16 @@
 <div class="banner-hd slick-items-custom slick-banner">
 	@if($layout->banner_4 != '')
 	<div class="items">
-		<img class="w-100 d-block" src="{{ asset($layout->banner_4) }}" alt="">
+		<a href="{{ $layout->link_banner_4 }}">
+			<img class="w-100 d-block" src="{{ asset($layout->banner_4) }}" alt="">
+		</a>
 	</div>
 	@endif
 	@if($layout->banner_5 != '')
 	<div class="items">
-		<img class="w-100 d-block" src="{{ asset($layout->banner_5) }}" alt="">
+		<a href="{{ $layout->link_banner_5 }}">
+			<img class="w-100 d-block" src="{{ asset($layout->banner_5) }}" alt="">
+		</a>
 	</div>
 	@endif
 </div>

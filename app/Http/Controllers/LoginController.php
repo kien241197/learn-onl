@@ -108,4 +108,15 @@ class LoginController extends Controller
             return redirect()->back()->with('status', 'Đã có lỗi xảy ra!');
         }      
     }
+
+    public function forgotAccount()
+    {
+        return view('forgot-pass');
+    }
+
+    public function forgotAccountPost(Request $request)
+    {
+        dd($request);
+        return view('forgot-pass');
+    }
 }

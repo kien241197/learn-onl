@@ -27,15 +27,17 @@ use App\Http\Controllers\HomeController;
 */
 
 //User
+Route::get('{slug}-{id}', [HomeController::class, 'single'])->name('single')->where(['id' => '[0-9]+', 'slug' => '[a-z\-]+']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('login', [LoginController::class, 'getLogin'])->name('getLogin');
 Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
 Route::get('logout', [LoginController::class, 'getLogout'])->name('getLogout');
 Route::get('register', [LoginController::class, 'getRegister'])->name('getRegister');
 Route::post('register', [LoginController::class, 'postRegister'])->name('postRegister');
+Route::get('forgot-account', [LoginController::class, 'forgotAccount'])->name('forgotPass');
+Route::post('forgot-account', [LoginController::class, 'forgotAccountPost'])->name('postForgot');
 Route::get('huong-dan', [HomeController::class, 'huongDan'])->name('huong-dan');
 Route::get('khoa-hoc', [HomeController::class, 'courseList'])->name('khoa-hoc');
-Route::get('single/{id}', [HomeController::class, 'single'])->name('single');
 Route::get('active/{code}', [HomeController::class, 'activeCourse'])->name('activeCourse');
 Route::post('sign-up-consul', [HomeController::class, 'singnUpConsultation'])->name('singnUpConsultation');
 Route::group(['middleware' => 'auth.user'], function() {

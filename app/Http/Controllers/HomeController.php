@@ -62,12 +62,19 @@ class HomeController extends Controller
     public function courseList(Request $request)
     {
         $title = "Khóa học";
+        $search = $request->search ? $request->search : null;
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $courses = Course::with(['category'])
         ->where([
             ['publish_start', '<=', $date],
             ['publish_end', '>=', $date],
         ])
+        ->where(function($query) use ($search) {
+            if ($search) {
+                $query->where('name', 'LIKE', '%'.$search.'%');
+            }
+            return $query;
+        })
         ->orderBy('created_at', 'DESC')->get();
         $categories = Category::with(
             ['courses' => function ($query) use ($date) {
@@ -86,7 +93,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function single(Request $request, $id)
+    public function single($slug, $id)
     {
         $title = "Chi tiết khóa học";
 

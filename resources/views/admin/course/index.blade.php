@@ -40,7 +40,7 @@
                                 <tr>
                                     <td class="align-middle">{{ $course->id }}</td>
 		                            <td class="align-middle"><b><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></b></td>
-                                    <td class="align-middle">{{ $course->category->name }}</td>
+                                    <td class="align-middle">{{ $course->category ? $course->category->name : 'Chưa phân loại'}}</td>
                                     <td class="align-middle">{{ $course->time }} Giờ</td>
 		                            <td class="align-middle">{{ App\Enums\CourseLevel::getDescription($course->level) }}</td>
 		                            <td class="align-middle">{{ number_format($course->price) }} VNĐ</td>
