@@ -90,10 +90,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.info.show') }}" class="nav-link {{ (request()->is('admin/info-page*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.info.show') }}" class="nav-link {{ (request()->is('admin/info-page')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-edit"></i>
               <p>
                 GIAO DIỆN TÙY CHỈNH
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.pageOther.show') }}" class="nav-link {{ (request()->is('admin/info-page-other')) ? 'active' : '' }}">
+              <!-- <i class="nav-icon fa fa-edit-book"></i> -->
+              <p>
+                ĐIỀU KHOẢN / CHÍNH SÁCH 
               </p>
             </a>
           </li>

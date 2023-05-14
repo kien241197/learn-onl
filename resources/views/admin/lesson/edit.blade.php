@@ -66,7 +66,7 @@
                                 @endif
                             </div>
                             <div class="card-footer text-center">
-                                <button type="submit" class="btn btn-primary">Thay đổi</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                             </div>
                         </div>
                     </form>

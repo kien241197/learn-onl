@@ -12,17 +12,17 @@
                         </div>
                         <div class="thong-ke">
                             <div class="raiting col-custom">
-                                <span>4.5</span>
+                                <span>{{ $course->star }}</span>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
-                                <span class="gray">(2000)</span>
+                                <span class="gray">({{ $course->star_number }})</span>
                             </div>
                             <div class="user text col-custom">
                                 <i class="fa-solid fa-user"></i>
-                                <p>800 Người đã đăng ký</p>
+                                <p>{{ $course->people_number }} Người đã đăng ký</p>
                             </div>
                             <div class="time text col-custom">
                                 <i class="fa-solid fa-clock"></i>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="athour">
-                            <img src="{{ asset('home/images/user.png') }}" alt="">
+                            <img src="{{ asset($layout->icon_teacher) }}" alt="">
                             <p>Thầy: <strong>Trần Ngọc Bình</strong></p>
                         </div>
                         <div class="list">
@@ -116,7 +116,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-5">
                                 <div class="images">
-                                    <img class="w-100 d-block" src="{{ asset('home/images/ab.jpg') }}" alt="">
+                                    <img class="w-100 d-block" src="{{ asset($layout->image_teacher) }}" alt="">
                                 </div>
                             </div>
                             <div class="col-md-7">

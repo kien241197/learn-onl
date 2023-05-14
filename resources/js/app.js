@@ -150,8 +150,22 @@ $(document).ready(function() {
             'excelHtml5',
         ]
     } );
-    CKEDITOR.replace('detail_course', {
-        width :1000,
-        height: 700
-    });
+    if (document.getElementsByName('detail_course').length > 0) {
+        CKEDITOR.replace('detail_course', {
+            width :1000,
+            height: 700
+        });
+    }
+    if (document.getElementsByName('content_dieu_khoan').length > 0) {
+        CKEDITOR.replace('content_dieu_khoan', {
+            width :1000,
+            height: 700
+        });
+    }
+    if (document.getElementsByName('content_chinh_sach').length > 0) {
+        CKEDITOR.replace('content_chinh_sach', {
+            width :1000,
+            height: 700
+        });
+    }
 } );

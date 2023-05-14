@@ -84,6 +84,9 @@ class AdminCourseController extends Controller
             $course->level = $request->level;
             $course->price = $request->price;
             $course->price_sale = $request->price_sale;
+            $course->star = $request->star;
+            $course->star_number = $request->star_number;
+            $course->people_number = $request->people_number;
             $course->time = $request->time;
             $course->note = $request->note;
             $course->detail_content = $request->detail_course;
@@ -193,6 +196,9 @@ class AdminCourseController extends Controller
             $course->level = $request->level;
             $course->price = $request->price;
             $course->price_sale = $request->price_sale;
+            $course->star = $request->star;
+            $course->star_number = $request->star_number;
+            $course->people_number = $request->people_number;
             $course->time = $request->time;
             $course->note = $request->note;
             $course->detail_content = $request->detail_course;

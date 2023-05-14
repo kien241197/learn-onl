@@ -268,6 +268,22 @@ class AdminController extends Controller
             $layout->image_login =  "storage/images/" . $imageLogin;
             $request->file('image_login')->storeAs('images', $imageLogin, 'public');
         }
+        if ($request->icon_teacher) {
+            if ($layout->icon_teacher != "" && File::exists(public_path($layout->icon_teacher))) {
+                unlink(public_path($layout->icon_teacher));
+            }
+            $iconTeacher = time() . '.' . $request->icon_teacher->extension();
+            $layout->icon_teacher =  "storage/images/" . $iconTeacher;
+            $request->file('icon_teacher')->storeAs('images', $iconTeacher, 'public');
+        }
+        if ($request->image_teacher) {
+            if ($layout->image_teacher != "" && File::exists(public_path($layout->image_teacher))) {
+                unlink(public_path($layout->image_teacher));
+            }
+            $imageTeacher = time() . '.' . $request->image_teacher->extension();
+            $layout->image_teacher =  "storage/images/" . $imageTeacher;
+            $request->file('image_teacher')->storeAs('images', $imageTeacher, 'public');
+        }
 
         if ($layout->save()) {
             $this->setFlash(__('Thay đổi thành công!'), FlashType::Success);
@@ -277,35 +293,30 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function infoPageOther()
     {
-        //
+        $title = "Điều khoản / Chính sách";
+        $layout = CmsLayout::first();
+        return view('admin.custom-info-other', [
+            'title' => $title,
+            'layout' => $layout
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function infoPageOtherUpdate(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $layout = CmsLayout::first();
+        if (isset($request->content_dieu_khoan)) {
+            $layout->content_dieu_khoan = $request->content_dieu_khoan;
+        }
+        if (isset($request->content_chinh_sach)) {
+            $layout->content_chinh_sach = $request->content_chinh_sach;
+        }
+        if ($layout->save()) {
+            $this->setFlash(__('Thay đổi thành công!'), FlashType::Success);
+        } else {
+            $this->setFlash(__('Thất bại, hãy thử lại!'), FlashType::Error);
+        }
+        return redirect()->back();
     }
 }

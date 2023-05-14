@@ -19,7 +19,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="logo" id="logo" accept="image/*" onchange="document.getElementById('prv-img-tag-logo').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="logo">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->logo) }}" id="prv-img-tag-logo" style="width: 100%;" />
@@ -49,7 +49,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="banner_1" id="banner_1" accept="image/*" onchange="document.getElementById('prv-img-tag1').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="banner_1">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->banner_1) }}" id="prv-img-tag1" style="width: 100%;" />
@@ -59,7 +59,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="banner_2" id="banner_2" accept="image/*" onchange="document.getElementById('prv-img-tag2').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="banner_2">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->banner_2) }}" id="prv-img-tag2" style="width: 100%;" />
@@ -69,7 +69,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="banner_3" id="banner_3" accept="image/*" onchange="document.getElementById('prv-img-tag3').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="banner_3">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->banner_3) }}" id="prv-img-tag3" style="width: 100%;"  />
@@ -99,7 +99,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="image_gt" id="image_gt" accept="image/*" onchange="document.getElementById('prv-img-tag-gt').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="image_gt">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->image_gt) }}" id="prv-img-tag-gt" style="width: 100%;" />
@@ -239,7 +239,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="banner_hd" id="banner_hd" accept="image/*" onchange="document.getElementById('prv-img-tag_hd').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="banner_hd">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->banner_hd) }}" id="prv-img-tag_hd" style="width: 100%;" />
@@ -307,7 +307,7 @@
 		                                    <div class="input-group mb-1">
 		                                        <div class="custom-file">
 		                                            <input type="file" class="custom-file-input" name="avt_nx_1" id="avt_nx_1" accept="image/*" onchange="document.getElementById('prv-img-tag-nx-1').src = window.URL.createObjectURL(this.files[0])">
-		                                            <label class="custom-file-label" for="image">Chọn file</label>
+		                                            <label class="custom-file-label" for="avt_nx_1">Chọn file</label>
 		                                        </div>
 		                                    </div>
 		                                    <img src="{{ asset($layout->avt_nx_1) }}" id="prv-img-tag-nx-1" style="width: 100%;" />
@@ -335,7 +335,7 @@
 		                                    <div class="input-group mb-1">
 		                                        <div class="custom-file">
 		                                            <input type="file" class="custom-file-input" name="avt_nx_2" id="avt_nx_2" accept="image/*" onchange="document.getElementById('prv-img-tag-nx-2').src = window.URL.createObjectURL(this.files[0])">
-		                                            <label class="custom-file-label" for="image">Chọn file</label>
+		                                            <label class="custom-file-label" for="avt_nx_2">Chọn file</label>
 		                                        </div>
 		                                    </div>
 		                                    <img src="{{ asset($layout->avt_nx_2) }}" id="prv-img-tag-nx-2" style="width: 100%;" />
@@ -365,7 +365,7 @@
 		                                    <div class="input-group mb-1">
 		                                        <div class="custom-file">
 		                                            <input type="file" class="custom-file-input" name="avt_nx_3" id="avt_nx_3" accept="image/*" onchange="document.getElementById('prv-img-tag-nx-3').src = window.URL.createObjectURL(this.files[0])">
-		                                            <label class="custom-file-label" for="image">Chọn file</label>
+		                                            <label class="custom-file-label" for="avt_nx_3">Chọn file</label>
 		                                        </div>
 		                                    </div>
 		                                    <img src="{{ asset($layout->avt_nx_3) }}" id="prv-img-tag-nx-3" style="width: 100%;" />
@@ -393,7 +393,7 @@
 		                                    <div class="input-group mb-1">
 		                                        <div class="custom-file">
 		                                            <input type="file" class="custom-file-input" name="avt_nx_4" id="avt_nx_4" accept="image/*" onchange="document.getElementById('prv-img-tag-nx-4').src = window.URL.createObjectURL(this.files[0])">
-		                                            <label class="custom-file-label" for="image">Chọn file</label>
+		                                            <label class="custom-file-label" for="avt_nx_4">Chọn file</label>
 		                                        </div>
 		                                    </div>
 		                                    <img src="{{ asset($layout->avt_nx_4) }}" id="prv-img-tag-nx-4" style="width: 100%;" />
@@ -439,7 +439,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="banner_4" id="banner_4" accept="image/*" onchange="document.getElementById('prv-img-tag4').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="banner_4">Chọn file</label>
                                         </div>
                                     </div>
                                     <input type="text" class="form-control" name="link_banner_4" id="link_banner_4" placeholder="Link" value="{{ $layout->link_banner_4 }}">
@@ -450,7 +450,7 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="banner_5" id="banner_5" accept="image/*" onchange="document.getElementById('prv-img-tag5').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="banner_5">Chọn file</label>
                                         </div>
                                     </div>
                                     <input type="text" class="form-control" name="link_banner_5" id="link_banner_5" placeholder="Link" value="{{ $layout->link_banner_5 }}">
@@ -527,10 +527,50 @@
                                     <div class="input-group mb-1">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="image_login" id="image_login" accept="image/*" onchange="document.getElementById('prv-img-tag-login').src = window.URL.createObjectURL(this.files[0])">
-                                            <label class="custom-file-label" for="image">Chọn file</label>
+                                            <label class="custom-file-label" for="image_login">Chọn file</label>
                                         </div>
                                     </div>
                                     <img src="{{ asset($layout->image_login) }}" id="prv-img-tag-login" style="width: 100%;" />
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Thay đổi</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Hình ảnh page chi tiết khóa học -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Chi tiết khóa học</h3>
+                    </div>
+                    <form action="{{ route('admin.info.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Hình ảnh giáo viên thu nhỏ</label>
+                                    <div class="input-group mb-1">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="icon_teacher" id="icon-teacher" accept="image/*" onchange="document.getElementById('prv-img-icon-teacher').src = window.URL.createObjectURL(this.files[0])">
+                                            <label class="custom-file-label" for="icon-teacher">Chọn file</label>
+                                        </div>
+                                    </div>
+                                    <img src="{{ asset($layout->icon_teacher) }}" id="prv-img-icon-teacher" style="width: 100%;" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Hình ảnh giáo viên</label>
+                                    <div class="input-group mb-1">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="image_teacher" id="image-teacher" accept="image/*" onchange="document.getElementById('prv-img-teacher').src = window.URL.createObjectURL(this.files[0])">
+                                            <label class="custom-file-label" for="image-teacher">Chọn file</label>
+                                        </div>
+                                    </div>
+                                    <img src="{{ asset($layout->image_teacher) }}" id="prv-img-teacher" style="width: 100%;" />
                                 </div>
                             </div>
                             <div class="card-footer">

@@ -25,7 +25,7 @@
                                 <textarea name="note" class="form-control">{{ old('note', $category->note) }}</textarea>
                             </div>
                             <div class="card-footer text-center">
-                                <button type="submit" class="btn btn-primary">Thay đổi</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                             </div>
                         </div>
                     </form>

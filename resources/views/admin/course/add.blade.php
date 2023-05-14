@@ -68,6 +68,27 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
+                                    <label>Sao</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-star"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" name="star" value="{{ old('star') }}">
+                                        <input type="text" class="form-control" name="star_number" value="{{ old('star_number') }}">
+                                    </div> 
+                                </div>                                
+                                <div class="form-group col-md-6">
+                                    <label>Người đăng ký</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" name="people_number" value="{{ old('people_number') }}">
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
                                     <label>Thời gian khóa học</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">

@@ -12,9 +12,10 @@
 			var currentTime = video.currentTime;
 			video.currentTime = Number(currentTime) - Number(time);
 		};
-		function autoPlay() {
+		function autoPlay(ele) {
 			var video = document.getElementById("video-lesson");
 			video.setAttribute('autoplay', 'autoplay');
+			$(ele).addClass("next");
 			video.play();
 		};
     </script>
@@ -34,7 +35,7 @@
                     <div class="flex-custom">
                         <div class="function">
                             <a class="error" id="report-video" href="javascript:void(0);" data-url="{{ route('reportVideo', $lesson->id) }}">Báo lỗi <span>!</span></a>
-                            <a class="autoplay" href="javascript:void(0);" onclick="autoPlay();">Autoplay <i class="fa-solid fa-circle-play"></i></a>
+                            <a class="autoplay" href="javascript:void(0);" onclick="autoPlay(this);">Autoplay <i class="fa-solid fa-circle-play"></i></a>
                             <a class="next-time" href="javascript:void(0);" onclick="prev(10);"><span>10</span> <i class="fa-solid fa-arrow-rotate-left"></i></a>
                             <a class="next-time" href="javascript:void(0);" onclick="next(10);"><span>10</span> <i class="fa-solid fa-arrow-rotate-right"></i></a>
                             @if($nextLesson)

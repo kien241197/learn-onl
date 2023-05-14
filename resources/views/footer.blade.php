@@ -35,6 +35,8 @@
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">CỘNG ĐỒNG</a></li>
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">TUYỂN DỤNG</a></li>
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">LIÊN HỆ</a></li>
+                                <li><a href="{{ route('chinh-sach') }}" target="b_lank">CHÍNH SÁCH RIÊNG TƯ</a></li>
+                                <li><a href="{{ route('dieu-khoan') }}" target="b_lank">ĐIỀU KHOẢN SỬ DỤNG</a></li>
                             </ul>
                         </div>
                     </div>

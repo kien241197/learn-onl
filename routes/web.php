@@ -27,7 +27,7 @@ use App\Http\Controllers\HomeController;
 */
 
 //User
-Route::get('{slug}-{id}', [HomeController::class, 'single'])->name('single')->where(['id' => '[0-9]+', 'slug' => '[a-z\-]+']);
+Route::get('{slug}-{id}', [HomeController::class, 'single'])->name('single')->where(['id' => '[0-9]+', 'slug' => '[0-9a-z\-]+']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('login', [LoginController::class, 'getLogin'])->name('getLogin');
 Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
@@ -40,6 +40,8 @@ Route::get('huong-dan', [HomeController::class, 'huongDan'])->name('huong-dan');
 Route::get('khoa-hoc', [HomeController::class, 'courseList'])->name('khoa-hoc');
 Route::get('active/{code}', [HomeController::class, 'activeCourse'])->name('activeCourse');
 Route::post('sign-up-consul', [HomeController::class, 'singnUpConsultation'])->name('singnUpConsultation');
+Route::get('dieu-khoan', [HomeController::class, 'dieuKhoan'])->name('dieu-khoan');
+Route::get('chinh-sach', [HomeController::class, 'chinhSach'])->name('chinh-sach');
 Route::group(['middleware' => 'auth.user'], function() {
         Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
@@ -68,6 +70,8 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/info-page', [AdminController::class, 'infoPage'])->name('info.show');
         Route::post('/info-page', [AdminController::class, 'infoPageUpdate'])->name('info.update');
+        Route::get('/info-page-other', [AdminController::class, 'infoPageOther'])->name('pageOther.show');
+        Route::post('/info-page-other', [AdminController::class, 'infoPageOtherUpdate'])->name('pageOther.update');
         Route::resource('users', AdminUserController::class);
         Route::resource('courses', AdminCourseController::class);
         Route::post('courses/{courseId}/chapters', [AdminCourseController::class, 'addChapter'])->name('chapters.store');

@@ -417,4 +417,22 @@ class HomeController extends Controller
         }
         return response()->json('Error', FlashType::NOT_FOUND);
     }
+
+    public function dieuKhoan(Request $request)
+    {
+        $title = "Điều khoản sử dụng";
+
+        return view('dieu-khoan', [
+            'title' => $title
+        ]);
+    }
+
+    public function chinhSach(Request $request)
+    {
+        $title = "Chính sách bảo mật";
+
+        return view('chinh-sach', [
+            'title' => $title
+        ]);
+    }
 }
