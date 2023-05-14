@@ -9,7 +9,10 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\LimitDevice;
 use App\Enums\UserRole;
+use App\Enums\FlashType;
+use App\Mail\SendCodeMail;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Str;
 use Auth;
 use DB;
 use Cart;
@@ -112,6 +115,34 @@ class LoginController extends Controller
     public function forgotAccount()
     {
         return view('forgot-pass');
+    }
+
+    public function sendCode(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if($request->email) {
+                //send mail
+                $user = User::where('email', $request->email)->first();
+                $code = Str::random(6);
+                $user->reset_code = $code;
+                $mailData = [
+                    'code' => $code
+                ];
+                 
+                Mail::to($request->email)->send(new SendCodeMail($mailData));
+
+                if ($user->save()) {
+                    DB::commit();
+                    return response()->json('OK', FlashType::OK);
+                }
+            }
+            
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json('Error', FlashType::NOT_FOUND);
+        }       
+        DB::commit();
     }
 
     public function forgotAccountPost(Request $request)
