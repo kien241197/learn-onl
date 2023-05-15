@@ -135,7 +135,7 @@ class LoginController extends Controller
                     'code' => $code
                 ];
                  
-                // Mail::to($request->email)->send(new SendCodeMail($mailData));
+                Mail::to($request->email)->send(new SendCodeMail($mailData));
 
                 if ($user->save()) {
                     DB::commit();
