@@ -312,6 +312,80 @@ class HomeController extends Controller
         return redirect($url)->with('error' ,$request->vnp_TransactionStatus);        
     }
 
+    public function ipnVnpay(Request $request)
+    {
+        $returnData = [];
+        $inputData = [];
+        $vnp_HashSecret = env('VNP_SECRET', 'RWGUOTXADAUONOZOFPPHCWWNOVCDXNQN'); //Chuỗi bí mật
+        try {
+            foreach ($request->all() as $key => $value) {
+                if (substr($key, 0, 4) == "vnp_") {
+                    $inputData[$key] = $value;
+                }
+            }
+            $vnp_SecureHash = $request->vnp_SecureHash;
+            unset($inputData['vnp_SecureHash']);
+            ksort($inputData);
+            $i = 0;
+            $hashData = "";
+            foreach ($inputData as $key => $value) {
+                if ($i == 1) {
+                    $hashData = $hashData . '&' . urlencode($key) . "=" . urlencode($value);
+                } else {
+                    $hashData = $hashData . urlencode($key) . "=" . urlencode($value);
+                    $i = 1;
+                }
+            }
+            $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+            if ($secureHash != $vnp_SecureHash) {
+                $returnData['RspCode'] = '97';
+                $returnData['Message'] = 'Invalid signature';
+                return json_encode($returnData);
+            }
+            $orders = Order::where('bill_id', $request->vnp_TxnRef)->with(['course'])->get();
+            if(count($orders) == 0) {
+                $returnData['RspCode'] = '01';
+                $returnData['Message'] = 'Order not found';
+                return json_encode($returnData);
+            }
+            if($request->vnp_ResponseCode == "00" || $request->vnp_TransactionStatus == '00') {
+                Bill::where('id', $request->vnp_TxnRef)
+                   ->update([
+                       'payment' => 1
+                    ]);
+                foreach($orders as $order) {
+                    $order->payment = 1;
+                    $order->code_active = hash('sha256', $order->id . date('YmdHis') . $order->user_id);
+                    $order->updated_at = Carbon::now();
+                    $order->save();
+
+                    //send mail
+                    $mailData = [
+                        'title' => 'KÍCH HOẠT KHÓA HỌC',
+                        'course' => $order->course,
+                        'code' => $order->code_active
+                    ];
+                     
+                    Mail::to(Auth::user()->email)->send(new ActiveMail($mailData));
+                }
+                $returnData['RspCode'] = '00';
+                $returnData['Message'] = 'Confirm Success';
+            } else {
+                foreach($orders as $order) {
+                    $order->note = $request->vnp_TransactionStatus;
+                    $order->save();
+                }
+                $returnData['RspCode'] = '02';
+                $returnData['Message'] = 'Order already confirmed';
+            }
+            
+        } catch (Exception $e) {
+            $returnData['RspCode'] = '99';
+            $returnData['Message'] = 'Unknow error';
+        }
+        return json_encode($returnData);        
+    }
+
     public function activeCourse($code)
     {
         $find = Order::where([

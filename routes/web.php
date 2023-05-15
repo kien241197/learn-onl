@@ -31,6 +31,7 @@ Route::get('{slug}-{id}', [HomeController::class, 'single'])->name('single')->wh
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('login', [LoginController::class, 'getLogin'])->name('getLogin');
 Route::post('login', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::post('send-mail-code', [LoginController::class, 'sendMailCode'])->name('sendCode');
 Route::get('logout', [LoginController::class, 'getLogout'])->name('getLogout');
 Route::get('register', [LoginController::class, 'getRegister'])->name('getRegister');
 Route::post('register', [LoginController::class, 'postRegister'])->name('postRegister');
@@ -42,6 +43,7 @@ Route::get('active/{code}', [HomeController::class, 'activeCourse'])->name('acti
 Route::post('sign-up-consul', [HomeController::class, 'singnUpConsultation'])->name('singnUpConsultation');
 Route::get('dieu-khoan', [HomeController::class, 'dieuKhoan'])->name('dieu-khoan');
 Route::get('chinh-sach', [HomeController::class, 'chinhSach'])->name('chinh-sach');
+Route::get('ipn-vnpay', [HomeController::class, 'ipnVnpay'])->name('ipnnpay');
 Route::group(['middleware' => 'auth.user'], function() {
         Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
@@ -50,7 +52,6 @@ Route::group(['middleware' => 'auth.user'], function() {
         Route::post('add-cart/{id}', [HomeController::class, 'addCart'])->name('addCart');
         Route::post('del-cart/{id}', [HomeController::class, 'delCart'])->name('delCart');
         Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
-        Route::get('my-info', [HomeController::class, 'info'])->name('info');
         Route::post('lesson/{id}/history', [LessonController::class, 'postHistory'])->name('postHistory');
         Route::post('buy-course/{id}', [HomeController::class, 'buyCourse'])->name('buyCourse');
         Route::post('report-video/{id}', [HomeController::class, 'reportVideo'])->name('reportVideo');

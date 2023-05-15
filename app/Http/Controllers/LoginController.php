@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Auth;
 use DB;
 use Cart;
+use Mail;
 
 class LoginController extends Controller
 {
@@ -117,20 +118,24 @@ class LoginController extends Controller
         return view('forgot-pass');
     }
 
-    public function sendCode(Request $request)
+    public function sendMailCode(Request $request)
     {
         DB::beginTransaction();
         try {
             if($request->email) {
                 //send mail
                 $user = User::where('email', $request->email)->first();
+                if (!$user) {
+                    DB::rollBack();
+                    return response()->json('Error', FlashType::NOT_FOUND);
+                }
                 $code = Str::random(6);
                 $user->reset_code = $code;
                 $mailData = [
                     'code' => $code
                 ];
                  
-                Mail::to($request->email)->send(new SendCodeMail($mailData));
+                // Mail::to($request->email)->send(new SendCodeMail($mailData));
 
                 if ($user->save()) {
                     DB::commit();
@@ -147,7 +152,28 @@ class LoginController extends Controller
 
     public function forgotAccountPost(Request $request)
     {
-        dd($request);
-        return view('forgot-pass');
+        $this->validate($request,
+            [
+                'email' => ['required'],
+                'code' => ['required'],
+                'password' => ['required'],
+            ],
+            [
+                'code.required' => 'Yêu cầu mã xác thực',
+                'email.required' => 'Yêu cầu Email',
+                'password.required' => 'Yêu cầu mật khẩu',
+            ]
+        );
+        $user = User::where([
+            ['email', $request->email],
+            ['reset_code', $request->code]
+        ])->first();
+        if (!$user) {
+            return redirect()->back()->with('status', 'Dữ liệu không hợp lệ!');
+        }
+        $user->reset_code = null;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect('/login')->with('status', 'Thay đổi mật khẩu thành công');
     }
 }
