@@ -61,7 +61,7 @@
                                         <i class="fa-solid fa-chart-simple"></i>
                                         Kỹ năng
                                     </span>
-                                    <p>{{ App\Enums\CourseLevel::getDescription($course->level) }}</p>
+                                    <p>{{ $course->level ? App\Enums\CourseLevel::getDescription($course->level) : 'Không cấp độ' }}</p>
                                 </li>
                                 <li>
                                     <span>
@@ -90,8 +90,8 @@
                             <h4>Theo dõi thầy Trần Ngọc Bình</h4>
                             <ul>
                                 <li><a href="{{ $layout->link_fb }}"><i class="fa-brands fa-square-facebook"></i></a></li>
-                                <li><a href="{{ $layout->link_zl }}"><i class="fa-brands fa-square-zalo"></i></a></li>
-                                <li><a href="{{ $layout->link_tiktok }}"><i class="fa-brands fa-square-tiktok"></i></a></li>
+                                <li><a style="font-size: 15px; font-weight: bold; color: #2196F3" href="{{ $layout->link_zl }}">Zalo</a></li>
+                                <li><a href="{{ $layout->link_tiktok }}"><i class="fa-brands fa-tiktok"></i></a></li>
                                 <li><a href="{{ $layout->link_lkin }}"><i class="fa-brands fa-linkedin"></i></a></li>
                                 <li><a href="{{ $layout->link_ytb }}"><i class="fa-brands fa-square-youtube"></i></a></li>
                             </ul>
@@ -161,9 +161,9 @@
                 <h2 class="heading">Các khóa học liên quan</h2>
                 <p>Quản trị sản xuất may công nghiệp tại Việt Nam</p>
             </div>
-            <div class="row">
+            <div class="slick-single-lq">
 				@foreach($courses as $course)
-					<div class="col-xl-4 col-md-6 mb-30">
+					<div class="items">
 						<div class="content-products">
 							<a class="images" href="{{ route('single', [Illuminate\Support\Str::slug($course->name), $course->id]) }}" title="" tabindex="0">
 								<img src="{{ asset($course->image_url) }}" alt="">

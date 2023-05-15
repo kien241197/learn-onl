@@ -111,7 +111,7 @@ class HomeController extends Controller
             ['id', '!=', $id],
             ['category_id', '=', $course->category_id],
         ])
-        ->inRandomOrder()->take(3)->get();
+        ->inRandomOrder()->take(6)->get();
         $countLesson =  $course->chapters->sum(function($query){
             return $query->lessons->count();
         });

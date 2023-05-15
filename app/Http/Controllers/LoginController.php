@@ -63,7 +63,7 @@ class LoginController extends Controller
                 $limit->save();
             } else if($find->device_token != $request->limit_token) {
                 Auth::logout();
-                return redirect()->back()->with('status', 'Giới hạn thiết bị đăng nhập');
+                return redirect()->back()->with('status', 'Giới hạn thiết bị đăng nhập, vui lòng liên hệ quản trị viên để xóa thiết bị cũ');
             }
             return redirect('/')->with('tokenLimit', $newToken);
         } else {

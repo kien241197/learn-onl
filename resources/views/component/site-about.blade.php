@@ -14,8 +14,8 @@
 						<h4>Theo dõi thầy Trần Ngọc Bình</h4>
 						<ul>
 							<li><a href="{{ $layout->link_fb }}"><i class="fa-brands fa-square-facebook"></i></a></li>
-							<li><a href="{{ $layout->link_zl }}"><i class="fa-brands fa-square-zalo"></i></a></li>
-							<li><a href="{{ $layout->link_tiktok }}"><i class="fa-brands fa-square-tiktok"></i></a></li>
+							<li><a href="{{ $layout->link_zl }}"><img style="width:35px;" src="{{asset('home/images/2zalo.png')}}" alt=""></a></li>
+							<li><a href="{{ $layout->link_tiktok }}"><i class="fa-brands fa-tiktok"></i></a></li>
 							<li><a href="{{ $layout->link_lkin }}"><i class="fa-brands fa-linkedin"></i></a></li>
 							<li><a href="{{ $layout->link_ytb }}"><i class="fa-brands fa-square-youtube"></i></a></li>
 						</ul>

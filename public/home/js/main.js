@@ -21,7 +21,7 @@ $( document ).ready(function() {
       .done(function(response) {
           $("#send-comment").prop('disabled', false);
           $("#box-comment").append(`<div class="direct-chat-msg right">
-              <img class="direct-chat-img" src="/home/images/icon-user.png" alt="message user image">
+              <img class="direct-chat-img" src="/public/home/images/icon-user.png" alt="message user image">
               <div class="direct-chat-text text-white">
               ${content}
               </div>

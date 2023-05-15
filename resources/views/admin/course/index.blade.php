@@ -42,7 +42,7 @@
 		                            <td class="align-middle"><b><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></b></td>
                                     <td class="align-middle">{{ $course->category ? $course->category->name : 'Chưa phân loại'}}</td>
                                     <td class="align-middle">{{ $course->time }} Giờ</td>
-		                            <td class="align-middle">{{ App\Enums\CourseLevel::getDescription($course->level) }}</td>
+		                            <td class="align-middle">{{ $course->level ? App\Enums\CourseLevel::getDescription($course->level) : 'Thêm độ khó của khóa học' }}</td>
 		                            <td class="align-middle">{{ number_format($course->price) }} VNĐ</td>
                                     <td class="align-middle">{{ number_format($course->price_sale) }} VNĐ</td>
 		                            <td class="align-middle">{{ $course->publish_start }}</td>

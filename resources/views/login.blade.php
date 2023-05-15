@@ -16,18 +16,6 @@
 <body>
 <main>
     <section class="site-login">
-        <div class="logo">
-            <ul>
-                <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('khoa-hoc') }}">Khóa học</a></li>
-                <li><a href="{{ route('huong-dan') }}">Hướng dẫn sử dụng</a></li>
-                <li><a href="#">Thư viện</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
-            <a href="{{ route('home') }}">
-                <img src="{{ asset($layout->logo) }}" alt="">
-            </a>
-        </div>
         <div class="row m-0">
             <div class="col-lg-6 col-custom p-0">
                 <div class="images">
@@ -35,7 +23,20 @@
                 </div>
             </div>
             <div class="col-lg-6 col-custom p-0">
+                <div class="logo">
+                    <ul>
+                        <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li><a href="{{ route('khoa-hoc') }}">Khóa học</a></li>
+                        <li><a href="{{ route('huong-dan') }}">Hướng dẫn sử dụng</a></li>
+                        <li><a href="#">Thư viện</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset($layout->logo) }}" alt="">
+                    </a>
+                </div>
                 <div class="content">
+
                     <div class="form">
                         <h3>Đăng nhập</h3>
                         <p>Bạn chưa có tài khoản? <a href="{{ route('getRegister') }}">Đăng ký miễn phí ngay</a></p>

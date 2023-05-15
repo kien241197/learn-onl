@@ -26,6 +26,7 @@
                                 <li><a href="https://tnbonline.vn/khoa-hoc" target="b_lank">SẢN PHẨM</a></li>
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">LỊCH HUẤN LUYỆN</a></li>
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">TRUYỀN THÔNG</a></li>
+                                <li><img src="{{asset('home/images/bct.png')}}" alt=""></li>
                             </ul>
                         </div>
                     </div>
@@ -93,3 +94,55 @@
         </div>
     </div>
 </footer>
+
+<div class="menu-mobile-custom">
+    <div class="js-close"><i class="fa-solid fa-xmark"></i></div>
+    @auth
+    <div class="icon-search" id="div-cart">
+        <a href="{{ route('cart') }}"><i class="fa-solid fa-shopping-cart"></i></a>
+        @if(\Cart::count() > 0)
+        <span id="count-cart">{{ \Cart::count() }}</span>
+        @endif
+    </div>
+    @endauth
+    <ul>
+        <li><a href="{{ route('home') }}">Trang chủ</a></li>
+        <li><a href="{{ route('khoa-hoc') }}">Khóa học</a></li>
+        <li><a href="{{ route('huong-dan') }}">Hướng dẫn sử dụng</a></li>
+        <li><a href="https://tnbgarment.edu.vn/category/thu-vien-kien-thuc/" target="b_lank">Thư viện</a></li>
+        <li><a href="https://tnbgarment.edu.vn/lien-he/">Liên hệ</a></li>
+        @guest
+        <li><a href="{{ route('getRegister') }}">Đăng ký</a></li>
+        <li><a href="{{ route('getLogin') }}">Đăng nhập</a></li>
+        @endguest
+        @auth
+        <li><a href="{{ route('info') }}">Trang cá nhân</a></li>
+        <li><a href="{{ route('getLogout') }}"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
+        @endauth
+    </ul>
+</div>
+
+<div id="button-contact-vr" class="">
+    <div id="gom-all-in-one">
+        <div id="zalo-vr" class="button-contact">
+            <div class="phone-vr">
+                <div class="phone-vr-circle-fill"></div>
+                <div class="phone-vr-img-circle">
+                    <a target="_blank" href="https://zalo.me/0911475883">               
+                        <img width="100" height="95" src="https://tnbgarment.edu.vn/wp-content/plugins/button-contact-vr/img/zalo.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="phone-vr" class="button-contact">
+            <div class="phone-vr">
+                <div class="phone-vr-circle-fill"></div>
+                <div class="phone-vr-img-circle">
+                    <a href="tel:0911475883">               
+                        <img width="50" height="50" src="https://tnbgarment.edu.vn/wp-content/plugins/button-contact-vr/img/phone.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

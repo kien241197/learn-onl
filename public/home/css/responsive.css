@@ -6,6 +6,9 @@
 	.pp-dangky .content{
 		height: 600px;
 	}
+	.site-login .content{
+		padding-top: 30px;
+	}
 }
 
 
@@ -193,9 +196,7 @@
 	.site-single .content{
 		margin-bottom: 30px;
 	}
-	.site-login .content{
-		padding-top: 80px;
-	}
+
 
 }
 
@@ -450,6 +451,29 @@
 	}
 	.site-video-k .video .phone-opacity{
 		font-size: 18px;
+	}
+	.header .logo{
+	}
+	.header .logo .search{
+		top: 100%;
+		width: 100%;
+	}
+	.site-mxh .mxh ul{
+		flex-wrap: wrap;
+	}
+	.site-mxh .mxh ul li{
+		flex: 0 0 50%;
+		max-width: 50%;
+		margin-bottom: 20px;
+	}
+	.site-mxh .mxh ul li img{
+		max-width: 100%;
+	}
+	.site-login .logo{
+		padding-top: 0;
+		text-align: center;
+		justify-content: center;
+		padding: 0;
 	}
 }
 

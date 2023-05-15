@@ -9,6 +9,15 @@
                     <div class="js-menu-mobile">
                         <i class="fa-solid fa-bars"></i>
                     </div>
+                    <div class="icon-search-mb">
+                        <a class="js-search-mb" href="javascript:void(0)"><i class="fa-solid fa-search"></i></a>
+                    </div>
+                    <div class="search js-form-search-mb">
+                        <form class="form-search" action="{{ route('khoa-hoc') }}">
+                            <input class="form-control" type="text" placeholder="Tìm kiếm..." name="search">
+                            <button type="submit">Tìm kiếm</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -20,6 +29,15 @@
                         <li><a href="https://tnbgarment.edu.vn/category/thu-vien-kien-thuc/" target="b_lank">Thư viện</a></li>
                         <li><a href="https://tnbgarment.edu.vn/lien-he/">Liên hệ</a></li>
                     </ul>
+                    <div class="icon-search">
+                        <a class="js-search" href="javascript:void(0)"><i class="fa-solid fa-search"></i></a>
+                        <div class="search js-form-search">
+                            <form class="form-search" action="{{ route('khoa-hoc') }}">
+                                <input class="form-control" type="text" placeholder="Tìm kiếm..." name="search">
+                                <button type="submit">Tìm kiếm</button>
+                            </form>
+                        </div>
+                    </div>
                     @auth
                     <div class="icon-search" id="div-cart">
                         <a href="{{ route('cart') }}"><i class="fa-solid fa-shopping-cart"></i></a>
