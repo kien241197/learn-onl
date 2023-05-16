@@ -284,22 +284,22 @@ class HomeController extends Controller
                ->update([
                    'payment' => 1
                 ]);
-            $orders = Order::where('bill_id', $request->vnp_TxnRef)->with(['course'])->get();
-            foreach($orders as $order) {
-                $order->payment = 1;
-                $order->code_active = hash('sha256', $order->id . date('YmdHis') . $order->user_id);
-                $order->updated_at = Carbon::now();
-                $order->save();
+            // $orders = Order::where('bill_id', $request->vnp_TxnRef)->with(['course'])->get();
+            // foreach($orders as $order) {
+            //     $order->payment = 1;
+            //     $order->code_active = hash('sha256', $order->id . date('YmdHis') . $order->user_id);
+            //     $order->updated_at = Carbon::now();
+            //     $order->save();
 
-                //send mail
-                $mailData = [
-                    'title' => 'KÍCH HOẠT KHÓA HỌC',
-                    'course' => $order->course,
-                    'code' => $order->code_active
-                ];
+            //     //send mail
+            //     $mailData = [
+            //         'title' => 'KÍCH HOẠT KHÓA HỌC',
+            //         'course' => $order->course,
+            //         'code' => $order->code_active
+            //     ];
                  
-                Mail::to(Auth::user()->email)->send(new ActiveMail($mailData));
-            }
+            //     Mail::to(Auth::user()->email)->send(new ActiveMail($mailData));
+            // }
             Cart::destroy();
             $this->setFlash(__('Thanh toán thành công!'), FlashType::Success);
             return redirect($url)->with('success' ,$request->vnp_TransactionStatus);
