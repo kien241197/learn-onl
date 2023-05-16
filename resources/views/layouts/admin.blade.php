@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <title>LEARN ONLINE | {{ $title }}</title>
+  <title>QUẢN TRỊ TNB | {{ $title }}</title>
 
 <!-- Font Awesome Icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
