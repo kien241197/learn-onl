@@ -52,6 +52,7 @@
                                             <label class="custom-file-label" for="banner_1">Chọn file</label>
                                         </div>
                                     </div>
+                                    <input type="text" class="form-control mb-1" name="link_banner_1" id="link_banner_1" placeholder="Link" value="{{ $layout->link_banner_1 }}">
                                     <img src="{{ asset($layout->banner_1) }}" id="prv-img-tag1" style="width: 100%;" />
                                 </div>
                                 <div class="form-group col-md-4">
@@ -62,6 +63,7 @@
                                             <label class="custom-file-label" for="banner_2">Chọn file</label>
                                         </div>
                                     </div>
+                                    <input type="text" class="form-control mb-1" name="link_banner_2" id="link_banner_2" placeholder="Link" value="{{ $layout->link_banner_2 }}">
                                     <img src="{{ asset($layout->banner_2) }}" id="prv-img-tag2" style="width: 100%;" />
                                 </div>
                                 <div class="form-group col-md-4">
@@ -72,6 +74,7 @@
                                             <label class="custom-file-label" for="banner_3">Chọn file</label>
                                         </div>
                                     </div>
+                                    <input type="text" class="form-control mb-1" name="link_banner_3" id="link_banner_3" placeholder="Link" value="{{ $layout->link_banner_3 }}">
                                     <img src="{{ asset($layout->banner_3) }}" id="prv-img-tag3" style="width: 100%;"  />
                                 </div>
                             </div>
@@ -442,7 +445,7 @@
                                             <label class="custom-file-label" for="banner_4">Chọn file</label>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" name="link_banner_4" id="link_banner_4" placeholder="Link" value="{{ $layout->link_banner_4 }}">
+                                    <input type="text" class="form-control mb-1" name="link_banner_4" id="link_banner_4" placeholder="Link" value="{{ $layout->link_banner_4 }}">
                                     <img src="{{ asset($layout->banner_4) }}" id="prv-img-tag4" style="width: 100%;" />
                                 </div>
                                 <div class="form-group col-md-6">
@@ -453,7 +456,7 @@
                                             <label class="custom-file-label" for="banner_5">Chọn file</label>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" name="link_banner_5" id="link_banner_5" placeholder="Link" value="{{ $layout->link_banner_5 }}">
+                                    <input type="text" class="form-control mb-1" name="link_banner_5" id="link_banner_5" placeholder="Link" value="{{ $layout->link_banner_5 }}">
                                     <img src="{{ asset($layout->banner_5) }}" id="prv-img-tag5" style="width: 100%;" />
                                 </div>
                             </div>

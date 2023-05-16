@@ -65,6 +65,9 @@ class AdminController extends Controller
             $layout->banner_1 =  "storage/images/" . $bannerName1;
             $request->file('banner_1')->storeAs('images', $bannerName1, 'public');
         }
+        if (isset($request->link_banner_1)) {
+            $layout->link_banner_1 = $request->link_banner_1;
+        }
         if ($request->banner_2) {
             if ($layout->banner_2 != "" && File::exists(public_path($layout->banner_2))) {
                 unlink(public_path($layout->banner_2));
@@ -73,6 +76,9 @@ class AdminController extends Controller
             $layout->banner_2 =  "storage/images/" . $bannerName2;
             $request->file('banner_2')->storeAs('images', $bannerName2, 'public');
         }
+        if (isset($request->link_banner_2)) {
+            $layout->link_banner_2 = $request->link_banner_2;
+        }
         if ($request->banner_3) {
             if ($layout->banner_3 != "" && File::exists(public_path($layout->banner_3))) {
                 unlink(public_path($layout->banner_3));
@@ -80,6 +86,9 @@ class AdminController extends Controller
             $bannerName3 = time() . '.' . $request->banner_3->extension();
             $layout->banner_3 =  "storage/images/" . $bannerName3;
             $request->file('banner_3')->storeAs('images', $bannerName3, 'public');
+        }
+        if (isset($request->link_banner_3)) {
+            $layout->link_banner_3 = $request->link_banner_3;
         }
         //Giới thiệu
         if ($request->image_gt) {
