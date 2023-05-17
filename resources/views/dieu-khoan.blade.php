@@ -9,7 +9,9 @@
 		</div>
 	    <div class="about-hd">
 	    	<div class="container">
+	    		<div class="the_content">
 	    		{!! $layout->content_dieu_khoan !!}
+	    		</div>
 	    	</div>
 	    </div>
 	    

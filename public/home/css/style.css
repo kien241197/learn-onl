@@ -474,6 +474,10 @@ button, img, input, select {
 .site-about .content .flow ul li a img {
   display: block;
 }
+.site-about .content .flow ul li a svg{
+  width: 35px;
+  display: block;
+}
 
 .fa-square-facebook {
   color: #3b5999;
@@ -1015,10 +1019,13 @@ button, img, input, select {
   height: auto;
   line-height: 1;
   background: var(--color-yellow);
+  color: var(--color-blue);
+  border-color: transparent;
 }
 
 .site-res .btn-custom:hover {
   background: var(--color-blue);
+  color: #fff;
 }
 
 .footer {
@@ -1044,7 +1051,7 @@ button, img, input, select {
 
 .footer ul li {
   font-size: 14px;
-  color: #0e0e3e;
+  color: var(--color-blue);
   line-height: 1.5;
   margin-bottom: 15px;
 }
@@ -1056,7 +1063,7 @@ button, img, input, select {
 .footer ul li a {
   font-size: 16px;
   font-weight: bold;
-  color: #0e0e3e;
+  color: var(--color-blue);
 }
 
 .footer ul li a:hover {
@@ -1078,7 +1085,7 @@ button, img, input, select {
 
 .footer .footer_form p {
   font-size: 14px;
-  color: #0e0e3e;
+  color: var(--color-blue);
   margin-bottom: 0px;
 }
 
@@ -1139,7 +1146,7 @@ button, img, input, select {
 .footer .title-ft {
   font-size: 18px;
   font-weight: bold;
-  color: #0e0e3e;
+  color: var(--color-blue);
   text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -1158,7 +1165,7 @@ button, img, input, select {
   font-size: 14px;
   width: 100%;
   outline: none;
-  padding-right: 90px;
+  padding-right: 100px;
   padding-left: 10px;
 }
 
@@ -1497,8 +1504,8 @@ button, img, input, select {
 }
 
 .site-single .video-content iframe {
-  width: 100%;
-  height: 300px;
+  max-width: 100%;
+  min-height: 200px;
 }
 
 .site-single .price {
@@ -1576,21 +1583,25 @@ button, img, input, select {
 .the_content {
   padding: 50px 0px;
 }
-
+.site-chinhsach .the_content{
+  padding: 0;
+}
 .the_content {
-  font-size: 110%;
+  font-size: 16px;
   line-height: 1.5;
+  text-align: left;
 }
 
 .the_content h1, .the_content h2, .the_content h3, .the_content h4, .the_content h5, .the_content h6, .the_content div {
   margin-bottom: 1.5rem;
-  font-size: 120%;
+  font-size: 150%;
 }
 
 .the_content p {
   color: #000;
   line-height: 1.5;
   margin-bottom: 1.5rem;
+  font-size: 100%;
 }
 
 .the_content p:last-child {

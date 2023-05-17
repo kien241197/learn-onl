@@ -102,5 +102,3 @@ $('.js-menu-mobile').click(function(){
 $('.js-close').click(function(){
   $('.menu-mobile-custom').fadeOut();
 });
-
-$('.autoplay').addClass('active');
