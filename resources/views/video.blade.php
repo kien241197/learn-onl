@@ -14,10 +14,26 @@
 		};
 		function autoPlay(ele) {
 			var video = document.getElementById("video-lesson");
-			video.setAttribute('autoplay', 'autoplay');
-			$(ele).addClass("next");
-			video.play();
+			if(!video.getAttribute('autoplay')) {
+				setCookie('autoplay', true, 0.5);
+				video.setAttribute('autoplay', 'autoplay');
+				$(ele).addClass("next");				
+				video.play();
+			} else {
+				setCookie('autoplay', false);
+				video.removeAttribute('autoplay');
+				$(ele).removeClass("next");	
+			}
 		};
+		$( document ).ready(function() {
+			let autoplay = getCookie('autoplay');
+			if(autoplay) {
+				var video = document.getElementById("video-lesson");
+				video.setAttribute('autoplay', 'autoplay');
+				$('.autoplay').addClass("next");
+				video.play();
+			}
+		});
     </script>
     <section class="site-video-k pd-main">
         <div class="container">
