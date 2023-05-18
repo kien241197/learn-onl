@@ -34,6 +34,7 @@
 				video.play();
 			}
 		});
+
     </script>
     <section class="site-video-k pd-main">
         <div class="container">

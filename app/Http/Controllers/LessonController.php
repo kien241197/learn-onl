@@ -14,7 +14,7 @@ use App\Enums\FlashType;
 use Carbon\Carbon;
 use Auth;
 use DB;
-use Cloudinary\Cloudinary;
+// use Cloudinary\Cloudinary;
 
 class LessonController extends Controller
 {
@@ -78,15 +78,15 @@ class LessonController extends Controller
                     ->count()
                 )->count();
             });
-        $cloudinary = new Cloudinary(
-            [
-                'cloud' => [
-                    'cloud_name' => 'djvmdwl5x',
-                    'api_key'    => '779221573338333',
-                    'api_secret' => '6-ydWQ-6N7GV7-aOLwBkhukcLUQ',
-                ],
-            ]
-        );
+        // $cloudinary = new Cloudinary(
+        //     [
+        //         'cloud' => [
+        //             'cloud_name' => 'djvmdwl5x',
+        //             'api_key'    => '779221573338333',
+        //             'api_secret' => '6-ydWQ-6N7GV7-aOLwBkhukcLUQ',
+        //         ],
+        //     ]
+        // );
         // $cloudinary->uploadApi()->upload(
         //     asset($lesson->video_path),
         //     ['public_id' => 'video_lesson']
