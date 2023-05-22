@@ -24,9 +24,9 @@
                             	@foreach($orders as $order)
                                 <tr>
                                     <td class="align-middle">{{ $order->id }}</td>
-		                            <td class="align-middle">{{ $order->user->name }}</td>
-		                            <td class="align-middle">{{ $order->course->name }}</td>
-                                    <td class="align-middle">{{ number_format($order->course->price_sale) }} VNĐ</td>
+		                            <td class="align-middle">{{ $order->user ? $order->user->name : 'Đã xóa' }}</td>
+		                            <td class="align-middle">{{ $order->course ? $order->course->name : 'Đã xóa' }}</td>
+                                    <td class="align-middle">{{ $order->course ? number_format($order->course->price_sale) : '' }} VNĐ</td>
 		                            <td class="align-middle">{{ App\Enums\StatusActive::getDescription($order->is_active) }}</td>
 		                            <td class="align-middle">{{ $order->date_active }}</td>
 		                            <td class="align-middle">{{ App\Enums\StatusPayment::getDescription($order->payment) }}</td>
