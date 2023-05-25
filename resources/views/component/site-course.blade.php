@@ -37,7 +37,10 @@
 									<p>{{ $course->note }}</p>
 									<div class="price-details">
 										<a class="btn-custom" href="{{ route('single', [Illuminate\Support\Str::slug($course->name), $course->id]) }}" tabindex="0">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
-										<span class="price">{{ number_format($course->price_sale) }} VND</span>
+										<div class="custom">
+											<span class="price">{{ number_format($course->price_sale) }} VND</span>
+											<a href="javascript:void(0);" @auth onclick="addToCart(`{{ route('addCart', $course->id) }}`);" @endauth @guest onclick="alert('Đăng nhập để mua khóa học!')" @endguest class="btn-custom" type="submit">Mua Ngay</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -58,7 +61,10 @@
 									<p>{{ $course->note }}</p>
 									<div class="price-details">
 										<a class="btn-custom" href="{{ route('single', [Illuminate\Support\Str::slug($course->name), $course->id]) }}" tabindex="0">Xem chi tiết <i class="fa-solid fa-arrow-right"></i></a>
-										<span class="price">{{ number_format($course->price_sale) }} VND</span>
+										<div class="custom">
+											<span class="price">{{ number_format($course->price_sale) }} VND</span>
+											<a href="javascript:void(0);" @auth onclick="addToCart(`{{ route('addCart', $course->id) }}`);" @endauth @guest onclick="alert('Đăng nhập để mua khóa học!')" @endguest class="btn-custom" type="submit">Mua Ngay</a>
+										</div>
 									</div>
 								</div>
 							</div>
