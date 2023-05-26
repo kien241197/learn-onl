@@ -115,6 +115,7 @@
                                 <div class="kh-dm">
                                     <table>
                                     	@foreach($user->orders as $order)
+                                        @if($order->course)
                                         <tr>
                                             <td style="width: 240px;">
                                                 <img src="{{ asset($order->course->image_url) }}" alt="">
@@ -135,6 +136,7 @@
                                             	@endif
                                             </td>
                                         </tr>
+                                        @endif
 										@endforeach
                                     </table>
                                 </div>
