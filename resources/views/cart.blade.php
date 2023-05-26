@@ -43,7 +43,7 @@
                                 <td>
                                     <img class="w-100 d-block" style="max-width:200px;" src="{{ asset($product->options['image']) }}" class="hinhdaidien">
                                 </td>
-                                <td><a href="{{ route('single', $product->id) }}">{{ $product->name }}</a></td>
+                                <td><a href="{{ route('single', [Illuminate\Support\Str::slug($product->name), $product->id]) }}">{{ $product->name }}</a></td>
                                 <td class="text-right">{{ $product->qty }}</td>
                                 <td class="text-right price">{{ number_format($product->price) }}</td>
                                 <td class="text-right price">{{ number_format($product->price * $product->qty) }}</td>
