@@ -20,6 +20,7 @@ use Mail;
 use DB;
 use App\Mail\ActiveMail;
 use App\Mail\ReportMail;
+use App\Mail\NotiConsulMail;
 
 class HomeController extends Controller
 {
@@ -460,6 +461,12 @@ class HomeController extends Controller
                 $contact->content = $request->content;
             }
             if ($contact->save()) {
+                $mailData = [
+                    'email' => $request->email,
+                ];
+                Mail::mailer('support')
+                ->to('contact.tnbgarment@gmail.com')
+                ->send(new NotiConsulMail($mailData));
                 DB::commit();
                 $this->setFlash(__('Đăng ký thành công!'), FlashType::Success);
             } else {
@@ -484,7 +491,7 @@ class HomeController extends Controller
                 'lesson' => $lesson
             ];
              
-            Mail::to('kien241197@gmail.com')->send(new ReportMail($mailData));
+            Mail::to('contact.tnbgarment@gmail.com')->send(new ReportMail($mailData));
             return response()->json('OK', FlashType::OK);
         } catch (Exception $e) {
             return response()->json('Error', FlashType::NOT_FOUND);
