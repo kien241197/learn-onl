@@ -33,7 +33,7 @@ class HomeController extends Controller
             ['publish_start', '<=', $date],
             ['publish_end', '>=', $date],
         ])
-        ->orderBy('created_at', 'DESC')->get();
+        ->inRandomOrder()->take(6)->get();
         $categories = Category::with(
             ['courses' => function ($query) use ($date) {
                 $query->where([
