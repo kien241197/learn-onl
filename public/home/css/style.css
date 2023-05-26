@@ -460,6 +460,7 @@ button, img, input, select {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .site-about .content .flow ul li {
@@ -476,6 +477,7 @@ button, img, input, select {
 }
 .site-about .content .flow ul li a svg{
   width: 35px;
+  height: 35px;
   display: block;
 }
 
@@ -591,6 +593,13 @@ button, img, input, select {
   margin-left: 5px;
 }
 
+.slick-course{
+  margin: 0px -15px;
+}
+.slick-course .items{
+  padding: 0px 15px;
+}
+
 .content-products {
   background-color: #fff;
   padding: 20px;
@@ -605,8 +614,6 @@ button, img, input, select {
   flex-direction: column;
   -webkit-transition: all .3s;
   transition: all .3s;
-  -webkit-box-shadow: 2px 4px 30px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 2px 4px 30px 0px rgba(0, 0, 0, 0.3);
   position: relative;
 }
 
@@ -631,10 +638,10 @@ button, img, input, select {
   letter-spacing: 1.2px;
 }
 
-.content-products:hover {
-  -webkit-box-shadow: 0 0px 50px rgba(0, 118, 39, 0.7);
-  box-shadow: 0 0px 50px rgba(0, 118, 39, 0.7);
-}
+/* .content-products:hover {
+  -webkit-box-shadow: 0 0px 20px rgba(0, 118, 39, 0.7);
+  box-shadow: 0 0px 20px rgba(0, 118, 39, 0.7);
+} */
 
 .content-products .images {
   display: block;
@@ -961,7 +968,7 @@ button, img, input, select {
 }
 
 .site-res {
-  background-image: url(../images/dk.jpg);
+  background-image: url(../images/bgft.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -2984,5 +2991,16 @@ div#popup-form-contact-vr.active {
     display: none;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
+.custom{
+  text-align: right;
+}
+.custom .btn-custom{
+  text-align: center;
+  margin-top: 10px;
+  display: block;
+  padding: 0;
+  margin-right: 0;
+  width: 100%;
+  background: var(--color-blue);
+  color: #fff;
+}

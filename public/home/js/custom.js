@@ -76,6 +76,41 @@ $('.slick-single-lq').slick({
 });
 
 
+$('.slick-course').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  arrows: true,
+  fade: false,
+  dots:true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  speed: 1000,
+  infinite: true,
+  responsive: [{
+    breakpoint: 992,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 991,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    },
+  },
+  ],
+});
+
+
 
 var interval_obj = setTimeout(function(){
   $('.phone-opacity').css('display','none');
