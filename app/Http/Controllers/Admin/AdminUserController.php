@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\LimitDevice;
 use App\Enums\FlashType;
 use App\Enums\UserRole;
 use App\Enums\StatusPayment;
@@ -179,5 +180,14 @@ class AdminUserController extends Controller
         }
         DB::rollBack();
         return response()->json('Đã có lỗi xảy ra!', FlashType::NOT_FOUND);
+    }
+
+    public function resetLimit(string $id)
+    {
+        $user = LimitDevice::where('user_id', $id);
+        if ($user->delete()) {
+            return response()->json('Reset thành công!', FlashType::OK);
+        }
+        return response()->json('Đã có lỗi xảy ra, thử lại!', FlashType::NOT_FOUND);
     }
 }

@@ -31,7 +31,7 @@
                                     <th>Địa chỉ</th>
                                     <!-- <th style="min-width: 100px;">Ghi chú</th> -->
                                     <th style="min-width: 100px;">Sản phẩm đã mua</th>
-                                    <th style="min-width: 90px;"></th>
+                                    <th style="width: 100px;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,8 +51,9 @@
                                         @endif
                                         @endforeach
                                     </td>
-                                    <td style="width: 35px;">
+                                    <td class="">
                                     	<a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i>&nbsp;Sửa</a>
+                                        <a class="btn btn-block btn-info btn-xs btn-reset-limit" href="javascript:void(0);" data-url="{{ route('admin.users.reset', $user->id) }}"><i class="fa fa-refresh"></i>&nbsp;Reset</a>
                                     	<button class="btn btn-block btn-danger btn-xs btn-delete-record" data-url="{{ route('admin.users.destroy', $user->id) }}"><i class="fa fa-trash"></i>&nbsp;Xóa</button>
                                     </td>
                                 </tr>

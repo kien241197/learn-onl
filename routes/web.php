@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin', 'as' => 'admin.
         Route::get('/info-page-other', [AdminController::class, 'infoPageOther'])->name('pageOther.show');
         Route::post('/info-page-other', [AdminController::class, 'infoPageOtherUpdate'])->name('pageOther.update');
         Route::resource('users', AdminUserController::class);
+        Route::post('/users/reset/{id}', [AdminUserController::class, 'resetLimit'])->name('users.reset');
         Route::resource('courses', AdminCourseController::class);
         Route::post('courses/{courseId}/chapters', [AdminCourseController::class, 'addChapter'])->name('chapters.store');
         Route::put('courses/{courseId}/chapters/{chapterId}', [AdminCourseController::class, 'editChapter'])->name('chapters.update');

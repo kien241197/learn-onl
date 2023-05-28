@@ -85,6 +85,40 @@ $(".btn-delete-record").click(function() {
         }
     });
 });
+$(".btn-reset-limit").click(function() {
+    let url = $(this).data("url");
+    Swal.fire({
+        title: "Reset giới hạn thiết bị tài khoản này?",
+        icon: "warning",
+        text: "Dữ liệu sẽ không thể hoàn tác",
+        confirmButtonText: "Xác nhận",
+        cancelButtonText: "Hủy",
+        showCancelButton: true
+    }).then(result => {
+        if (result.value) {
+            $('.loading-div').removeClass('hidden');
+            $.ajax({
+                    method: "POST",
+                    url: url,
+                })
+                .done(function(response) {
+                    $('.loading-div').addClass('hidden');
+                    Swal.fire({
+                            title: response,
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                        .then(function() {
+                            // window.location.reload();
+                        });
+                })
+                .fail(function(error) {
+                    $('.loading-div').addClass('hidden');
+                    console.log(error);
+                });
+        }
+    });
+});
 $("#size-limit").change(function() {
     var newURL = updateURLParameter(window.location.href, 'limit', $(this).val());
     location.href = newURL;
