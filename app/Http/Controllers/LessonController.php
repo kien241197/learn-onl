@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Common;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Lesson;
@@ -94,12 +95,18 @@ class LessonController extends Controller
 
         // $urlVideo = $cloudinary->video('video_lesson')->toUrl();
         // dd($urlVideo);
+        $phoneNumberCustomer = Auth::user()->phone;
+        $linkImage = null;
+        if ($phoneNumberCustomer) {
+            $linkImage = trim(Common::getImageByString($phoneNumberCustomer));
+        }
         return view('video', [
             'title' => $title,
             'lesson' => $lesson,
             'nextLesson' => $nextLesson,
             'totalLesson' => $countLesson,
-            'history' => $countHistory
+            'history' => $countHistory,
+            'linkImage' => $linkImage
         ]);
     }
 

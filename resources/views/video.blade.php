@@ -1,5 +1,8 @@
 @extends('layouts.user')
 
+@section('header-user')
+    <link href="{{ asset('home/css/videojs.watermark.css') }}" rel="stylesheet">
+@endsection
 @section('content')
     <script type="text/javascript">
 		function next(time) {
@@ -41,7 +44,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="video">
-                        <video controls controlsList="nodownload" id="video-lesson" data-url="{{ route('postHistory', $lesson->id) }}">
+                        <video controls controlsList="nodownload" class="video-js vjs-default-skin" id="video-lesson" data-url="{{ route('postHistory', $lesson->id) }}">
                             <source src="{{ asset($lesson->video_path) }}" type="video/mp4">
                             <source src="{{ asset($lesson->video_path) }}" type="video/ogg">
                         </video>
@@ -219,4 +222,21 @@
 	    float: right;
 	}
     </style>
+@endsection
+@section('footer-user')
+    <script src="{{ asset('home/js/video.js') }}"></script>
+    <script src="{{ asset('home/js/videojs.watermark.js') }}"></script>
+    <script>
+        // initialize video.js
+        var lesson = videojs('video-lesson');
+
+        // Set value to the plugin
+        lesson.watermark({
+            file: '{{ asset($linkImage) }}',
+            xpos: 5,
+            ypos: 5,
+            xrepeat: 0,
+            opacity: 1
+        });
+    </script>
 @endsection

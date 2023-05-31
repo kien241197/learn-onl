@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Common;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact;
@@ -292,6 +293,10 @@ class AdminController extends Controller
             $imageTeacher = time() . '.' . $request->image_teacher->extension();
             $layout->image_teacher =  "storage/images/" . $imageTeacher;
             $request->file('image_teacher')->storeAs('images', $imageTeacher, 'public');
+        }
+        if ($request->default_phoneNumber_watermark) {
+            $layout->default_phoneNumber_watermark =  $request->default_phoneNumber_watermark;
+            Common::getImageByString($request->default_phoneNumber_watermark);
         }
 
         if ($layout->save()) {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\RenderVideoJob;
+use App\Models\CmsLayout;
 use App\Models\Lesson;
 use App\Enums\FlashType;
 use Illuminate\Http\Request;
@@ -51,9 +53,14 @@ class AdminLessonController extends Controller
             } 
             if($request->video) {
                 $videoName = time() . '.' . $request->video->extension();
-                $lesson->video_path =  "storage/videos/" . $videoName;
+                $sourceVideo = "storage/videos/" . $videoName;
+                $lesson->video_path = $sourceVideo;
                 $request->file('video')->storeAs('videos', $videoName, 'public');
-            } 
+                $phoneWatermark = CmsLayout::getInstance()->getPhoneNumberWatermark();
+                if ($phoneWatermark) {
+                    dispatch(new RenderVideoJob($sourceVideo, $phoneWatermark))->delay(now()->addSeconds(3));
+                }
+            }
             if ($lesson->save()) {
                 DB::commit();
                 $this->setFlash(__('Đăng ký thành công!'), FlashType::Success, route('admin.courses.show', $courseId));
@@ -120,9 +127,14 @@ class AdminLessonController extends Controller
                     unlink(public_path($lesson->video_path));
                 }
                 $videoName = time() . '.' . $request->video->extension();
-                $lesson->video_path =  "storage/videos/" . $videoName;
+                $sourceVideo = "storage/videos/" . $videoName;
+                $lesson->video_path = $sourceVideo;
                 $request->file('video')->storeAs('videos', $videoName, 'public');
-            } 
+                $phoneWatermark = CmsLayout::getInstance()->getPhoneNumberWatermark();
+                if ($phoneWatermark) {
+                    dispatch(new RenderVideoJob($sourceVideo, $phoneWatermark))->delay(now()->addSeconds(3));
+                }
+            }
             if ($lesson->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);

@@ -584,6 +584,32 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Watermark</h3>
+                    </div>
+                    <form action="{{ route('admin.info.update') }}" method="POST">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Số điện thoại mặc định gắn video</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="default_phoneNumber_watermark" value="{{ old('default_phoneNumber_watermark', $layout->default_phoneNumber_watermark) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Thay đổi</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 @endsection

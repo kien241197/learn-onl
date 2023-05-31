@@ -195,7 +195,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
 
     ],
 
@@ -214,6 +215,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class,
     ])->toArray(),
 
 ];

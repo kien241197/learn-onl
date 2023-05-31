@@ -11,6 +11,10 @@ class Lesson extends Model
     use HasFactory, SoftDeletes;
 
     public $timestamps = true;
+    const STATUS_RENDER_NEW = 0;
+    const STATUS_RENDER_SUCCESS = 1;
+    const STATUS_RENDER_PENDING = 2;
+    const STATUS_RENDER_FAIL = 3;
 
     public function chapter()
     {

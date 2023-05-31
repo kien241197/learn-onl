@@ -13,6 +13,7 @@
 <!-- oncontextmenu="return false;" -->
 <body>
 @include('header')
+@yield('header-user')
 <main>
 	@yield('content')
 </main>
@@ -20,6 +21,7 @@
 <script type="text/javascript" src="{{ asset('home/js/custom.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@yield('footer-user')
  @if (session('tokenLimit') && session('tokenLimit') != '')
     <script type="text/javascript">
         localStorage.setItem('myToken', "{{ session('tokenLimit') }}");
