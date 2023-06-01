@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\User;
@@ -315,6 +316,8 @@ class HomeController extends Controller
 
     public function ipnVnpay(Request $request)
     {
+        Log::info($request->ip());
+        Log::info($request->all());
         $returnData = [];
         $inputData = [];
         $vnp_HashSecret = env('VNP_SECRET', 'RWGUOTXADAUONOZOFPPHCWWNOVCDXNQN'); //Chuỗi bí mật
@@ -341,7 +344,7 @@ class HomeController extends Controller
             if ($secureHash != $vnp_SecureHash) {
                 $returnData['RspCode'] = '97';
                 $returnData['Message'] = 'Invalid signature';
-                return json_encode($returnData);
+                return response()->json($returnData, 200, ['Content-Type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
             }
             $orders = Order::where([
                 ['bill_id', $request->vnp_TxnRef],
@@ -350,12 +353,12 @@ class HomeController extends Controller
             if(!$bill) {
                 $returnData['RspCode'] = '01';
                 $returnData['Message'] = 'Order Not Found';
-                return json_encode($returnData);
+                return response()->json($returnData, 200, ['Content-Type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
             }
             if(count($orders) == 0) {
                 $returnData['RspCode'] = '01';
                 $returnData['Message'] = 'Order not found';
-                return json_encode($returnData);
+                return response()->json($returnData, 200, ['Content-Type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
             }
             if($request->vnp_ResponseCode == "00" || $request->vnp_TransactionStatus == '00') {
                 $sum = $orders->sum(function ($order) {
@@ -364,12 +367,12 @@ class HomeController extends Controller
                 if($sum != $request->vnp_Amount / 100) {
                     $returnData['RspCode'] = '04';
                     $returnData['Message'] = 'Invalid amount';
-                    return json_encode($returnData);
+                    return response()->json($returnData, 200, ['Content-Type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
                 }
                 if($bill->payment == 1) {
                     $returnData['RspCode'] = '02';
                     $returnData['Message'] = 'Order already confirmed';
-                    return json_encode($returnData);
+                    return response()->json($returnData, 200, ['Content-Type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
                 }
                 $bill->payment = 1;
                 $bill->save();
@@ -388,22 +391,20 @@ class HomeController extends Controller
                      
                     Mail::to(User::where('id', $order->user_id)->first()->email)->send(new ActiveMail($mailData));
                 }
-                $returnData['RspCode'] = '00';
-                $returnData['Message'] = 'Confirm Success';
             } else {
                 foreach($orders as $order) {
                     $order->note = $request->vnp_TransactionStatus;
                     $order->save();
                 }
-                $returnData['RspCode'] = '00';
-                $returnData['Message'] = 'Confirm Success';
             }
+            $returnData['RspCode'] = '00';
+            $returnData['Message'] = 'Confirm Success';
             
         } catch (Exception $e) {
             $returnData['RspCode'] = '99';
             $returnData['Message'] = 'Unknow error';
         }
-        return json_encode($returnData);        
+        return response()->json($returnData, 200, ['Content-Type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);        
     }
 
     public function activeCourse($code)
