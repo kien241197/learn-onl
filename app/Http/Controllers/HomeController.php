@@ -400,8 +400,8 @@ class HomeController extends Controller
             }
             
         } catch (Exception $e) {
-            $returnData['RspCode'] = '01';
-            $returnData['Message'] = 'Order Not Found';
+            $returnData['RspCode'] = '99';
+            $returnData['Message'] = 'Unknow error';
         }
         return json_encode($returnData);        
     }
