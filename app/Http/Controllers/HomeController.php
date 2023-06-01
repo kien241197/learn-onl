@@ -281,10 +281,10 @@ class HomeController extends Controller
         session()->forget('url_prev');
         if($request->vnp_ResponseCode == "00") {
 
-            Bill::where('id', $request->vnp_TxnRef)
-               ->update([
-                   'payment' => 1
-                ]);
+            // Bill::where('id', $request->vnp_TxnRef)
+            //    ->update([
+            //        'payment' => 1
+            //     ]);
             // $orders = Order::where('bill_id', $request->vnp_TxnRef)->with(['course'])->get();
             // foreach($orders as $order) {
             //     $order->payment = 1;
@@ -343,17 +343,36 @@ class HomeController extends Controller
                 $returnData['Message'] = 'Invalid signature';
                 return json_encode($returnData);
             }
-            $orders = Order::where('bill_id', $request->vnp_TxnRef)->with(['course'])->get();
+            $orders = Order::where([
+                ['bill_id', $request->vnp_TxnRef],
+            ])->with(['course'])->get();
+            $bill = Bill::where('id', $request->vnp_TxnRef)->first();
+            if(!$bill) {
+                $returnData['RspCode'] = '01';
+                $returnData['Message'] = 'Order Not Found';
+                return json_encode($returnData);
+            }
             if(count($orders) == 0) {
                 $returnData['RspCode'] = '01';
                 $returnData['Message'] = 'Order not found';
                 return json_encode($returnData);
             }
             if($request->vnp_ResponseCode == "00" || $request->vnp_TransactionStatus == '00') {
-                Bill::where('id', $request->vnp_TxnRef)
-                   ->update([
-                       'payment' => 1
-                    ]);
+                $sum = $orders->sum(function ($order) {
+                    return $order->course->price_sale;
+                });
+                if($sum != $request->vnp_Amount / 100) {
+                    $returnData['RspCode'] = '04';
+                    $returnData['Message'] = 'Invalid amount';
+                    return json_encode($returnData);
+                }
+                if($bill->payment == 1) {
+                    $returnData['RspCode'] = '02';
+                    $returnData['Message'] = 'Order already confirmed';
+                    return json_encode($returnData);
+                }
+                $bill->payment = 1;
+                $bill->save();
                 foreach($orders as $order) {
                     $order->payment = 1;
                     $order->code_active = hash('sha256', $order->id . date('YmdHis') . $order->user_id);
@@ -367,7 +386,7 @@ class HomeController extends Controller
                         'code' => $order->code_active
                     ];
                      
-                    Mail::to(Auth::user()->email)->send(new ActiveMail($mailData));
+                    Mail::to(User::where('id', $order->user_id)->first()->email)->send(new ActiveMail($mailData));
                 }
                 $returnData['RspCode'] = '00';
                 $returnData['Message'] = 'Confirm Success';
@@ -376,13 +395,13 @@ class HomeController extends Controller
                     $order->note = $request->vnp_TransactionStatus;
                     $order->save();
                 }
-                $returnData['RspCode'] = '02';
-                $returnData['Message'] = 'Order already confirmed';
+                $returnData['RspCode'] = '00';
+                $returnData['Message'] = 'Confirm Success';
             }
             
         } catch (Exception $e) {
-            $returnData['RspCode'] = '99';
-            $returnData['Message'] = 'Unknow error';
+            $returnData['RspCode'] = '01';
+            $returnData['Message'] = 'Order Not Found';
         }
         return json_encode($returnData);        
     }
