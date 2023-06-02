@@ -43,7 +43,7 @@ Route::get('active/{code}', [HomeController::class, 'activeCourse'])->name('acti
 Route::post('sign-up-consul', [HomeController::class, 'singnUpConsultation'])->name('singnUpConsultation');
 Route::get('dieu-khoan', [HomeController::class, 'dieuKhoan'])->name('dieu-khoan');
 Route::get('chinh-sach', [HomeController::class, 'chinhSach'])->name('chinh-sach');
-Route::get('ipn-vnpay', [HomeController::class, 'ipnVnpay'])->name('ipnnpay');
+Route::middleware('ip_whitelist:ip-vnp')->get('ipn-vnpay', [HomeController::class, 'ipnVnpay'])->name('ipnnpay');
 Route::group(['middleware' => 'auth.user'], function() {
         Route::get('lesson/{id}', [LessonController::class, 'lesson'])->name('lesson');
         Route::post('lesson/{id}/comment', [LessonController::class, 'postComment'])->name('postComment');
