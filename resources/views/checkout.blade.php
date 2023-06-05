@@ -11,7 +11,7 @@
                     <h2 class="heading">Thanh toán</h2>
                     <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
                 </div>
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <!-- <div class="col-lg-8">
                         <h4 class="title mb-4">Thông tin khách hàng</h4>
 
@@ -79,33 +79,6 @@
                                     </a>
                                 </li>
                             </ul> 
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="tab-content">
-                            <div class="tab-pane active show" id="tab3">
-                                <div class="qrcode">
-                                    <div class="id-qr">
-                                        <img src="{{ asset('home/images/qrpay.png') }}" alt="">
-                                    </div>
-                                    <div class="information">
-                                        <ul>
-                                            <li>
-                                                <span>Chủ tài khoản:</span>
-                                                <span><strong>Mai Văn Huy</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Ví điện tử:</span>
-                                                <span><strong>VNPAY</strong></span>
-                                            </li>
-                                            <li>
-                                                <span>Tổng số tiền cần thanh toán:</span>
-                                                <span><strong>{{ number_format((int)str_replace(',', '', \Cart::subtotal(0))) }} VND</strong></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
