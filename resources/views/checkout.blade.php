@@ -74,7 +74,7 @@
                             <h4 class="title">Phương thức thanh toán</h4>
                             <ul class="nav d-flex justify-content-center">
                                 <li class="nav-items">
-                                    <a class="nav-link" data-toggle="tab" href="#tab3">
+                                    <a class="nav-link active show" data-toggle="tab" href="#tab3">
                                         <img src="{{ asset('home/images/logo-3.png') }}" alt="">
                                     </a>
                                 </li>
