@@ -147,13 +147,13 @@ class AdminLessonController extends Controller
     {
         DB::beginTransaction();
 
-        $chapter = Lesson::where([
+        $lesson = Lesson::where([
             ['id', $lessonId],
             ['chapter_id', $chapterId],
         ])->firstOrFail();
         $documentPath = $lesson->document_path;
         $videoPath = $lesson->video_path;
-        if ($chapter->delete()) {
+        if ($lesson->delete()) {
             if ($documentPath != "" && File::exists(public_path($documentPath))) {
                 unlink(public_path($documentPath));
             }
