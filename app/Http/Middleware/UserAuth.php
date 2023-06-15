@@ -22,15 +22,15 @@ class UserAuth
         {
             $user = Auth::user();
             // nếu level = 1 thì cho qua.
-            if ($user->level == UserRole::USER)
-            {
+            // if ($user->level == UserRole::USER)
+            // {
                 return $next($request);
-            }
-            else
-            {
-                Auth::logout();
-                return redirect()->route('getLogin')->with('status', 'Tài khoản không có quyền hạn');;
-            }
+            // }
+            // else
+            // {
+            //     Auth::logout();
+            //     return redirect()->route('getLogin')->with('status', 'Tài khoản không có quyền hạn');;
+            // }
         } else {
             return redirect('login');
         }
