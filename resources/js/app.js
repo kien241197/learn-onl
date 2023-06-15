@@ -158,24 +158,33 @@ if(input){
     input.addEventListener( 'change', showFileName );
 
     function showFileName( event ) {
+      $("#file-upload-filename").empty();
       // the change event gives us the input it occurred in 
       var input = event.srcElement;
-      console.log(input.files);
       
       // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
       var fileName = '';
       if(input.files[0]){
           fileName = input.files[0].name;
       }
-      console.log(fileName);
       // use fileName however fits your app best, i.e. add it into a div
       if(fileName) {
-          infoArea.innerHTML  = '<i class="fa fa-file"></i> ' + fileName;   
-      } else {
-          infoArea.innerHTML  = '';
+        var e = document.createElement('div');
+        var xmlString = '<i class="fa fa-file"></i> ' + fileName + ' <a href="javascript:void(0)" class="pl-1 pr-1 remove-file"><b>X</b></a>'; 
+        e.innerHTML = xmlString;
+        infoArea.appendChild(e);   
       }
+      $(".remove-file").click(function() {
+        $("#file-upload-filename").empty();
+        $("#old_document").val("");
+      });
     }    
 }
+
+$(".remove-file").click(function() {
+    $("#file-upload-filename").empty();
+    $("#old_document").val("");
+});
 
 $(document).ready(function() {
     $('#table-order').DataTable( {

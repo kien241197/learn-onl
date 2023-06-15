@@ -42173,3 +42173,11 @@ body.loading .loading-div {
   border-radius: 3px;
   box-sizing: border-box;
 }
+
+#file-upload-filename .remove-file {
+  border: solid 1px red;
+  border-radius: 20%;
+  font-size: 12px;
+  color: red;
+  text-decoration: unset;
+}

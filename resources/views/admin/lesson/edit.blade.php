@@ -33,6 +33,7 @@
                                     <label>File tài liệu</label>
                                     <div class="input-group">
                                         <div class="custom-file">
+                                            <input type="hidden" name="old_document" id="old_document" value="{{ $lesson->document_path }}">
                                             <input type="file" class="custom-file-input" name="document" id="document">
                                             <label class="custom-file-label" for="document">Chọn file</label>
                                         </div>
@@ -40,7 +41,11 @@
                                             <span class="text-danger">{{ $errors->first('document') }}</span>
                                         @endif
                                     </div>
-                                    <div id="file-upload-filename"></div>
+                                    <div id="file-upload-filename">
+                                        @if($lesson->document_path)
+                                        <i class="fa fa-file"></i> <a class="" href="{{ asset($lesson->document_path) }}" download="{{ $lesson->document_name }}">{{ $lesson->document_name }}</a> <a href="javascript:void(0)" class="pl-1 pr-1 remove-file"><b>X</b></a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

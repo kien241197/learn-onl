@@ -103,7 +103,9 @@
                             </div>
                             <div class="tab-pane fade" id="tab2">
                                 <p><strong>Tài liệu học tập được cung cập độc quyền từ hệ thống học của TNB</strong></p>
-                                <a class="btn-custom" href="{{ asset($lesson->document_path) }}" download="{{ $lesson->document_name }}">Download Tài liệu học tập</a>
+                                @if($lesson->document_path)
+                                <a class="btn-custom" href="{{ asset($lesson->document_path) }}" download="{{ $lesson->document_name }}"><i class="fa fa-download"></i> {{ $lesson->document_name }}</a>
+                                @endif
                             </div>
                         </div>
                     </div>

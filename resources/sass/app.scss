@@ -192,3 +192,12 @@ body.loading .loading-div {
         box-sizing: border-box;
     }
 }
+#file-upload-filename {
+    .remove-file {
+        border: solid 1px red;
+        border-radius: 20%;
+        font-size: 12px;
+        color: red;
+        text-decoration: unset;
+    }
+}

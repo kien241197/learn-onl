@@ -108,6 +108,12 @@ class AdminLessonController extends Controller
             $lesson->name = $request->name;
             $lesson->document_name = $request->document_name;
             $lesson->note = $request->note;
+            if(!$request->old_document) {
+                if ($lesson->document_path != "" && File::exists(public_path($lesson->document_path))) {
+                    unlink(public_path($lesson->document_path));
+                }
+                $lesson->document_path = "";
+            }
             if($request->document) {
                 if ($lesson->document_path != "" && File::exists(public_path($lesson->document_path))) {
                     unlink(public_path($lesson->document_path));
