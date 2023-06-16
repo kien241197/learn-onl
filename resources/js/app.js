@@ -176,6 +176,7 @@ if(input){
       }
       $(".remove-file").click(function() {
         $("#file-upload-filename").empty();
+        $("#document").val("");
         $("#old_document").val("");
       });
     }    
