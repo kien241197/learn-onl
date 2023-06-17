@@ -64,14 +64,20 @@
                         <h2>{{ $lesson->name }}</h2>
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tab1">Thảo luận</a>
+                                <a class="nav-link active" data-toggle="tab" href="#tab1">Tài liệu</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tab2">Tài liệu</a>
+                                <a class="nav-link" data-toggle="tab" href="#tab2">Thảo luận</a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade active show" id="tab1">
+                        	<div class="tab-pane fade active show" id="tab1">
+                                <p><strong>Tài liệu học tập được cung cập độc quyền từ hệ thống học của TNB</strong></p>
+                                @if($lesson->document_path)
+                                <a class="btn-custom" href="{{ asset($lesson->document_path) }}" download="{{ $lesson->document_name }}"><i class="fa fa-download"></i> {{ $lesson->document_name }}</a>
+                                @endif
+                            </div>
+                            <div class="tab-pane fade" id="tab2">
                             	<div class="card-comments">
 	                            	<div class="direct-chat-messages" id="box-comment">
 	                            		@foreach($lesson->comments as $comment)
@@ -100,12 +106,6 @@
                                    </div>
                                     <button class="btn-custom" type="button" id="send-comment" data-url="{{ route('postComment', $lesson->id) }}">Gửi câu hỏi</button>
                                 </form>
-                            </div>
-                            <div class="tab-pane fade" id="tab2">
-                                <p><strong>Tài liệu học tập được cung cập độc quyền từ hệ thống học của TNB</strong></p>
-                                @if($lesson->document_path)
-                                <a class="btn-custom" href="{{ asset($lesson->document_path) }}" download="{{ $lesson->document_name }}"><i class="fa fa-download"></i> {{ $lesson->document_name }}</a>
-                                @endif
                             </div>
                         </div>
                     </div>
