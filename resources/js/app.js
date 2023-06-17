@@ -138,16 +138,28 @@ $('.datetimepicker-input').datetimepicker({
 });
 
 const inputFile = document.getElementById("video");
+const inputLesson = document.getElementById("lesson-video");
 const video = document.getElementById("video_show");
 if(inputFile){
     inputFile.addEventListener("change", function(){
+        if($(this).val()) inputLesson.value = '';
         const file = inputFile.files[0];
         var videourl = '';
         if(file){
             videourl = URL.createObjectURL(file);        
         }
         video.setAttribute("src", videourl);
-        video.play();
+    });    
+}
+if(inputLesson){
+    inputLesson.addEventListener("change", function(){
+        if($(this).val()) inputFile.value = '';
+        const file = inputLesson.value;
+        var videourl = '';
+        if(file){
+            videourl = '/' + file;        
+        }
+        video.setAttribute("src", videourl);
     });    
 }
 

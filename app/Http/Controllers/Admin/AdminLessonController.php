@@ -17,11 +17,13 @@ class AdminLessonController extends Controller
     public function create($courseId, $chapterId)
     {
         $title = "Thêm bài học";
+        $listLesson = Lesson::all();
 
         return view('admin.lesson.add', [
             'title' => $title,
             'chapterId' => $chapterId,
             'courseId' => $courseId,
+            'lessons' => $listLesson,
         ]);
     }
 
@@ -53,6 +55,8 @@ class AdminLessonController extends Controller
                 $videoName = time() . '.' . $request->video->extension();
                 $lesson->video_path =  "storage/videos/" . $videoName;
                 $request->file('video')->storeAs('videos', $videoName, 'public');
+            } else if ($request->lesson_video_path) {
+                $lesson->video_path =  $request->lesson_video_path;
             } 
             if ($lesson->save()) {
                 DB::commit();
@@ -71,13 +75,14 @@ class AdminLessonController extends Controller
     {
         $title = "Sửa bài học";
         $lesson = Lesson::where('id', $lessonId)->firstOrFail();
-
+        $listLesson = Lesson::where('id', '!=', $lessonId)->get();
         return view('admin.lesson.edit', [
             'title' => $title,
             'lesson' => $lesson,
             'courseId' => $courseId,
             'chapterId' => $chapterId,
-            'lessonId' => $lessonId
+            'lessonId' => $lessonId,
+            'lessons' => $listLesson
         ]);
     }
 
@@ -121,14 +126,25 @@ class AdminLessonController extends Controller
                 $lesson->document_path =  "storage/documents/" .$request->document->getClientOriginalName();
                 $request->file('document')->storeAs('documents', $request->document->getClientOriginalName(), 'public');
             } 
+            $notExistsPath = Lesson::where([
+                ['id', '!=', $lessonId],
+                ['video_path', $lesson->video_path]
+            ])->doesntExist();
             if($request->video) {
-                if ($lesson->video_path != "" && File::exists(public_path($lesson->video_path))) {
+                // dd('file');
+                if ($lesson->video_path != "" && File::exists(public_path($lesson->video_path)) && $notExistsPath) {
                     unlink(public_path($lesson->video_path));
                 }
                 $videoName = time() . '.' . $request->video->extension();
                 $lesson->video_path =  "storage/videos/" . $videoName;
                 $request->file('video')->storeAs('videos', $videoName, 'public');
-            } 
+            } else if ($request->lesson_video_path) {
+                // dd($request->lesson_video_path);
+                if ($lesson->video_path != "" && File::exists(public_path($lesson->video_path)) && $notExistsPath) {
+                    unlink(public_path($lesson->video_path));
+                }
+                $lesson->video_path = $request->lesson_video_path;
+            }  
             if ($lesson->save()) {
                 DB::commit();
                 $this->setFlash(__('Cập nhật thành công!'), FlashType::Success);
@@ -140,12 +156,14 @@ class AdminLessonController extends Controller
             DB::rollBack();
             $this->setFlash(__('Đã có lỗi xảy ra!'), FlashType::Error);
         }
+        $listLesson = Lesson::where('id', '!=', $lessonId)->get();
         return view('admin.lesson.edit', [
             'title' => $title,
             'lesson' => $lesson,
             'courseId' => $courseId,
             'lessonId' => $lessonId,
-            'chapterId' => $chapterId
+            'chapterId' => $chapterId,
+            'lessons' => $listLesson
         ]);
     }
 
@@ -163,7 +181,11 @@ class AdminLessonController extends Controller
             if ($documentPath != "" && File::exists(public_path($documentPath))) {
                 unlink(public_path($documentPath));
             }
-            if ($videoPath != "" && File::exists(public_path($videoPath))) {
+            $notExistsPath = Lesson::where([
+                ['id', '!=', $lessonId],
+                ['video_path', $videoPath]
+            ])->doesntExist();
+            if ($videoPath != "" && File::exists(public_path($videoPath)) && $notExistsPath) {
                 unlink(public_path($videoPath));
             }
             DB::commit();

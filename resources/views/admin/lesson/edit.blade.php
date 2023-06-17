@@ -59,8 +59,16 @@
                                         @if ($errors->has('video'))
                                             <span class="text-danger">{{ $errors->first('video') }}</span>
                                         @endif
+                                    </div>
+                                    <div class="input-group">
+                                        <select class="form-control custom-select" id="lesson-video" name="lesson_video_path">
+                                            <option value="">(Chọn từ bài học khác)</option>
+                                            @foreach($lessons as $item)
+                                            <option value="{{ $item->video_path }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>                                        
                                     </div> 
-                                    <iframe id="video_show" width="350" height="250" src="{{ asset($lesson->video_path) }}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <iframe id="video_show" width="350" height="250" src="{{ asset($lesson->video_path) }}" title="YouTube video player" frameborder="0" allow="" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="form-group">

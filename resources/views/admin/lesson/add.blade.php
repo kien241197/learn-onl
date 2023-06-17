@@ -54,8 +54,23 @@
                                             <span class="text-danger">{{ $errors->first('video') }}</span>
                                         @endif
                                     </div> 
-                                    <iframe id="video_show" width="350" height="250" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <div class="input-group">
+                                        <select class="form-control custom-select" id="lesson-video" name="lesson_video_path">
+                                            <option value="">(Chọn từ bài học khác)</option>
+                                            @foreach($lessons as $lesson)
+                                            <option value="{{ $lesson->video_path }}">{{ $lesson->name }}</option>
+                                            @endforeach
+                                        </select>                                        
+                                    </div>
+                                    <iframe id="video_show" width="350" height="250" title="YouTube video player" frameborder="0" allow="" allowfullscreen></iframe>
                                 </div>
+                                <!-- <div class="form-group col-md-6">
+                                    <label>Video từ bài học khác</label>
+                                    <div class="form-group">
+                                        <input type="text" class="hidden" id="" name="video_copy">
+                                        <button class="btn btn-primary" type="button">Select</button>
+                                    </div>
+                                </div> -->
                             </div>
                             <div class="form-group">
                                 <label>Ghi chú</label>
