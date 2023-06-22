@@ -64,7 +64,7 @@
                                         <select class="form-control custom-select" id="lesson-video" name="lesson_video_path">
                                             <option value="">(Chọn từ bài học khác)</option>
                                             @foreach($lessons as $item)
-                                            <option value="{{ $item->video_path }}">{{ $item->name }}</option>
+                                            <option value="{{ asset($item->video_path) }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>                                        
                                     </div> 

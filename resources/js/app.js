@@ -156,10 +156,10 @@ if(inputLesson){
         if($(this).val()) inputFile.value = '';
         const file = inputLesson.value;
         var videourl = '';
-        if(file){
-            videourl = '/' + file;        
-        }
-        video.setAttribute("src", videourl);
+        // if(file){
+        //     videourl = '/' + file;        
+        // }
+        video.setAttribute("src", file);
     });    
 }
 
