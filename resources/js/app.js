@@ -142,7 +142,7 @@ const inputLesson = document.getElementById("lesson-video");
 const video = document.getElementById("video_show");
 if(inputFile){
     inputFile.addEventListener("change", function(){
-        if($(this).val()) inputLesson.value = '';
+        if($(this).val()) $('#lesson-video').val('').trigger('change');
         const file = inputFile.files[0];
         var videourl = '';
         if(file){
@@ -151,17 +151,17 @@ if(inputFile){
         video.setAttribute("src", videourl);
     });    
 }
-if(inputLesson){
-    inputLesson.addEventListener("change", function(){
-        if($(this).val()) inputFile.value = '';
-        const file = inputLesson.value;
-        var videourl = '';
-        // if(file){
-        //     videourl = '/' + file;        
-        // }
-        video.setAttribute("src", file);
-    });    
-}
+// if(inputLesson){
+//     inputLesson.addEventListener("change", function(){
+//         if($(this).val()) inputFile.value = '';
+//         const file = inputLesson.value;
+//         var videourl = '';
+//         // if(file){
+//         //     videourl = '/' + file;        
+//         // }
+//         video.setAttribute("src", file);
+//     });    
+// }
 
 var input = document.getElementById( 'document' );
 var infoArea = document.getElementById( 'file-upload-filename' );
@@ -224,4 +224,10 @@ $(document).ready(function() {
             height: 700
         });
     }
+    $('#lesson-video').select2();
+    $('#lesson-video').on('select2:select', function (e) {
+        var data = e.params.data;
+        if(data.id) $("#video").val('');
+        $("#video_show").attr("src", data.id);
+    });
 } );
