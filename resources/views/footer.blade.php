@@ -26,7 +26,7 @@
                                 <li><a href="https://tnbonline.vn/khoa-hoc" target="b_lank">SẢN PHẨM</a></li>
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">LỊCH HUẤN LUYỆN</a></li>
                                 <li><a href="https://tnbgarment.edu.vn/" target="b_lank">TRUYỀN THÔNG</a></li>
-                                <li><img src="{{asset('home/images/bct.png')}}" alt=""></li>
+                                <!-- <li><img src="{{asset('home/images/bct.png')}}" alt=""></li> -->
                             </ul>
                         </div>
                     </div>
