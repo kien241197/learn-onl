@@ -97,7 +97,6 @@ class HomeController extends Controller
 
     public function single($slug, $id)
     {
-        $title = "Chi tiết khóa học";
 
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $course = Course::with(['category', 'chapters.lessons'])
@@ -117,6 +116,8 @@ class HomeController extends Controller
         $countLesson =  $course->chapters->sum(function($query){
             return $query->lessons->count();
         });
+
+        $title = $course->name;
         return view('single', [
             'title' => $title,
             'course' => $course,

@@ -20,7 +20,7 @@ class LessonController extends Controller
 {
     public function lesson(Request $request, $id)
     {
-        $title = "Bài học";
+        $title = "Bài học trong khóa";
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $lesson = Lesson::where([
             ['id', '=', $id],

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ĐÀO TẠO QUẢN TRỊ MAY MẶC</title>
+    <title>ĐÀO TẠO QUẢN TRỊ MAY MẶC - Đăng nhập</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('home/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('home/fontawesome/css/all.min.css') }}">

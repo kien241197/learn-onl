@@ -22,11 +22,14 @@ class LoginController extends Controller
 {
     public function getLogin()
     {
+        $title = "Đăng nhập";
         if (Auth::check()) {
             // nếu đăng nhập thàng công thì 
             return redirect('/');
         } else {
-            return view('login');
+            return view('login', [
+                'title' => $title
+            ]);
         }
 
     }
@@ -85,7 +88,10 @@ class LoginController extends Controller
 
     public function getRegister()
     {
-        return view('register');
+        $title = "Đăng ký";
+        return view('register', [
+            'title' => $title
+        ]);
     }
 
     public function postRegister(RegisterRequest $request)
